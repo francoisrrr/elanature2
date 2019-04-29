@@ -83,13 +83,12 @@ ul.nav{
   background-color: #000;
 }
 li a.active{
-	color: #42b3e5 !important;
+	color: #4C9A2A !important;
 }
 .navbar-default .navbar-toggle {
   border-color: #fff;
   margin-top: 4px;
 }
-
 
 
 /*slider area*/
@@ -118,7 +117,7 @@ li a.active{
 .carousel-caption button{
 	width: 240px;
 	height: 60px;
-	background: #3a9ecb;
+	background: #68BB59;
 	color: #fff;
 	font-size: 30px;
 	text-transform: uppercase;
@@ -174,7 +173,7 @@ li a.active{
 /*about area*/
 .about h2{
 	font-size: 90px;
-	color: #42b3e5;
+	color: #4C9A2A;
 	margin-top: 50px;
 }
 .about h4{
@@ -254,10 +253,10 @@ li a.active{
 	padding-bottom: 30px;
 }
 .single-about-detail:hover .about-details{
-	background: #3a9dca;
+	background: #68BB59;
 }
 .single-about-detail:hover .pentagon-text h1{
-	color: #3a9dca;
+	color: #68BB59;
 }
 
 
@@ -293,7 +292,7 @@ li a.active{
 .service-img {
   width: 205px;
   height: 125px;
-  background: #3a9ecb;
+  background: #68BB59;
   position: relative;
 }
 .single-service h3{
@@ -313,7 +312,7 @@ li a.active{
 }
 .team h2{
 	font-size: 90px;
-	color: #42b3e5;
+	color: #4C9A2A;
 	margin-top: 50px;
 	margin-bottom: 0;
 }
@@ -344,7 +343,7 @@ li a.active{
 	position: absolute;
 	width: 20px;
 	height: 20px;
-	background: #3ba0cc;
+	background: #4C9A2A;
 	transform:rotate(45deg);
 	-webkit-transform:rotate(45deg);
 	-moz-transform:rotate(45deg);
@@ -362,7 +361,7 @@ li a.active{
 	position: absolute;
 	width: 20px;
 	height: 20px;
-	background: #3ba0cc;
+	background: #4C9A2A;
 	transform:rotate(45deg);
 	-webkit-transform:rotate(45deg);
 	-moz-transform:rotate(45deg);
@@ -398,7 +397,7 @@ li a.active{
 
 /*contact section*/
 .contact-caption{
-	background: #3a9dca;
+	background: #ACDF87;
 }
 .contact-heading h2{
 	color: #fff;
@@ -413,7 +412,7 @@ li a.active{
 	color: #fff;
 	text-transform: uppercase;
 	font-weight: bold;
-	border-bottom: 1px solid #13849c;
+	border-bottom: 1px solid #4C9A2A;
 	padding-bottom: 12px;
 	margin-bottom: 0;
 }
@@ -423,7 +422,7 @@ li a.active{
 	color: #fff;
 	text-transform: uppercase;
 	font-weight: bold;
-	border-bottom: 1px solid #13849c;
+	border-bottom: 1px solid #4C9A2A;
 	padding-bottom: 12px;
 	margin-bottom: 0;
 }
@@ -531,7 +530,7 @@ li a.active{
 	padding: 22px 10px;
 }
 .footer a i.fa:hover{
-	color: #42b3e5;
+	color: #4C9A2A;
 }
 
 .carousel-inner{
@@ -650,7 +649,7 @@ responsive area
   	.carousel-caption button {
 		 width: 180px;
 		 height: 50px;
-		 background: #3a9ecb;
+		 background: #68BB59;
 		 color: #fff;
 		 font-size: 22px;
 	}
@@ -720,12 +719,12 @@ responsive area
 
 /* XS Portrait */
 @media (max-width: 479px) {
-	.top-header img.logo {
+	/*.top-header img.logo {
 	  margin: 20px 10px;
 	}
 	.header-logo{
 		margin-top: 20px !important;
-	}
+	}*/
 	.navbar-default .navbar-toggle {
 		 border-color: #fff;
 		 margin-top: -7px;
@@ -735,6 +734,11 @@ responsive area
 	  font-size: 16px;
 	  text-align: left;
 	}
+
+	.navbar-default .navbar-nav>li>a:last-child {
+		margin-top: 5px;
+	}
+
 	.header-backup{
 		  height: 80px;
 	}
@@ -760,7 +764,7 @@ responsive area
 	}
 	.about h2 {
 	  font-size: 50px;
-	  color: #42b3e5;
+	  color: #4C9A2A;
 	  margin-top: 30px;
 	}
 	.service h2 {
