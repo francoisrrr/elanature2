@@ -1,0 +1,19 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Checkout Step 1
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 col-sm-12">
+            <h3>Détail de votre commande</h3>
+            {{ form( form, { attr: { novalidate: 'novalidate' } } ) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+

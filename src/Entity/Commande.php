@@ -6,6 +6,36 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+/*
+ * --------------------------------------------------------
+ * GENERALITES
+ * --------------------------------------------------------
+ * La classe Commande reçoit $articles passés
+ * dans le panier via la vue.
+ * La commande est enregistrée en bdd lorsque l'utilisateur
+ * complète un CommandeFormStep1 en précisant notamment :
+ * - $livraison
+ * - $paiement
+ * - $code_reduction
+ * - $quantite
+ */
+
+/*
+ * --------------------------------------------------------
+ * NOTES
+ * --------------------------------------------------------
+ *  # Prévoir une vue avec l'icône du panier dans
+ *  "_menu.html.twig" ou dans un "_header.html.twig" à créer.
+ *  La vue doit avoir accés à la quantité totale d'articles via
+ *  la fonction calculQuantite($article, $articles)
+ *
+ *  # Il faudra une quantité pour chaque article donc l'integer
+ *  $quantite ne convient pas. Une solution consiste à ajouter/supprimer
+ *  n fois les $article dans $articles. Une fonction de comptage$
+ *  permettra d'obtenir les quantités.
+ *
+ */
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommandeRepository")
  */
@@ -64,17 +94,17 @@ class Commande
         return $this->id;
     }
 
-    public function getQuantite(): ?int
-    {
-        return $this->quantite;
-    }
-
-    public function setQuantite(int $quantite): self
-    {
-        $this->quantite = $quantite;
-
-        return $this;
-    }
+//    public function getQuantite(): ?int
+//    {
+//        return $this->quantite;
+//    }
+//
+//    public function setQuantite(int $quantite): self
+//    {
+//        $this->quantite = $quantite;
+//
+//        return $this;
+//    }
 
     public function getDateCommande(): ?\DateTimeInterface
     {
