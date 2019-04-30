@@ -1,0 +1,9 @@
+easy_admin:
+  design:
+    menu:
+      - label: 'Dashboard'
+        icon: 'tachometer-alt'
+        children:
+          - {entity: 'Category', icon: 'tags', label: 'Categories'}
+          - {entity: 'Article', icon: 'shopping-bag', label: 'Articles'}
+          - {entity: 'Commande', icon: 'shopping-cart', label: 'Commandes'}
