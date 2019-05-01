@@ -2,3 +2,5 @@ easy_admin:
   entities:
     Commande:
       class: App\Entity\Commande
+      #Desactiver la creation de commandes
+      disabled_actions: ['new']

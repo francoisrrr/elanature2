@@ -2,6 +2,13 @@ easy_admin:
   entities:
     Category:
       class: App\Entity\Categorie
+      label: 'Categories'
+      help: 'Vous etes dans la section Categories'
+      list:
+        title: 'Categories'
+        actions:
+          - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
+          - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
       form:
         fields:
           - {property: 'nom'}

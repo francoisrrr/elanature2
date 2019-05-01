@@ -1,0 +1,6 @@
+easy_admin:
+  entities:
+    Membre:
+      class: App\Entity\Membre
+      #Desactiver la creation de membres
+      #disabled_actions: ['new']

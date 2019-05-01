@@ -1,2 +1,8 @@
 easy_admin:
-  site_name: 'Elanature'
+  site_name: 'Elan<em style="font-size: 80%;">ature</em>'
+  user:
+    display_name: false
+    display_avatar: true
+      # this will look for getFullName(), isFullName(), ..., and 'fullName' property
+      #name_property_path: 'fullName'
+      #avatar_property_path: 'gravatar'

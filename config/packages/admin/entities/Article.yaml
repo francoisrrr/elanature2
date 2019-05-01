@@ -2,9 +2,35 @@ easy_admin:
   entities:
     Article:
       class: App\Entity\Article
-      #templates:
+      label: 'Articles'
+      help: 'Vous etes dans la section article'
+      image_base_path: '/public/images/product'
+      #Changer le titre des
+      new:
+        title:  'Ajouter un article'
+        form_options: { validation_groups: ['Default', 'Article'] }
+      edit:
+        title:  'Modifier un article'
+        form_options: { validation_groups: ['Default'] }
+
+        #templates:
         #edit: 'admin/article/edit.html.twig'
       list:
+        title: 'Derniers articles ajoutés'
+        help: null
+        fields: ['nom', { property: 'prix', format: '%0.1f €'}, 'stock', { property: 'photos', label: 'Image'}, 'promotion', 'coup_de_coeur', 'nouveaute']
+
         actions:
           - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
           - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
+
+      form:
+        fields:
+          - {property: 'nom'}
+          - {property: 'description'}
+          - {property: 'prix'}
+          - {property: 'stock'}
+          - {property: 'reference'}
+          - {property: 'photos'}
+          - {property: 'promotion'}
+          - {property: 'nouveaute'}
