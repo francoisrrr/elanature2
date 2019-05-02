@@ -17,7 +17,6 @@ use Doctrine\ORM\Mapping as ORM;
  * - $livraison
  * - $paiement
  * - $code_reduction
- * - $quantite
  */
 
 /*
@@ -28,11 +27,6 @@ use Doctrine\ORM\Mapping as ORM;
  *  "_menu.html.twig" ou dans un "_header.html.twig" à créer.
  *  La vue doit avoir accés à la quantité totale d'articles via
  *  la fonction calculQuantite($article, $articles)
- *
- *  # Il faudra une quantité pour chaque article donc l'integer
- *  $quantite ne convient pas. Une solution consiste à ajouter/supprimer
- *  n fois les $article dans $articles. Une fonction de comptage$
- *  permettra d'obtenir les quantités.
  *
  */
 
