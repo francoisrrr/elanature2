@@ -69,7 +69,7 @@ class MembreController extends AbstractController
         ]);
 
         # affichage du formulaire dans la vue
-        return $this->render('membre/connexion', [
+        return $this->render('membre/connexion.html.twig', [
             'form' => $form->createView(),
             'error' => $authenticationUtils->getLastAuthenticationError()
         ]);
