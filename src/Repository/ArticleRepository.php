@@ -19,6 +19,19 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    /**
+     * @return Articles ou quantite est < 5
+     */
+    public function findByStockCritique()
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.stock <= 5')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */
