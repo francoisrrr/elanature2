@@ -61,6 +61,7 @@ class Membre
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
+        $this->date_inscription = new \DateTime();
     }
 
     public function getId(): ?int

@@ -11,10 +11,14 @@ namespace App\Form;
 
 
 use App\Entity\Article;
+use App\Entity\Categorie;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -49,13 +53,45 @@ class ArticleFormType extends AbstractType
                 'required' => true,
                 'label' =>true
             ])
-            /*->add('photos',FileType::class,[
-                'required' => true,
-                'label' =>false,
-                'attr'=> [
-                    'class'=> 'dropify'
+            ->add('photos', FileType::class, array(
+                'label' => 'Add images',
+                'mapped' => false,
+                'multiple' => true
+            ))
+            ->add('promotion',CheckboxType::class,[
+                'required'=> false,
+                'attr'=>[
+                    'data-toggle'=>'toggle',
+                    'data-on'=>'Oui',
+                    'data-off'=>'Non'
                 ]
-            ])*/
+            ])
+            ->add('coup_de_coeur',CheckboxType::class,[
+                'required'=> false,
+                'attr'=>[
+                    'data-toggle'=>'toggle',
+                    'data-on'=>'Oui',
+                    'data-off'=>'Non'
+                ]
+            ])
+            ->add('nouveaute',CheckboxType::class,[
+                'required'=> false,
+                'attr'=>[
+                    'data-toggle'=>'toggle',
+                    'data-on'=>'Oui',
+                    'data-off'=>'Non'
+                ]
+            ])
+            ->add('categorie',EntityType::class, [
+                'class' => Categorie::class,
+                'choice_label'=>'nom',
+                'label' =>false
+            ])
+            ->add('submit',SubmitType::class,[
+                'label'=>'Publier mon Article'
+            ])
+
+
             ;
     }
 
