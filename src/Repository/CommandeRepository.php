@@ -6,6 +6,15 @@ use App\Entity\Commande;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+/*
+ * --------------------------------------------------------
+ * GENERALITES
+ * --------------------------------------------------------
+ *
+ * Requêtes bdd
+ *
+*/
+
 /**
  * @method Commande|null find($id, $lockMode = null, $lockVersion = null)
  * @method Commande|null findOneBy(array $criteria, array $orderBy = null)
