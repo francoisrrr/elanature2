@@ -47,7 +47,7 @@ class MembreController extends AbstractController
             $this->addFlash('notice', 'Félicitation, vous pouvez vous connecter!');
 
             # redirection
-            return $this->redirectToRoute('/connexion.html');
+            return $this->redirectToRoute('membre_connexion');
         }
 
         # affichage du Formulaire dans la vue
