@@ -74,10 +74,16 @@ class Article
      */
     private $categorie;
 
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//  Liaison ManyToMany avec Commande via CommandeArticle
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Commande", inversedBy="articles")
+     * @ORM\OneToMany(targetEntity="App\Entity\CommandeArticle", mappedBy="articles")
      */
     private $commande;
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
     public function __construct()
     {
