@@ -58,8 +58,6 @@ class MembreController extends AbstractController
 
     /**
      * @Route("/connexion.html", name="membre_connexion")
-     * @param AuthenticationUtils $authenticationUtils
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function connexion(AuthenticationUtils $authenticationUtils)
     {
