@@ -395,33 +395,39 @@ li a.active{
 }
 
 /*form section*/
-form h2 {
-	color: #fff;
-	font-size: 90px;
+.inscription .row {
+	margin-top: 200px;
 }
 
-form input{
+.inscription .row h2 {
+	color: #4C9A2A;
+	font-size: 90px;
+	text-align: center;
+
+}
+
+.inscription form input{
 	width: 100%;
-	height: 40px;
-	background: #fff;
-	font-size: 13px;
-	color: #084a5c;
+	height: 70px;
+	font-size: 15px;
 	font-family: 'Open Sans', sans-serif;
-	padding: 12px;
-	border:0;
+	padding: 15px;
+	border:1px solid #ACDF87;
 	margin-bottom: 12px;
 }
 
-form button{
+.inscription form button{
 	width: 180px;
 	height: 50px;
 	margin: auto;
 	font-size: 24px;
-	background: #4C9A2A;
+	background: #68BB59;
 	color: #2a2a2a;
 	padding: 0;
 	font-family: 'BenchNine', sans-serif;
 	font-weight: bold;
+	display: block;
+	margin: auto;
 }
 
 /*contact section*/
@@ -540,10 +546,15 @@ form button{
 }
 
 /*footer*/
+.footer {
+	margin-top: 50px;
+}
+
 .footer-para{
 	margin: 0;
 	padding: 0;
 }
+
 .footer p{
 	font-size: 12px;
 	color: #000;
@@ -551,20 +562,23 @@ form button{
 	font-weight: 300;
 	margin: 0;
 	padding: 25px 0;
-
 }
-.footer a i.fa{
+
+.footer p a {
+	color: #4C9A2A;
+	font-weight: bold;
+}
+
+.footer a i.fab{
 	font-size: 24px;
 	color: #b1b1b1;
 	padding: 22px 10px;
 }
-.footer a i.fa:hover{
+
+.footer a i.fab:hover{
 	color: #4C9A2A;
 }
 
-.carousel-inner{
-	position: relative;
-}
 
 
 
