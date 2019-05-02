@@ -48,10 +48,10 @@ class Commande
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $quantite;
+//    /**
+//     * @ORM\Column(type="integer")
+//     */
+//    private $quantite;
 
     /**
      * @ORM\Column(type="datetime")
@@ -73,10 +73,18 @@ class Commande
      */
     private $paiement;
 
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//  Liaison ManyToMany avec Article via CommandeArticle
+
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Article", mappedBy="commande")
+     * @ORM\OneToMany(targetEntity="App\Entity\CommandeArticle", mappedBy="commande")
      */
     private $articles;
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Membre", inversedBy="commandes")

@@ -30,6 +30,10 @@ use App\Entity\Commande;
  *      - Fonction suppression article <=> modificationQuantite($article, 0)
  *      - Fonction calculTotal($articles[])
  *
+ * Le formulaire se présente sous la forme d'un tableau.
+ * L'utilisateur a la possibilité de modifier les quantités / supprimer des articles.
+ * Il peut poursuivre son shopping ou procéder au checkout.
+ *
 */
 
 
