@@ -29,8 +29,11 @@ easy_admin:
           - {property: 'nom'}
           - {property: 'description'}
           - {property: 'prix'}
+          - {property: 'slug'}
           - {property: 'stock'}
           - {property: 'reference'}
           - {property: 'photos'}
           - {property: 'promotion'}
           - {property: 'nouveaute'}
+          - {property: 'coup_de_coeur'}
+          - {property: 'categorie'}
