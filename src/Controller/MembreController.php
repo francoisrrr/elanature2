@@ -7,9 +7,10 @@ namespace App\Controller;
 use App\Entity\Membre;
 use App\Form\ConnexionFormType;
 use App\Form\MembreFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -19,7 +20,7 @@ class MembreController extends AbstractController
      * @Route("/inscription.html", name="membre_inscription")
      *
      */
-    public function inscription(Request $request, UserPasswordEncoderInterface $encoder)
+    public function inscription(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
         # création d'un Membre
         $membre = new Membre();
@@ -35,7 +36,10 @@ class MembreController extends AbstractController
 
             # encoder le mot de passe
             $membre->setPassword(
-                $encoder->encodePassword($membre, $membre->getPassword())
+                $encoder->encodePassword(
+                    $membre,
+                    $membre->getPassword()
+                )
             );
 
             # savegarde en BDD
@@ -44,7 +48,8 @@ class MembreController extends AbstractController
             $em->flush();
 
             # notification
-            $this->addFlash('notice', 'Félicitation, vous pouvez vous connecter!');
+            $this->addFlash('notice',
+                'Félicitation, vous pouvez vous connecter!');
 
             # redirection
             return $this->redirectToRoute('membre_connexion');
