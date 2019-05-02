@@ -44,9 +44,9 @@ class Article
     private $stock;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="string", length=255)
      */
-    private $photos = [];
+    private $photo;
 
     /**
      * @ORM\Column(type="boolean")
@@ -155,14 +155,14 @@ class Article
         return $this;
     }
 
-    public function getPhotos(): ?array
+    public function getPhoto(): ?string
     {
-        return $this->photos;
+        return $this->photo;
     }
 
-    public function setPhotos(array $photos): self
+    public function setPhoto(string $photo): self
     {
-        $this->photos = $photos;
+        $this->photo = $photo;
 
         return $this;
     }

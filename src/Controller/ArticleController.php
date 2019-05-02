@@ -78,14 +78,15 @@ class ArticleController extends AbstractController
     {
         $article = new Article();
 
-        $categorie = $this->getDoctrine()
-            ->getRepository(Categorie::class)
-            ->find(1);
-        $article->setCategorie($categorie);
+        $article = $this->getDoctrine()
+            ->getRepository(Article::class)
+            ->findAll();
+
 
         $form = $this->createForm(ArticleFormType::class, $article);
+        $photos= $form['photos']->getData();
         # Affichage du formulaire dans la vue
-        return $this->render("article/addform.html.twig",[
+        return $this->render("default/index.html.twig",[
             'form' => $form->createView()
         ]);
 

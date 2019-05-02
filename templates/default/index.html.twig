@@ -199,12 +199,12 @@
                     <h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took
                         a galley of type and scrambled</h4>
                 </div>
-                {% for article in articles %}
+                {% for article in promotion %}
 
 
                 <div class="col-md-2 single-member col-sm-4">
                     <div class="person">
-                        <img class="img-responsive" src="{{ asset('img/' ~ article.photos) }}" alt="{{ article.nom }}">
+                        <img class="img-responsive" src="{{ asset('img/' ~ article.photo) }}" alt="{{ article.nom }}">
                     </div>
 
                     <div class="person-detail">
@@ -212,71 +212,10 @@
                         <h3>{{ article.nom }}</h3>
                         <p>{{ article.description }} </p>
                     </div>
-                    {% endfor %}
-                </div>
-
-                <div class="col-md-2 single-member col-sm-4">
-
-                    <div class="person-detail">
-                        <div class="arrow-top"></div>
-                        <h3>Mr. David</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s, </p>
-                    </div>
-                    <div class="person">
-                        <img class="img-responsive" src="{{ asset('img/item2.jpg') }}" alt="member-2">
-                    </div>
-                </div>
-                <div class="col-md-2 single-member col-sm-4">
-                    <div class="person">
-                        <img class="img-responsive" src="{{ asset('img/item3.jpg') }}" alt="member-3">
-                    </div>
-                    <div class="person-detail">
-                        <div class="arrow-bottom"></div>
-                        <h3>Mr. Hovid</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s, </p>
-                    </div>
-                </div>
-
-                <div class="col-md-2 single-member col-sm-4">
-                    <div class="person-detail">
-                        <div class="arrow-top"></div>
-                        <h3>Mr Jasak</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s, </p>
-                    </div>
-                    <div class="person">
-                        <img class="img-responsive" src="{{ asset('img/item4.jpg') }}" alt="member-4">
-                    </div>
-                </div>
-
-                <div class="col-md-2 single-member col-sm-4">
-                    <div class="person">
-                        <img class="img-responsive" src="{{ asset('img/item5.jpg') }}" alt="member-5">
-                    </div>
-
-                    <div class="person-detail">
-                        <div class="arrow-bottom"></div>
-                        <h3>Mr. Joy Ka</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s, </p>
-                    </div>
-                </div>
-
-                <div class="col-md-2 single-member col-sm-4">
-
-                    <div class="person-detail">
-                        <div class="arrow-top"></div>
-                        <h3>Mr. Mikari</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s, </p>
-                    </div>
-                    <div class="person">
-                        <img class="img-responsive" src="{{ asset('img/item6.jpg') }}" alt="member-5">
-                    </div>
 
                 </div>
+                {% endfor %}
+
             </div>
         </div>
     </section><!-- end of team section -->
