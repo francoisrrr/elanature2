@@ -4,7 +4,7 @@ easy_admin:
       class: App\Entity\Article
       label: 'Articles'
       help: 'Vous etes dans la section article'
-      image_base_path: '/public/images/product'
+      image_base_path: 'images/product'
       #Changer le titre des
       new:
         title:  'Ajouter un article'
@@ -18,7 +18,7 @@ easy_admin:
       list:
         title: 'Derniers articles ajoutés'
         help: null
-        fields: ['nom', { property: 'prix', format: '%0.1f €'}, 'stock', { property: 'photos', label: 'Image'}, 'promotion', 'coup_de_coeur', 'nouveaute']
+        fields: ['nom', { property: 'prix', format: '%0.1f €'}, 'stock', { property: 'photo', label: 'Image', type: 'image'}, 'promotion', 'coup_de_coeur', 'nouveaute']
 
         actions:
           - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
@@ -28,12 +28,15 @@ easy_admin:
         fields:
           - {property: 'nom'}
           - {property: 'description'}
-          - {property: 'prix'}
+          - {property: 'prix', type: 'money', type_options: { currency: 'EUR' }}
           - {property: 'slug'}
           - {property: 'stock'}
           - {property: 'reference'}
-          - {property: 'photos'}
+          - {property: 'photo'}
           - {property: 'promotion'}
           - {property: 'nouveaute'}
           - {property: 'coup_de_coeur'}
           - {property: 'categorie'}
+          - {property: 'poids'}
+          - {property: 'date_peremption'}
+          - {property: 'ingredients'}
