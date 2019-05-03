@@ -28,32 +28,47 @@ class CommandeRepository extends ServiceEntityRepository
         parent::__construct($registry, Commande::class);
     }
 
-    // /**
-    //  * @return Commande[] Returns an array of Commande objects
-    //  */
-    /*
-    public function findByExampleField($value)
+
+    /**
+     *
+     * @return Commande[] Returns an array of Commande objects
+     */
+    public function findByMembre($value)
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
+            ->andWhere('c.membre = :val')
             ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
+            ->orderBy('c.date_commande', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
-    public function findOneBySomeField($value): ?Commande
+     * Récupère les 5 Commande les plus récentes de la BDD
+     */
+    public function findOneById($value): ?Commande
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
+            ->andWhere('c.id = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+
+    /*
+     * Récupère les 5 Commande les plus récentes de la BDD
+     */
+    public function findByLatest()
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.date_commande','DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 }

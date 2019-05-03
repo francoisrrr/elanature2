@@ -20,30 +20,24 @@ use App\Entity\Commande;
  * GENERALITES
  * --------------------------------------------------------
  *
- * Formulaire de validation de commande
- *      - Redirection login si offline
- *      - Sélection adresse livraison
- *      - Sélection mode de livraison
- *      - Récapitulatif de commande (article, quantité, total)
- *      - Calcul total avec livraison sélectionnée
- *      - Sélection mode de paiement
- *      - Sauvegarde en BDD
+ * Formulaire d'edition de commande
+ *      - Fonction calculQuantite($article, $articles)
+ *      - Affiche une table avec l'ensemble des $article sélectionnés
+ *          et les quantités correspondantes
+ *      - Fonction modificationQuantite($article, $quantite) <=>
+ *          calculQuantite($article, $articles) versus $quantite puis
+ *          loop addArticle / removeArticle
+ *      - Fonction suppression article <=> modificationQuantite($article, 0)
+ *      - Fonction calculTotal($articles[])
+ *
+ * Le formulaire se présente sous la forme d'un tableau.
+ * L'utilisateur a la possibilité de modifier les quantités / supprimer des articles.
+ * Il peut poursuivre son shopping ou procéder au checkout.
  *
 */
 
-/*
- * --------------------------------------------------------
- * NOTES
- * --------------------------------------------------------
- *
- * Intégration API :
- *      - livraison
- *      - paiement
- *
- */
 
-
-class CommandeFormStep2 extends AbstractType
+class CommandeFormType extends AbstractType
 {
 //    public function buildForm(FormBuilderInterface $builder, array $options)
 //    {

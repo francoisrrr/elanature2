@@ -1,105 +1,193 @@
 <?php
 
+// https://stackoverflow.com/questions/12243230/shopping-cart-bundle-with-symfony2
+
+
 namespace App\Controller;
 
 use App\Entity\Commande;
+use App\Form\CommandeFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-/*
- * --------------------------------------------------------
- * GENERALITES
- * --------------------------------------------------------
- *
- * Formulaire d'edition de commande "step 1"
- *      - Redirection vers : page précédente / validation (shipping + paiement)
- * Formulaire de validation de commande "step 2"
- *      - Redirection vers index
- *
-*/
 
+/**
+ * @Route("/panier")
+ */
 class CommandeController extends AbstractController
 {
     use HelperTrait;
 
     /**
-     * Formulaire pour créer un article
-     * @Route("/creer-un-article", name="article_add")
+     * @Route("/", name="cart")
      */
-    public function addCommand(Request $request)
+    // IN PROGRESS
+    public function indexCart()
     {
-        // Création d'un nouvel article
+        //**************************************************************************************
+        // get the cart from  the session
+        $session = $this->getRequest()->getSession();
+        // $cart = $session->set('cart', '');
+        $cart = $session->get('cart', array());
+
+        // $cart = array_keys($cart);
+        // print_r($cart); die;
+
+        // fetch the information using query and ids in the cart
+        if( $cart != '' ) {
+
+            foreach( $cart as $id => $quantity ) {
+                $productIds[] = $id;
+
+            }
+
+            if( isset( $productIds ) )
+            {
+                $em = $this->getDoctrine()->getEntityManager();
+                $product = $em->getRepository('WebmuchProductBundle:Product')->findById( $productIds );
+            } else {
+                return $this->render('WebmuchCartBundle:Cart:index.html.twig', array(
+                    'empty' => true,
+                ));
+            }
+
+            return $this->render('WebmuchCartBundle:Cart:index.html.twig',     array(
+                'product' => $product,
+            ));
+        } else {
+            return $this->render('WebmuchCartBundle:Cart:index.html.twig',     array(
+                'empty' => true,
+            ));
+        }
+        //**************************************************************************************
+
+    }
+
+    /**
+     * @Route("/add/{id}", name="cart_add")
+     */
+    // IN PROGRESS
+    public function addArticle($id)
+    {
+        //**************************************************************************************
+        // fetch the cart
+        $em = $this->getDoctrine()->getEntityManager();
+        $product = $em->getRepository('WebmuchProductBundle:Product')->find($id);
+        //print_r($product->getId()); die;
+        $session = $this->getRequest()->getSession();
+        $cart = $session->get('cart', array());
+
+
+        // check if the $id already exists in it.
+        if ( $product == NULL ) {
+            $this->get('session')->setFlash('notice', 'This product is not     available in Stores');
+            return $this->redirect($this->generateUrl('cart'));
+        } else {
+            if( isset($cart[$id]) ) {
+
+                $qtyAvailable = $product->getQuantity();
+
+                if( $qtyAvailable >= $cart[$id]['quantity'] + 1 ) {
+                    $cart[$id]['quantity'] = $cart[$id]['quantity'] + 1;
+                } else {
+                    $this->get('session')->setFlash('notice', 'Quantity     exceeds the available stock');
+                    return $this->redirect($this->generateUrl('cart'));
+                }
+            } else {
+                // if it doesnt make it 1
+                $cart = $session->get('cart', array());
+                $cart[$id] = $id;
+                $cart[$id]['quantity'] = 1;
+            }
+
+            $session->set('cart', $cart);
+            return $this->redirect($this->generateUrl('cart'));
+
+        }
+        //**************************************************************************************
+        //  -- Récupération du Membre en $_SESSION
+
+        //  -- Récupération du panier en $_SESSION
+
+        //$session = $this->getRequest()->getSession();
+        //$cart = $session->get('cart', array());
+
+        ///  -- Création d'une nouvelle Commande
         $commande = new Commande();
 
-        // Récupération des catégories
-        $categories = $this->getDoctrine()
-            ->getRepository(Categorie::class)
-            ->findAll();
+        ///  -- Création d'un formulaire permettant d'ajouter une commande
+        $form = $this->createForm(CommandeFormType::class,$commande);
 
-        // Récupération d'un auteur
-        $membre = $this->getDoctrine()
-            ->getRepository(Membre::class)
-            ->find(1);
-
-        // Affecter un auteur à l'article
-        $article->setMembre($membre);
-
-        // Création d'un formulaire permettant d'ajouter un article
-        $form = $this->createForm(ArticleFormType::class,$article);
-
-        // Traitement des données POST
+        //  -- Traitement des données du $_POST
         $form->handleRequest($request);
-        // Si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
+            ///  -- Génération du Slug
+            $commande->setSlug($this->slugify("commande-ref-".$commande->getId()));
 
-            //1. Traitement de l'upload de l'image
-                // $file stores the uploaded PDF file
-                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-                $file = $form['featuredImage']->getData();
-
-                $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-
-                // Move the file to the directory where featuredImage are stored
-                try {
-                    $file->move(
-                        $this->getParameter('featuredImage_directory'),
-                        $fileName
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-
-                // updates the 'article' property to store the PDF file name
-                // instead of its contents
-                $article->setFeaturedImage($fileName);
-
-            //2. Génération du Slug
-            $article->setSlug($this->slugify($article->getTitre()));
-
-            //3. Sauvegarde en BDD
+            ///  -- Sauvegarde en BDD
             $em=$this->getDoctrine()->getManager();
-            $em->persist($article);
+            $em->persist($commande);
             $em->flush();
 
-            //4. Notification
+            ///  -- Notification
             $this->addFlash('notice',
-                'Félicitations votre article est en ligne !');
+                'Félicitations votre commande a été enregistrée !');
 
-            //5. Redirection
-            return $this->redirectToRoute('default_article',[
-                'categorie' => $article->getCategorie()->getSlug(),
-                'slug' => $article->getSlug(),
-                'id' => $article->getId()]);
+            ///  -- Redirection
+            return $this->redirectToRoute('index',[
+                'slug' => $commande->getSlug(),
+                'id' => $commande->getId()
+            ]);
         }
 
-        // Affichage du formulaire dans la vue
-        return $this->render("article/step1form.html.twig", [
+        /*//
+         *  -- Transmission des informations du panier à la Vue
+         *     et affichage du formulaire
+         */
+        return $this->render("commande/addform.html.twig", [
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/remove/{id}", name="cart_remove")
+     */
+    // IN PROGRESS
+    public function removeArticle($id)
+    {
+        //**************************************************************************************
+        // check the cart
+        $session = $this->getRequest()->getSession();
+        $cart = $session->get('cart', array());
+
+        // if it doesn't exist redirect to cart index page. end
+        if(!$cart) { $this->redirect( $this->generateUrl('cart') ); }
+
+        // check if the $id already exists in it.
+        if( isset($cart[$id]) ) {
+            // if it does ++ the quantity
+            $cart[$id]['quantity'] = '0';
+            unset($cart[$id]);
+            //echo $cart[$id]['quantity']; die();
+        } else {
+            $this->get('session')->setFlash('notice', 'Go to hell');
+            return $this->redirect( $this->generateUrl('cart') );
+        }
+
+        $session->set('cart', $cart);
+
+        // redirect(index page)
+        $this->get('session')->setFlash('notice', 'This product is Remove');
+        return $this->redirect( $this->generateUrl('cart') );
+        //**************************************************************************************
+
+
+    }
+
+
 
     /**
      * @return string

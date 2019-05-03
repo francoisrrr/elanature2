@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * La classe Commande reçoit $articles passés
  * dans le panier via la vue.
  * La commande est enregistrée en bdd lorsque l'utilisateur
- * complète un CommandeFormStep1 en précisant notamment :
+ * complète un CommandeFormType en précisant notamment :
  * - $livraison
  * - $paiement
  * - $code_reduction
@@ -42,11 +42,6 @@ class Commande
      */
     private $id;
 
-//    /**
-//     * @ORM\Column(type="integer")
-//     */
-//    private $quantite;
-
     /**
      * @ORM\Column(type="datetime")
      */
@@ -67,7 +62,10 @@ class Commande
      */
     private $paiement;
 
-
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //  Liaison ManyToMany avec Article via CommandeArticle
@@ -95,18 +93,6 @@ class Commande
     {
         return $this->id;
     }
-
-//    public function getQuantite(): ?int
-//    {
-//        return $this->quantite;
-//    }
-//
-//    public function setQuantite(int $quantite): self
-//    {
-//        $this->quantite = $quantite;
-//
-//        return $this;
-//    }
 
     public function getDateCommande(): ?\DateTimeInterface
     {
@@ -192,6 +178,18 @@ class Commande
     public function setMembre(?Membre $membre): self
     {
         $this->membre = $membre;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
