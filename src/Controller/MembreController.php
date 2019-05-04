@@ -23,7 +23,7 @@ class MembreController extends AbstractController
     {
         # création d'un Membre
         $membre = new Membre();
-        $membre->setRoles(['ROLE_MEMBRE']);
+        $membre->setRole(['ROLE_MEMBRE']);
 
         # création du Formulaire "MembreFormType"
         $form = $this->createForm(MembreFormType::class, $membre);
@@ -60,12 +60,14 @@ class MembreController extends AbstractController
     /**
      * @Route("/connexion.html", name="membre_connexion")
      */
-    public function connexion(AuthenticationUtils $authenticationUtils)
+
+    public function connexion(Request $request, AuthenticationUtils $authenticationUtils)
     {
         # récupération du formulaire de connexion
         $form = $this->createForm(ConnexionFormType::class, [
             'email' => $authenticationUtils->getLastUsername()
         ]);
+
 
         # affichage du formulaire dans la vue
         return $this->render('membre/connexion.html.twig', [

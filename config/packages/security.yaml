@@ -27,7 +27,7 @@ security:
                 check_path: membre_connexion
                 username_parameter: app_login[email]
                 password_parameter: app_login[password]
-            provider: membre_provider
+                provider: membre_provider
             logout:
                 path: /deconnexion.html
                 target: /
@@ -37,4 +37,5 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-         - { path: ^/profile, roles: ROLE_MEMBRE }
+        # - { path: ^/profile, roles: ROLE_MEMBRE }
+

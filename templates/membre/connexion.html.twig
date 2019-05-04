@@ -25,8 +25,12 @@
 
             <h2>Connexion</h2>
 
-            {{ form( form, { attr: {novalidate: 'novalidate' } } ) }}
+            {{ form ( form, { attr: {novalidate: 'novalidate' } } ) }}
     </div>
 </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
 {% endblock %}
