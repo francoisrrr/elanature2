@@ -226,7 +226,7 @@ ul.nav{
 .service h2{
 	font-size: 90px;
 	color: #fff;
-	margin-top: 120px;
+	margin-top: 160px;
 	margin-bottom: 0;
 }
 .service h4{
@@ -632,14 +632,13 @@ responsive area
 	}
 
 	.service-img {
-		width: 405px;
+		width: 305px;
 		height: 225px;
 		position: relative;
 	}
 	.single-service h3{
-		margin-top: 50px;
-		color: #fff;
-		padding-bottom: 50px;
+		margin-top: 0px;
+		padding-bottom: 20px;
 		position:relative;
 	}
 
@@ -729,7 +728,6 @@ responsive area
 	}
 	.single-service h3{
 		margin-top: 0px;
-		color: #fff;
 		padding-bottom: 20px;
 		position:relative;
 	}
