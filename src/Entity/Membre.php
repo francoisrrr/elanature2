@@ -54,7 +54,7 @@ class Membre implements UserInterface
     /**
      * @ORM\Column(type="array")
      */
-    private $role = [];
+    private $roles = [];
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Commande", mappedBy="membre")
@@ -144,15 +144,17 @@ class Membre implements UserInterface
         return $this;
     }
 
-    public function getRole(): ?array
+    // UserAuthenticationProvider
+    public function getRoles(): ?array
     {
-          return $this->role;
+          return $this->roles;
 
     }
 
-    public function setRole(array $role): self
+    // UsernamePasswordToken
+    public function setRoles(array $roles): self
     {
-        $this->role = $role;
+        $this->roles = $roles;
 
         return $this;
     }
@@ -188,10 +190,10 @@ class Membre implements UserInterface
         return $this;
     }
 
-    public function getRoles()
+   /* test public function getRoles()
     {
         return ['ROLE_MEMBRE'];
-    }
+    }*/
 
     /**
      * Returns the salt that was originally used to encode the password.

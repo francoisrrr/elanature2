@@ -18,7 +18,9 @@
             {% if error %}
                 <div class="alert alert-danger">
                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    {{  dump(error) }}
                     {{ error.messageKey|trans(error.messageData, 'security')| replace({"Invalid credentials." : "Identifiant et/ou mot de passe incorrect."}) }}
+                    {#Invalid credentials modifie dans security.fr.xlf#}
                 </div>
             {% endif %}
 

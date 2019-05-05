@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Membre;
 use App\Form\ConnexionFormType;
 use App\Form\MembreFormType;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +24,7 @@ class MembreController extends AbstractController
     {
         # création d'un Membre
         $membre = new Membre();
-        $membre->setRole(['ROLE_MEMBRE']);
+        $membre->setRoles(['ROLES_MEMBRE']);
 
         # création du Formulaire "MembreFormType"
         $form = $this->createForm(MembreFormType::class, $membre);
@@ -61,7 +62,7 @@ class MembreController extends AbstractController
      * @Route("/connexion.html", name="membre_connexion")
      */
 
-    public function connexion(Request $request, AuthenticationUtils $authenticationUtils)
+    public function connexion(AuthenticationUtils $authenticationUtils)
     {
         # récupération du formulaire de connexion
         $form = $this->createForm(ConnexionFormType::class, [

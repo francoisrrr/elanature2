@@ -1,5 +1,6 @@
 security:
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providershide_user_not_found: false
+    #hide_user_not_found: false
     providers:
         in_memory: { memory: ~ }
         membre_provider:

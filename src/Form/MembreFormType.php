@@ -78,7 +78,7 @@ class MembreFormType extends AbstractType
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Un mot de passe doit être minimum {{ limit }} characters',
+                        'minMessage' => 'Un mot de passe doit être minimum {{ limit }} caracteres',
                         'max' => 4096,
                     ]),
                 ],
