@@ -79,12 +79,13 @@ ul.nav{
 .navbar-default .navbar-nav>li>a:hover{
 	color: #999;
 }
+.navbar-default .navbar-nav>li>a:active{
+	color: #4C9A2A !important;
+}
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #000;
 }
-li a.active{
-	color: #4C9A2A !important;
-}
+
 .navbar-default .navbar-toggle {
   border-color: #fff;
   margin-top: 4px;
@@ -175,7 +176,7 @@ li a.active{
 .about h2{
 	font-size: 90px;
 	color: #4C9A2A;
-	margin-top: 120px;
+	margin-top: 160px;
 }
 .about h4{
 	font-size: 24px;
@@ -254,7 +255,6 @@ li a.active{
 	position: absolute;
 }
 
-
 /*blog section*/
 .blog{
 	padding-bottom: 60px;
@@ -263,7 +263,7 @@ li a.active{
 .blog h2{
 	font-size: 90px;
 	color: #4C9A2A;
-	margin-top: 120px;
+	margin-top: 160px;
 	margin-bottom: 0;
 }
 .blog h4{
@@ -590,11 +590,9 @@ responsive area
   	h4 {
   		font-size: 18px !important;
   	}
-  	#map{
-		height: 1050px;
-	}
+
 	.contact{
-		margin-top:-1050px;
+		/* margin-top:-1050px; */
 		height: 1050px;
 	}
 	.contact-caption {
@@ -610,11 +608,12 @@ responsive area
 	.navbar-default .navbar-nav>li>a {
 	  font-size: 20px;
 	}
+
 	.carousel-caption {
 	    margin-top: -110px;
 	}
 	.carousel-caption h1 {
-  		font-size: 75px;
+  		font-size: 60px;
   	}
   	.carousel-caption p {
   		font-size: 25px;
@@ -624,12 +623,29 @@ responsive area
 	  height: 40px;
 	  font-size: 20px;
 	}
-	#map{
-		height: 1120px;
+	.about h2 {
+		margin-top: 50px;
 	}
+	.single-service-img {
+		padding-left:30px;
+		position: relative;
+	}
+
+	.service-img {
+		width: 405px;
+		height: 225px;
+		position: relative;
+	}
+	.single-service h3{
+		margin-top: 50px;
+		color: #fff;
+		padding-bottom: 50px;
+		position:relative;
+	}
+
 	.contact{
 		height: 1120px;
-		margin-top: -1120px;
+		/* margin-top: -1120px; */
 	}
 	h2 {
 	  font-size: 70px !important;
@@ -694,13 +710,28 @@ responsive area
 	  margin-top: 30px;
 	}
 	.about h2 {
-	  font-size: 50px;
-	  color: #4C9A2A;
-	  margin-top: 30px;
+		font-size: 50px;
+		margin-top: 100px;
 	}
 	.service h2 {
-	  font-size: 50px;
-	  margin-top: 40px;
+		font-size: 50px;
+		margin-top: 100px;
+	}
+	.single-service-img {
+		padding-left:30px;
+		position: relative;
+	}
+
+	.service-img {
+		width: 305px;
+		height: 225px;
+		position: relative;
+	}
+	.single-service h3{
+		margin-top: 0px;
+		color: #fff;
+		padding-bottom: 20px;
+		position:relative;
 	}
 	.team h2 {
 	  font-size: 50px;
@@ -712,12 +743,9 @@ responsive area
 	.contact-caption{
 		margin-top: 38%;
 	}
-	#map{
-		height: 950px;
-	}
 	.contact{
 		height: 950px;
-		margin-top: -950px;
+		/* margin-top: -950px; */
 	}
 	.contact-heading h2 {
 	  font-size: 50px;
