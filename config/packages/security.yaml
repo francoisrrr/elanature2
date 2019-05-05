@@ -1,7 +1,15 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: ~ }
+        in_memory: #{ memory: ~ }
+            memory:
+                users:
+                    admin:
+                        password: ...
+
+    encoders:
+        App\Entity\Membre: bcrypt
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
