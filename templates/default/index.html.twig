@@ -126,16 +126,20 @@
                 <h2>catégories</h2>
                 <h4>Nous vous proposons plusieurs produits que nous adorons et vous aussi.</h4>
 
+                {% for categorie in categories %}
                 <div class="col-md-4 col-sm-6">
                     <div class="single-service">
                         <div class="single-service-img">
                             <div class="service-img">
-                                <img class="img-responsive" src="{{ asset('img/service1.jpg') }}" alt="">
+                                <a class="menu dropdown-item" href="{{ path('default_categorie',{ 'slug':categorie.slug}) }}">{{ categorie.nom }}
+                                <img class="img-responsive" src="{{ asset('img/' ~ categorie.image) }}" alt="{{ categorie.nom }}">
+                                </a>
                             </div>
                         </div>
-                        <h3>Corps</h3>
+                        <h3>{{ categorie.nom }}</h3>
                     </div>
                 </div>
+                {% endfor %}
 
                 <div class="col-md-4 col-sm-6">
                     <div class="single-service">
@@ -203,69 +207,25 @@
 
             <div class="row">
                 <div class="blog-heading text-center">
-                    <h2>Blog</h2>
+                    <h2>Nos Produits</h2>
                     <h4>Les informations utiles atour des produits naturels que vous adorez.</h4>
                 </div><!-- blog header -->
 
-                <div class="col-md-2 single-blog col-sm-4">
+                {% for article in promotion %}
+                <div class="mx-auto collapse-4 col-lg-2">
                     <div class="blog-img">
-                        <img class="img-responsive" src="{{ asset('img/item1.jpeg') }}" alt="item-1">
+                        <a href="{{ path('default_article',{'categorie' :article.categorie.slug,'slug': article.slug, 'id' : article.id}) }}">
+                        <img class="img-responsive" src="{{ asset('img/' ~ article.photo) }}" alt="{{ article.nom }}">
+                        </a>
                     </div>
                     <div class="blog-detail">
-                        <h3>Huiles végétales</h3>
-                        <p>Voici un topo pour les huiles végétales, pour qui et pour quoi? En fonction du type de peau et des cheveux, nous pouvons facilement cibler le besoin et nous orienter vers le bon choix.</p>
+                        <h3>{{ article.nom }}</h3>
+                        <p>{{ article.description | summarize }}</p>
                     </div>
                 </div><!-- blog 1 -->
+                {% endfor %}
 
-                <div class="col-md-2 single-blog col-sm-4">
-                    <div class="blog-detail">
-                        <h3>Bougies Bijoux</h3>
-                        <p>Les bougies sont fabriquées à partir de cire végétale de colza et de cire végétale de soja non OGM, une excellente alternative aux substances pétrochimiques dangereuses pour la santé et la nature. </p>
-                    </div>
-                    <div class="blog-img">
-                        <img class="img-responsive" src="{{ asset('img/item2.gif') }}" alt="item-2">
-                    </div>
-                </div><!-- blog 2 -->
 
-                <div class="col-md-2 single-blog col-sm-4">
-                    <div class="blog-img">
-                        <img class="img-responsive" src="{{ asset('img/item3.png') }}" alt="item-3">
-                    </div>
-                    <div class="blog-detail">
-                        <h3>Crème Anti-Rides</h3>
-                        <p>La plupart des publicités le disent, les crèmes anti-âge agissent en profondeur pour effacer les rides. Elles hydratent en profondeur et revitalisent la peau. Hmm…Oui mais non.</p>
-                    </div>
-                </div><!-- blog 3 -->
-
-                <div class="col-md-2 single-blog col-sm-4">
-                    <div class="blog-detail">
-                        <h3>Henné gloss</h3>
-                        <p>Le henné gloss est un soin miracle pour apporter du volume et de l’hydratation aux cheveux fins, aux cheveux raplapla qui en plus sont ternes et font littéralement “ la gueule”. Super simple et rapide.</p>
-                    </div>
-                    <div class="blog-img">
-                        <img class="img-responsive" src="{{ asset('img/item4.jpeg') }}" alt="item-4">
-                    </div>
-                </div><!-- blog 4 -->
-
-                <div class="col-md-2 single-blog col-sm-4">
-                    <div class="blog-img">
-                        <img class="img-responsive" src="{{ asset('img/item5.png') }}" alt="item-5">
-                    </div>
-                    <div class="blog-detail">
-                        <h3>Eau de rinçage</h3>
-                        <p>Cette eau de rinçage est l’une des plus connues. Elle permet d’enlever les résidus de calcaire encore présents sur les cheveux. Vous pouvez facilement soigner votre cuir chevelu,stimuler la pousse des cheveux ou les rendre tout doux.</p>
-                    </div>
-                </div><!-- blog 5 -->
-
-                <div class="col-md-2 single-blog col-sm-4">
-                    <div class="blog-detail">
-                        <h3>Lait Nettoyant</h3>
-                        <p>Naturel et efficace, ce savon convient à tous les épidermes. C'est l'alternative idéale aux produits du commerce. Vous ne pourrez bientôt plus vous en passer, et votre peau vous dira merci ! Pensez à laver et désinfecter le pot.</p>
-                    </div>
-                    <div class="blog-img">
-                        <img class="img-responsive" src="{{ asset('img/item6.jpeg') }}" alt="item-6">
-                    </div>
-                </div><!-- blog 6 -->
             </div>
         </div>
     </section><!-- end of blog section -->
