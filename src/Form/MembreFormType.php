@@ -99,7 +99,7 @@ class MembreFormType extends AbstractType
                     'placeholder' => 'Votre adresse'
                 ]
             ])
-            ->add('cp', IntegerType::class, [
+            ->add('cp', TextType::class, [
                 'label' => false,
                 'constraints' => [
                     new NotBlank([
