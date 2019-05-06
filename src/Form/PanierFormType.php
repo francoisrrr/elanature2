@@ -3,7 +3,7 @@
 
 namespace App\Form;
 
-use App\Entity\Commande;
+use App\Entity\Panier;
 
 //use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 //use Symfony\Component\Form\AbstractType;
@@ -17,19 +17,9 @@ use App\Entity\Commande;
 
 /*
  * --------------------------------------------------------
- * GENERALITES
+ * DESCRIPTION
  * --------------------------------------------------------
- *
- * Formulaire d'edition de commande
- *      - Fonction calculQuantite($article, $articles)
- *      - Affiche une table avec l'ensemble des $article sélectionnés
- *          et les quantités correspondantes
- *      - Fonction modificationQuantite($article, $quantite) <=>
- *          calculQuantite($article, $articles) versus $quantite puis
- *          loop addArticle / removeArticle
- *      - Fonction suppression article <=> modificationQuantite($article, 0)
- *      - Fonction calculTotal($articles[])
- *
+ * Formulaire d'edition de Panier
  * Le formulaire se présente sous la forme d'un tableau.
  * L'utilisateur a la possibilité de modifier les quantités / supprimer des articles.
  * Il peut poursuivre son shopping ou procéder au checkout.
@@ -37,7 +27,7 @@ use App\Entity\Commande;
 */
 
 
-class CommandeFormType extends AbstractType
+class PanierFormType extends AbstractType
 {
 //    public function buildForm(FormBuilderInterface $builder, array $options)
 //    {

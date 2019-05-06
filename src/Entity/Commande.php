@@ -8,27 +8,13 @@ use Doctrine\ORM\Mapping as ORM;
 
 /*
  * --------------------------------------------------------
- * GENERALITES
+ * DESCRIPTION
  * --------------------------------------------------------
- * La classe Commande reçoit $articles passés
- * dans le panier via la vue.
- * La commande est enregistrée en bdd lorsque l'utilisateur
- * complète un CommandeFormType en précisant notamment :
- * - $livraison
- * - $paiement
- * - $code_reduction
+ * Contient les Commande des Membres
+ * 
  */
 
-/*
- * --------------------------------------------------------
- * NOTES
- * --------------------------------------------------------
- *  # Prévoir une vue avec l'icône du panier dans
- *  "_menu.html.twig" ou dans un "_header.html.twig" à créer.
- *  La vue doit avoir accés à la quantité totale d'articles via
- *  la fonction calculQuantite($article, $articles)
- *
- */
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommandeRepository")
