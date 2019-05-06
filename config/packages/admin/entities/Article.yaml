@@ -1,6 +1,7 @@
 easy_admin:
   entities:
     Article:
+      controller: App\Controller\admin\ArticleOfficeController
       class: App\Entity\Article
       label: 'Articles'
       help: 'Vous etes dans la section article'

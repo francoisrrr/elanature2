@@ -1,11 +1,7 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: #{ memory: ~ }
-            memory:
-                users:
-                    admin:
-                        password: ...
+        in_memory: { memory: ~ }
 
     encoders:
         App\Entity\Membre: bcrypt
