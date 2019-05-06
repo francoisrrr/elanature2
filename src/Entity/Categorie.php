@@ -124,13 +124,5 @@ class Categorie
     {
         return $this->nom;
     }
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
 
 }
