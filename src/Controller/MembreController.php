@@ -31,17 +31,6 @@ class MembreController extends AbstractController
 
         $form->handleRequest($request);
 
-       /* $adresse = $request->request->get($form->getAdresse());
-        $cp = $request->request->get($form->getCp());
-        $ville = $request->request->get($form->getVille());
-
-        $data = $request->request->all();
-         $data['form']['adresse'];
-        $cp = $data['form']['cp'];
-        $ville = $data['form']['ville'];
-
-        $membre->setAdresselivraison([$adresse, $cp, $ville]);*/
-
         if(!empty($_POST)) {
 
             $membre->setAdresselivraison([$_POST['membre_form']['adresse'], $_POST['membre_form']['cp'], $_POST['membre_form']['ville']]);

@@ -279,45 +279,7 @@ class Membre implements UserInterface
 
         return $this;
     }
-
-    /* public function getAdresselivraison(): ?array
-     {
-         return $this->adresse_livraison;
-
-     }
-
-     public function setAdresselivraison(string $adresse, string $cp, string $ville): self
-     {
-        // $this->adresse_livraison = [[$adresse, $this->getAdresse()], [$cp, $this->getCp()], [$ville, $this->getVille()]]; est équivalent à
-
-         $this->adresse_livraison =[];
-
-         $this->adresse_livraison[$adresse] = ['adresse'];
-         $this->adresse_livraison[$cp] = ['cp'];
-         $this->adresse_livraison[$ville] = ['ville'];
-
-         return $this;
-     }
-
-    public function getAdresseFacturation(): ?array
-    {
-        return $this->adresse_facturation;
-    }
-
-
-   public function setAdresseFacturation(string $adresse, string $cp, string $ville): self
-    {
-        //$this->adresse_facturation = $adresse_facturation;
-
-        $this->adresse_facturation =[];
-
-        $this->adresse_facturation[$adresse] = [$this->getAdresse()];
-        $this->adresse_facturation[$cp] = [$this->getCp()];
-        $this->adresse_facturation[$ville] = [$this->getVille()];
-
-        return $this;
-    }*/
-
+    
     /**
      * Returns the salt that was originally used to encode the password.
      *
