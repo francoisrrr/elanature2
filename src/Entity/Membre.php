@@ -65,7 +65,7 @@ class Membre implements UserInterface
      * @ORM\Column(type="array")
      */
     private $adresse_livraison = [
-        "adresse" => 
+        "adresse" =>
     ];
 
     /**
