@@ -13,3 +13,4 @@ easy_admin:
         fields:
           - {property: 'nom'}
           - {property: 'slug'}
+          - {property: 'image'}
