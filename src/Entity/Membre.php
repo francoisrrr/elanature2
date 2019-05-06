@@ -61,6 +61,16 @@ class Membre implements UserInterface
      */
     private $commandes;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $adresse_livraison = [];
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $adresse_facturation = [];
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -190,44 +200,27 @@ class Membre implements UserInterface
         return $this;
     }
 
-   /* test public function getRoles()
+    public function getAdresselivraison(): ?array
     {
-        return ['ROLE_MEMBRE'];
-    }*/
-
-    /**
-     * Returns the salt that was originally used to encode the password.
-     *
-     * This can return null if the password was not encoded using a salt.
-     *
-     * @return string|null The salt
-     */
-    public function getSalt()
-    {
-        return null;
+        return $this->adresse_livraison;
     }
 
-    /**
-     * Returns the username used to authenticate the user.
-     *
-     * @return string The username
-     */
-    public function getUsername()
+    public function setAdresselivraison(array $adresse_livraison): self
     {
-        return $this->email;
+        $this->adresse_livraison = $adresse_livraison;
+
+        return $this;
     }
 
-    /**
-     * Removes sensitive data from the user.
-     *
-     * This is important if, at any given point, sensitive information like
-     * the plain-text password is stored on this object.
-     */
-    public function eraseCredentials()
+    public function getAdresseFacturation(): ?array
     {
-        // TODO: Implement eraseCredentials() method.
+        return $this->adresse_facturation;
     }
 
+    public function setAdresseFacturation(array $adresse_facturation): self
+    {
+        $this->adresse_facturation = $adresse_facturation;
 
-
+        return $this;
+    }
 }
