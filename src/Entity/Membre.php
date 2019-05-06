@@ -64,14 +64,66 @@ class Membre implements UserInterface
     /**
      * @ORM\Column(type="array")
      */
-    private $adresse_livraison = [
-        "adresse" => 
-    ];
+    private $adresse_livraison = [];
 
     /**
      * @ORM\Column(type="array")
      */
     private $adresse_facturation = [];
+
+    private $adresse;
+
+    /**
+     * @return mixed
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * @param mixed $adresse
+     */
+    public function setAdresse($adresse): void
+    {
+        $this->adresse = $adresse;
+    }
+
+    private $cp;
+
+    /**
+     * @return mixed
+     */
+    public function getCp()
+    {
+        return $this->cp;
+    }
+
+    /**
+     * @param mixed $cp
+     */
+    public function setCp($cp): void
+    {
+        $this->cp = $cp;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * @param mixed $ville
+     */
+    public function setVille($ville): void
+    {
+        $this->ville = $ville;
+    }
+
+    private $ville;
 
     public function __construct()
     {
@@ -208,9 +260,15 @@ class Membre implements UserInterface
 
     }
 
-    public function setAdresselivraison(array $adresse_livraison): self
+    public function setAdresselivraison(string $adresse, string $cp, string $ville): self
     {
-        $this->adresse_livraison = $adresse_livraison;
+       // $this->adresse_livraison = [[$adresse, $this->getAdresse()], [$cp, $this->getCp()], [$ville, $this->getVille()]]; est équivalent à
+
+        $this->adresse_livraison =[];
+
+        $this->adresse_livraison[$adresse] = [$this->getAdresse()];
+        $this->adresse_livraison[$cp] = [$this->getCp()];
+        $this->adresse_livraison[$ville] = [$this->getVille()];
 
         return $this;
     }
@@ -220,9 +278,15 @@ class Membre implements UserInterface
         return $this->adresse_facturation;
     }
 
-    public function setAdresseFacturation(array $adresse_facturation): self
+    public function setAdresseFacturation(string $adresse, string $cp, string $ville): self
     {
-        $this->adresse_facturation = $adresse_facturation;
+        //$this->adresse_facturation = $adresse_facturation;
+
+        $this->adresse_facturation =[];
+
+        $this->adresse_facturation[$adresse] = [$this->getAdresse()];
+        $this->adresse_facturation[$cp] = [$this->getCp()];
+        $this->adresse_facturation[$ville] = [$this->getVille()];
 
         return $this;
     }
