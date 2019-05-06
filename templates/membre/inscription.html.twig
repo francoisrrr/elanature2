@@ -33,11 +33,11 @@
                     {{ form_row(form.adresse) }}
                 </div>
 
-                <div class="col-md-4" id="cp">
+                <div class="col-md-4">
                     {{ form_row(form.cp) }}
                 </div>
 
-                <div class="col-md-4" id="ville">
+                <div class="col-md-4">
                     {{ form_row(form.ville) }}
                 </div>
 
@@ -57,17 +57,20 @@
     {{ parent() }}
 
     <script>
-        $(function () {
-            $('form').change(function() {
-                var zipCode = $('#cp').val(),
-                    link = 'https://geo.api.gouv.fr/communes?codePostal=' + zipCode;
-                $.getJSON(link, function (data) {
-
-                    $('#ville').val(`${data.nom}`);
+        $(document).ready(function(){
+            //console.log('Hello');
+            $('#membre_form_ville').on(function() {
+                let $zipCode = $('#membre_form_cp').val(),
+                    $link = 'https://geo.api.gouv.fr/communes?codePostal=' + $zipCode;
+                console.log($zipCode);
+                $.getJSON($link, function (data) {
+                    console.log(data);
+                    // $('#membre_form_ville').val(`${data.responseJSON[0].nom}`);
 
                 }); // end $.getJSON
             });
-        }); // end $(function () {})
+        });
+
     </script>
 
 {% endblock %}
