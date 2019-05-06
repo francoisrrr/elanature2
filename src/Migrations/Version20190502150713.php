@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190506133737 extends AbstractMigration
+final class Version20190502150713 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,9 +22,7 @@ final class Version20190506133737 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE article DROP poids, DROP date_peremption, DROP ingredients');
-        $this->addSql('ALTER TABLE categorie DROP image');
-        $this->addSql('ALTER TABLE membre DROP adresse_livraison, DROP adresse_facturation');
+        $this->addSql('ALTER TABLE article ADD photo VARCHAR(255) NOT NULL, DROP photos');
     }
 
     public function down(Schema $schema) : void
@@ -32,8 +30,6 @@ final class Version20190506133737 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE article ADD poids DOUBLE PRECISION NOT NULL, ADD date_peremption DATETIME NOT NULL, ADD ingredients LONGTEXT NOT NULL COLLATE utf8mb4_unicode_ci');
-        $this->addSql('ALTER TABLE categorie ADD image VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci');
-        $this->addSql('ALTER TABLE membre ADD adresse_livraison LONGTEXT NOT NULL COLLATE utf8mb4_unicode_ci COMMENT \'(DC2Type:array)\', ADD adresse_facturation LONGTEXT NOT NULL COLLATE utf8mb4_unicode_ci COMMENT \'(DC2Type:array)\'');
+        $this->addSql('ALTER TABLE article ADD photos LONGTEXT NOT NULL COLLATE utf8mb4_unicode_ci COMMENT \'(DC2Type:array)\', DROP photo');
     }
 }

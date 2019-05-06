@@ -32,7 +32,7 @@ class ArticleRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a')
             ->where('a.promotion = 1')
             ->orderBy('a.id', 'DESC')
-            ->setMaxResults(6)
+            ->setMaxResults(5)
             ->getQuery()
             ->getResult()
             ;
