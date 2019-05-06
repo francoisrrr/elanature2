@@ -5,3 +5,6 @@ twig:
     globals:
         article_repository: '@App\Repository\ArticleRepository'
         categorie_repository: '@App\Repository\CategorieRepository'
+    form_themes:
+        - 'bootstrap_4_layout.html.twig'    
+    
