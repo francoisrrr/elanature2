@@ -6,42 +6,50 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-// http://www.expreg.com/expreg_article.php?art=caddie
-// https://jcrozier.developpez.com/articles/web/panier/
-// https://stackoverflow.com/questions/12243230/shopping-cart-bundle-with-symfony2
+
+/*
+ * --------------------------------------------------------
+ * REFERENCES
+ * --------------------------------------------------------
+ *
+ * http://www.expreg.com/expreg_article.php?art=caddie
+ *
+ */
 
 /*
  * --------------------------------------------------------
  * DESCRIPTION
  * --------------------------------------------------------
- * La classe Panier reçoit les Article->$id et
- * les CommandeArticle->$quantite et les stocke en $_SESSION
  * 
  * Cette classe ne correspond pas à une table en BDD. Elle n'est
  * pas prise en compte par l'ORM.
+ *
+ * La classe Panier n'a pas de propriétés.
+ * $panier est stocké directement en $_SESSION
+ *
+ * Cette classe sert seulement à appeler des fonctions utilitaires
  * 
  */
 
 
 class Panier
 {
-
-    private $toto;
-
-    public function __construct()
+    /*
+     * Calcul du total du $panier
+     */
+    public function totalPanier()
     {
-        $this->articles = new ArrayCollection();
+        $session = $this->getRequest()->getSession();
+        $panier = $session->get('panier', array());
     }
 
-    public function setToto(): ?int
+    /*
+     * Calcul du nombre d'Article dans le $panier
+     */
+    public function countArticle()
     {
-        return null;
+        $session = $this->getRequest()->getSession();
+        $panier = $session->get('panier', array());
     }
-
-    public function getToto(): ?int
-    {
-        return $this->toto;
-    }
-
 
 }

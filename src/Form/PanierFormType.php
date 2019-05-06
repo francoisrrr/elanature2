@@ -19,10 +19,9 @@ use App\Entity\Panier;
  * --------------------------------------------------------
  * DESCRIPTION
  * --------------------------------------------------------
- * Formulaire d'edition de Panier
- * Le formulaire se présente sous la forme d'un tableau.
- * L'utilisateur a la possibilité de modifier les quantités / supprimer des articles.
- * Il peut poursuivre son shopping ou procéder au checkout.
+ * Formulaire d'edition de la classe Panier
+ *      - Tableau Bootstrap avec Article->$nom et Commande_Article->$quantite
+ *      - Bouton submit "checkout"
  *
 */
 
