@@ -58,6 +58,11 @@ class Membre
      */
     private $commandes;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $adresses = [];
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -179,6 +184,18 @@ class Membre
                 $commande->setMembre(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAdresses(): ?array
+    {
+        return $this->adresses;
+    }
+
+    public function setAdresses(array $adresses): self
+    {
+        $this->adresses = $adresses;
 
         return $this;
     }
