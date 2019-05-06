@@ -84,13 +84,13 @@ class Article
     private $categorie;
 
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //  Liaison ManyToMany avec Commande via CommandeArticle
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\CommandeArticle", mappedBy="articles")
      */
     private $commande;
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     /**
      * @ORM\Column(type="float")
      */
