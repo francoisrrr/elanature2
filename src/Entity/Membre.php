@@ -61,7 +61,12 @@ class Membre
     /**
      * @ORM\Column(type="array")
      */
-    private $adresses = [];
+    private $adresse_livraison = [];
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $adresse_facturation = [];
 
     public function __construct()
     {
@@ -188,14 +193,26 @@ class Membre
         return $this;
     }
 
-    public function getAdresses(): ?array
+    public function getAdresselivraison(): ?array
     {
-        return $this->adresses;
+        return $this->adresse_livraison;
     }
 
-    public function setAdresses(array $adresses): self
+    public function setAdresselivraison(array $adresse_livraison): self
     {
-        $this->adresses = $adresses;
+        $this->adresse_livraison = $adresse_livraison;
+
+        return $this;
+    }
+
+    public function getAdresseFacturation(): ?array
+    {
+        return $this->adresse_facturation;
+    }
+
+    public function setAdresseFacturation(array $adresse_facturation): self
+    {
+        $this->adresse_facturation = $adresse_facturation;
 
         return $this;
     }
