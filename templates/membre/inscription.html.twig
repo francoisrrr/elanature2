@@ -21,4 +21,16 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script>
+        $(function () {
+            $('form').change(function() {
+                var zipCode = $('#cp').val(),
+                    link = 'https://geo.api.gouv.fr/communes?codePostal=' + zipCode;
+                $.getJSON(link, function (data) {
+                    // console.log(data);
+                    $('#ville').val(`${data.nom}`);
+                }); // end $.getJSON
+            });
+        }); // end $(function () {})
+    </script>
 {% endblock %}
