@@ -76,6 +76,56 @@ class MembreController extends AbstractController
             'error' => $authenticationUtils->getLastAuthenticationError()
         ]);
     }
+
+    /**
+     * @Route("/view.html", name="membre_profil")
+     */
+    public function viewProfil()
+    {
+        return $this->render('membre/profil.html.twig');
+    }
+
+    /**
+     * @Route("/modification.html", name="membre_modification")
+     */
+
+    public function modification(Request $request, UserPasswordEncoderInterface $encoder)
+    {
+        # récupérer Membre
+        $membre = $this->getUser();
+        $membre->setRoles(['ROLES_MEMBRE']);
+
+        # création du Formulaire "MembreFormType"
+        $form = $this->createForm(MembreFormType::class, $membre);
+
+        $form->handleRequest($request);
+
+        # vérification de la soumission du formulaire
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            # encoder le mot de passe
+            $membre->setPassword(
+                $encoder->encodePassword($membre, $membre->getPassword())
+            );
+
+            # savegarde en BDD
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($membre);
+            $em->flush();
+
+            # notification
+            $this->addFlash('notice',
+                'Félicitation, vous avez bien modifié!');
+
+            # redirection
+            return $this->redirectToRoute('membre_profil');
+        }
+
+        # affichage du Formulaire dans la vue
+        return $this->render("membre/modification.html.twig", [
+            'form' => $form->createView()
+        ]);
+    }
     
     /**
      * @Route("/deconnexion.html", name="membre_deconnexion")

@@ -64,7 +64,7 @@ class Membre implements UserInterface
     /**
      * @ORM\Column(type="array")
      */
-    private $adresse_livraison = [];
+    private $adresse_livraison = [adresse, cp, ville];
 
     /**
      * @ORM\Column(type="array")
@@ -203,6 +203,7 @@ class Membre implements UserInterface
     public function getAdresselivraison(): ?array
     {
         return $this->adresse_livraison;
+
     }
 
     public function setAdresselivraison(array $adresse_livraison): self

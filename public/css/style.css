@@ -314,19 +314,19 @@ ul.nav{
 	color: #737373;
 }
 
-/*inscription section*/
-.inscription .row {
+/*inscription & modification section*/
+.inscription .row, .modification .row {
 	margin-top: 150px;
 }
 
-.inscription .row h2 {
+.inscription .row h2, .modification .row h2 {
 	color: #4C9A2A;
 	font-size: 90px;
 	text-align: center;
 
 }
 
-.inscription form input{
+.inscription form input, .modification form input{
 	width: 100%;
 	height: 70px;
 	font-size: 15px;
@@ -349,7 +349,7 @@ ul.nav{
 	font-size: 30px;
 }
 
-.inscription form button{
+.inscription form button, .modification form button {
 	width: 180px;
 	height: 50px;
 	margin: auto;
