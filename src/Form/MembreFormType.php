@@ -8,6 +8,7 @@ use App\Entity\Membre;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -84,6 +85,40 @@ class MembreFormType extends AbstractType
                 ],
                 'attr'  => [
                     'placeholder' => 'Votre mot de passe'
+                ]
+            ])
+            ->add('adresse', TextType::class, [
+                'label' => false,
+                'mapped' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre adresse',
+                    ])
+                ],
+                'attr'  => [
+                    'placeholder' => 'Votre adresse'
+                ]
+            ])
+            ->add('cp', TextType::class, [
+                'label' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre code postal',
+                    ])
+                ],
+                'attr'  => [
+                    'placeholder' => 'Votre CP'
+                ]
+            ])
+            ->add('ville', TextType::class, [
+                'label' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre ville',
+                    ])
+                ],
+                'attr'  => [
+                    'placeholder' => 'Votre ville'
                 ]
             ])
             ->add('termsAccepted', CheckboxType::class, [

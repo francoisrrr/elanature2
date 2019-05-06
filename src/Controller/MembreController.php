@@ -24,12 +24,18 @@ class MembreController extends AbstractController
     {
         # création d'un Membre
         $membre = new Membre();
-        $membre->setRoles(['ROLES_MEMBRE']);
+        $membre->setRoles(['ROLE_MEMBRE']);
 
         # création du Formulaire "MembreFormType"
         $form = $this->createForm(MembreFormType::class, $membre);
 
         $form->handleRequest($request);
+
+        if(!empty($_POST)) {
+
+            $membre->setAdresselivraison([$_POST['membre_form']['adresse'], $_POST['membre_form']['cp'], $_POST['membre_form']['ville']]);
+            $membre->setAdresseFacturation([$_POST['membre_form']['adresse'], $_POST['membre_form']['cp'], $_POST['membre_form']['ville']]);
+        }
 
         # vérification de la soumission du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
@@ -74,6 +80,56 @@ class MembreController extends AbstractController
         return $this->render('membre/connexion.html.twig', [
             'form' => $form->createView(),
             'error' => $authenticationUtils->getLastAuthenticationError()
+        ]);
+    }
+
+    /**
+     * @Route("/view.html", name="membre_profil")
+     */
+    public function viewProfil()
+    {
+        return $this->render('membre/profil.html.twig');
+    }
+
+    /**
+     * @Route("/modification.html", name="membre_modification")
+     */
+
+    public function modification(Request $request, UserPasswordEncoderInterface $encoder)
+    {
+        # récupérer Membre
+        $membre = $this->getUser();
+        $membre->setRoles(['ROLES_MEMBRE']);
+
+        # création du Formulaire "MembreFormType"
+        $form = $this->createForm(MembreFormType::class, $membre);
+
+        $form->handleRequest($request);
+
+        # vérification de la soumission du formulaire
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            # encoder le mot de passe
+            $membre->setPassword(
+                $encoder->encodePassword($membre, $membre->getPassword())
+            );
+
+            # savegarde en BDD
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($membre);
+            $em->flush();
+
+            # notification
+            $this->addFlash('notice',
+                'Félicitation, vous avez bien modifié!');
+
+            # redirection
+            return $this->redirectToRoute('membre_profil');
+        }
+
+        # affichage du Formulaire dans la vue
+        return $this->render("membre/modification.html.twig", [
+            'form' => $form->createView()
         ]);
     }
     

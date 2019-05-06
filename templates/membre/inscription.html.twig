@@ -9,10 +9,44 @@
         <div class="container inscription">
             <div class="row">
 
-                    <h2>Inscription</h2>
+                <h2>Inscription</h2>
 
-                    {{ form( form, { attr: {novalidate: 'novalidate' } } ) }}
+                {{ form_start( form, { attr: {novalidate: 'novalidate' }} ) }}
 
+                <div class="col-md-12">
+                    {{ form_row(form.prenom) }}
+                </div>
+
+                <div class="col-md-12">
+                    {{ form_row(form.nom) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form_row(form.email) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form_row(form.password) }}
+                </div>
+
+                <div class="col-md-4">
+                    {{ form_row(form.adresse) }}
+                </div>
+
+                <div class="col-md-4">
+                    {{ form_row(form.cp) }}
+                </div>
+
+                <div class="col-md-4">
+                    {{ form_row(form.ville) }}
+                </div>
+
+                <div>
+                    {{ form_row(form.submit) }}
+                </div>
+
+
+                {{ form_end(form) }}
 
             </div>
         </div>
@@ -21,4 +55,22 @@
 
 {% block javascripts %}
     {{ parent() }}
+
+    <script>
+        $(document).ready(function(){
+            //console.log('Hello');
+            $('#membre_form_ville').on(function() {
+                let $zipCode = $('#membre_form_cp').val(),
+                    $link = 'https://geo.api.gouv.fr/communes?codePostal=' + $zipCode;
+                console.log($zipCode);
+                $.getJSON($link, function (data) {
+                    console.log(data);
+                    // $('#membre_form_ville').val(`${data.responseJSON[0].nom}`);
+
+                }); // end $.getJSON
+            });
+        });
+
+    </script>
+
 {% endblock %}
