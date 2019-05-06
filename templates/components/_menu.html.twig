@@ -26,20 +26,11 @@
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a class="menu active" href="{{ path('index') }}">Home</a></li>
+                                <li><a class="menu" href="{{ path('index') }}">Home</a></li>
                                 <li><a class="menu" href="#about">à propos</a></li>
-                                <li><a class="menu dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" href="#service">Catégories</a>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <li><a class="menu dropdown-item" href="">Corps</a></li>
-                                        <li><a class="menu dropdown-item" href="">Cheveux</a></li>
-                                        <li><a class="menu dropdown-item" href="">Bébé</a></li>
-                                        <li><a class="menu dropdown-item" href="">Maquillage</a></li>
-                                        <li><a class="menu dropdown-item" href="">Bougies</a></li>
-                                        <li><a class="menu dropdown-item" href="">Maison</a></li>
-                                    </ul>
-                                </li>
-                                <li><a class="menu" href="#team">blog</a></li>
-                                <li><a class="menu" href="#team">contact</a></li>
+                                <li><a class="menu dropdown-toggle" href="#categorie">Catégories</a></li>
+                                <li><a class="menu" href="#blog">blog</a></li>
+                                <li><a class="menu" href="#contact">contact</a></li>
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                                     
                                     <li><a href="{{ path('membre_deconnexion') }}" class="btn btn-success" role="button"></a></li>
