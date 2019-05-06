@@ -68,7 +68,7 @@ ul.nav{
 	-moz-transition: all .7s ease 0s;
 	-o-transition: all .7s ease 0s;
 	-ms-transition: all .7s ease 0s;
-	padding: 14px 15px;
+	padding: 14px 12px;
 	font-weight: bold;
 }
 
@@ -91,6 +91,15 @@ ul.nav{
   margin-top: 4px;
 }
 
+.navbar-default .navbar-nav>li>a>i.fa{
+	font-size: 35px;
+	color: #000;
+	margin-top: -7px;
+}
+
+.navbar-default .navbar-nav>li>a>i.fa:hover{
+	color: #4C9A2A;
+}
 
 /*slider area*/
 .slider-row{
@@ -520,15 +529,17 @@ ul.nav{
 	font-weight: bold;
 }
 
-.footer a i.fab{
+.footer a i.fa{
 	font-size: 24px;
 	color: #b1b1b1;
 	padding: 22px 10px;
 }
 
-.footer a i.fab:hover{
+.footer a i.fa:hover{
 	color: #4C9A2A;
 }
+
+
 
 
 
@@ -600,7 +611,7 @@ responsive area
 @media (min-width: 992px) and (max-width: 1199px) {
 	.navbar-default .navbar-nav>li>a {
 	  font-size: 20px;
-	  padding: 14px 12px;
+	  padding: 14px 8px;
 	}
 	.carousel-caption h1 {
   		font-size: 120px;

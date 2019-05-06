@@ -86,6 +86,18 @@ class MembreFormType extends AbstractType
                     'placeholder' => 'Votre mot de passe'
                 ]
             ])
+            ->add('adresse', PasswordType::class, [
+                'label' => false,
+                'mapped' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre adresse',
+                    ])
+                ],
+                'attr'  => [
+                    'placeholder' => 'Votre adresse'
+                ]
+            ])
             ->add('termsAccepted', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => new IsTrue(),

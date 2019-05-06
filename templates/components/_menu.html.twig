@@ -34,12 +34,14 @@
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                                     
                                     <li><a href="{{ path('membre_deconnexion') }}" class="btn btn-success" role="button"></a></li>
-                                    <li><a href=""><i class="fas fa-shopping-basket"></i></a></li>
+                                    <li><a href=""><i class="fa fa-shopping-cart fa-flip-horizontal"></i></a></li>
+                                    <li><a href=""><i class="fa fa-user-md"></i></a></li>
                                     
                                 {% else %}
                                     
                                     <li><a href="{{ path('membre_connexion') }}" class="btn btn-success" role="button">Connexion</a></li>
                                     <li><a href="{{ path('membre_inscription') }}" class="btn btn-success" role="button">S'inscrire</a></li>
+                                    <li><a href=""><i class="fa fa-shopping-cart fa-flip-horizontal"></i></a></li>
                                     
                                 {% endif %}
                                 
