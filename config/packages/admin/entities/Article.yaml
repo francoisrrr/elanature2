@@ -1,0 +1,42 @@
+easy_admin:
+  entities:
+    Article:
+      class: App\Entity\Article
+      label: 'Articles'
+      help: 'Vous etes dans la section article'
+      image_base_path: 'images/product'
+      #Changer le titre des
+      new:
+        title:  'Ajouter un article'
+        form_options: { validation_groups: ['Default', 'Article'] }
+      edit:
+        title:  'Modifier un article'
+        form_options: { validation_groups: ['Default'] }
+
+        #templates:
+        #edit: 'admin/article/edit.html.twig'
+      list:
+        title: 'Derniers articles ajoutés'
+        help: null
+        fields: ['nom', { property: 'prix', format: '%0.1f €'}, 'stock', { property: 'photo', label: 'Image', type: 'image'}, 'promotion', 'coup_de_coeur', 'nouveaute']
+
+        actions:
+          - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
+          - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
+
+      form:
+        fields:
+          - {property: 'nom'}
+          - {property: 'description'}
+          - {property: 'prix', type: 'money', type_options: { currency: 'EUR' }}
+          - {property: 'slug'}
+          - {property: 'stock'}
+          - {property: 'reference'}
+          - {property: 'photo'}
+          - {property: 'promotion'}
+          - {property: 'nouveaute'}
+          - {property: 'coup_de_coeur'}
+          - {property: 'categorie'}
+          - {property: 'poids'}
+          - {property: 'date_peremption'}
+          - {property: 'ingredients'}
