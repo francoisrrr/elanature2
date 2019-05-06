@@ -84,7 +84,7 @@ class ArticleController extends AbstractController
 
 
         $form = $this->createForm(ArticleFormType::class, $article);
-        $photos= $form['photos']->getData();
+        $photo= $form['photo']->getData();
         # Affichage du formulaire dans la vue
         return $this->render("default/index.html.twig",[
             'form' => $form->createView()

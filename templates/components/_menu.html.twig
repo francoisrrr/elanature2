@@ -30,12 +30,11 @@
                                 <li><a class="menu" href="#about">à propos</a></li>
                                 <li><a class="menu dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" href="#service">Catégories</a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <li><a class="menu dropdown-item" href="">Corps</a></li>
-                                        <li><a class="menu dropdown-item" href="">Cheveux</a></li>
-                                        <li><a class="menu dropdown-item" href="">Bébé</a></li>
-                                        <li><a class="menu dropdown-item" href="">Maquillage</a></li>
-                                        <li><a class="menu dropdown-item" href="">Bougies</a></li>
-                                        <li><a class="menu dropdown-item" href="">Maison</a></li>
+                                        {% for categorie in categories %}
+                                            <li><a class="menu dropdown-item" href="{{ path('default_categorie',{ 'slug':categorie.slug}) }}">{{ categorie.nom }}</a></li>
+                                        {% endfor %}
+
+
                                     </ul>
                                 </li>
                                 <li><a class="menu" href="#team">blog</a></li>

@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+{% block title %}
+    {{ article.nom }}
+
+{% endblock %}
+{% block content %}
+    <div class="container">
+    <article class="post-detail">
+        <h1>{{ article.nom }}</h1>
+
+
+        <img alt="{{ article.nom }}"
+             src="{{ asset('img/' ~ article.photo) }}">
+        <p><h1>
+        {{ article.description | raw }}
+        </h1></p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Commande</a>
+
+    </article>
+
+
+    </div>
+{% endblock %}
