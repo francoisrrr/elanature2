@@ -103,7 +103,7 @@ class MembreFormType extends AbstractType
                 'label' => false,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer votre code postale',
+                        'message' => 'Veuillez entrer votre code postal',
                     ])
                 ],
                 'attr'  => [

@@ -223,6 +223,32 @@ class Membre implements UserInterface
         return $this;
     }
 
+    public function getAdresselivraison(): ?array
+    {
+        return $this->adresse_livraison;
+
+    }
+
+    public function setAdresselivraison(array $adresse_livraison): self
+    {
+        $this->adresse_livraison = $adresse_livraison;
+
+        return $this;
+    }
+
+    public function getAdresseFacturation(): ?array
+    {
+        return $this->adresse_facturation;
+    }
+
+
+    public function setAdresseFacturation(array $adresse_facturation): self
+    {
+        $this->adresse_facturation = $adresse_facturation;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Commande[]
      */
@@ -254,31 +280,32 @@ class Membre implements UserInterface
         return $this;
     }
 
-    public function getAdresselivraison(): ?array
-    {
-        return $this->adresse_livraison;
+    /* public function getAdresselivraison(): ?array
+     {
+         return $this->adresse_livraison;
 
-    }
+     }
 
-    public function setAdresselivraison(string $adresse, string $cp, string $ville): self
-    {
-       // $this->adresse_livraison = [[$adresse, $this->getAdresse()], [$cp, $this->getCp()], [$ville, $this->getVille()]]; est équivalent à
+     public function setAdresselivraison(string $adresse, string $cp, string $ville): self
+     {
+        // $this->adresse_livraison = [[$adresse, $this->getAdresse()], [$cp, $this->getCp()], [$ville, $this->getVille()]]; est équivalent à
 
-        $this->adresse_livraison =[];
+         $this->adresse_livraison =[];
 
-        $this->adresse_livraison[$adresse] = [$this->getAdresse()];
-        $this->adresse_livraison[$cp] = [$this->getCp()];
-        $this->adresse_livraison[$ville] = [$this->getVille()];
+         $this->adresse_livraison[$adresse] = ['adresse'];
+         $this->adresse_livraison[$cp] = ['cp'];
+         $this->adresse_livraison[$ville] = ['ville'];
 
-        return $this;
-    }
+         return $this;
+     }
 
     public function getAdresseFacturation(): ?array
     {
         return $this->adresse_facturation;
     }
 
-    public function setAdresseFacturation(string $adresse, string $cp, string $ville): self
+
+   public function setAdresseFacturation(string $adresse, string $cp, string $ville): self
     {
         //$this->adresse_facturation = $adresse_facturation;
 
@@ -289,7 +316,7 @@ class Membre implements UserInterface
         $this->adresse_facturation[$ville] = [$this->getVille()];
 
         return $this;
-    }
+    }*/
 
     /**
      * Returns the salt that was originally used to encode the password.
