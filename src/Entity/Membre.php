@@ -59,6 +59,16 @@ class Membre implements UserInterface
      */
     private $commandes;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $adresse_livraison = [];
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $adresse_facturation = [];
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -238,4 +248,27 @@ class Membre implements UserInterface
     }
 
 
+    public function getAdresselivraison(): ?array
+    {
+        return $this->adresse_livraison;
+    }
+
+    public function setAdresselivraison(array $adresse_livraison): self
+    {
+        $this->adresse_livraison = $adresse_livraison;
+
+        return $this;
+    }
+
+    public function getAdresseFacturation(): ?array
+    {
+        return $this->adresse_facturation;
+    }
+
+    public function setAdresseFacturation(array $adresse_facturation): self
+    {
+        $this->adresse_facturation = $adresse_facturation;
+
+        return $this;
+    }
 }
