@@ -32,7 +32,7 @@ class CommandeArticle
      * @ORM\ManyToOne(targetEntity="Article", inversedBy="commande")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $article;
+    private $articles;
 
     /**
      * @ORM\ManyToOne(targetEntity="Commande", inversedBy="articles")
@@ -58,17 +58,17 @@ class CommandeArticle
     /**
      * @return mixed
      */
-    public function getArticle()
+    public function getArticles()
     {
-        return $this->article;
+        return $this->articles;
     }
 
     /**
-     * @param mixed $article
+     * @param mixed $articles
      */
-    public function setArticle($article): void
+    public function setArticles($articles): void
     {
-        $this->article = $article;
+        $this->articles = $articles;
     }
 
     /**
