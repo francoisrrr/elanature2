@@ -72,7 +72,6 @@ class MembreFormType extends AbstractType
             ])
             ->add('password', PasswordType::class, [
                 'label' => false,
-                'mapped' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer un mot de passe',
@@ -123,6 +122,7 @@ class MembreFormType extends AbstractType
             ])
             ->add('termsAccepted', CheckboxType::class, [
                 'mapped' => false,
+                'label' => 'Conditions générales acceptés',
                 'constraints' => new IsTrue(),
             ])
             ->add('submit', SubmitType::class, [

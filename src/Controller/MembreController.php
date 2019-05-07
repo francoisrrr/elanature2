@@ -31,11 +31,11 @@ class MembreController extends AbstractController
 
         $form->handleRequest($request);
 
-        if(!empty($_POST)) {
-
-            $membre->setAdresselivraison([$_POST['membre_form']['adresse'], $_POST['membre_form']['cp'], $_POST['membre_form']['ville']]);
-            $membre->setAdresseFacturation([$_POST['membre_form']['adresse'], $_POST['membre_form']['cp'], $_POST['membre_form']['ville']]);
-        }
+//        if(!empty($_POST)) {
+//
+//            $membre->setAdresselivraison([$_POST['membre_form']['adresse'], $_POST['membre_form']['cp'], $_POST['membre_form']['ville']]);
+//            $membre->setAdresseFacturation([$_POST['membre_form']['adresse'], $_POST['membre_form']['cp'], $_POST['membre_form']['ville']]);
+//        }
 
         # vérification de la soumission du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
@@ -67,7 +67,6 @@ class MembreController extends AbstractController
     /**
      * @Route("/connexion.html", name="membre_connexion")
      */
-
     public function connexion(AuthenticationUtils $authenticationUtils)
     {
         # récupération du formulaire de connexion

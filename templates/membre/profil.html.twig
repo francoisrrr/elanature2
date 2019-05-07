@@ -11,46 +11,17 @@
 
             <h2>Mon Profil</h2>
 
-            {{ form_start( form, { attr: {novalidate: 'novalidate' } } ) }}
-
-            <div class="col-md-12">
-                {{ form_row(form.prenom) }}
+            <div class="col-md-12 text-center profil-details">
+                <img src="{{ asset('img/default-profile.png') }}" alt="profile">
+                <p>{{ app.user.prenom }} {{ app.user.nom }}</p>
+                <p>{{ app.user.email }}</p>
+                <p>{{ app.user.adresse }}</p>
             </div>
 
-            <div class="col-md-12">
-                {{ form_row(form.nom) }}
+            <div class="text-center">
+                <button class="btn btn-modifier">Modifier mon profil</button>
+                <button class="btn btn-supprimer">Supprimer mon compte</button>
             </div>
-
-            <div class="col-md-6">
-                {{ form_row(form.email) }}
-            </div>
-
-            <div class="col-md-6">
-                {{ form_row(form.password) }}
-            </div>
-
-            <div class="col-md-4">
-                {{ form_row(form.adresse) }}
-            </div>
-
-            <div class="col-md-4">
-                {{ form_row(form.cp) }}
-            </div>
-
-            <div class="col-md-4">
-                {{ form_row(form.ville) }}
-            </div>
-
-            <div class="col-md-12">
-                {{ form_row(form.submit) }}
-            </div>
-
-            <div class="col-md-12">
-                {{ form_row(form.supprimer) }}
-            </div>
-
-
-            {{ form_end(form) }}
 
         </div>
     </div>
