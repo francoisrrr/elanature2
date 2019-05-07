@@ -30,13 +30,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Commande;
+use App\Entity\Article;
 use App\Form\CommandeFormType;
+use App\Panier\Panier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/panier")
@@ -48,14 +47,19 @@ class PanierController extends AbstractController
 
     /**
      * @Route("/", name="cart")
-     * 
+     * @param Panier $panier
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexPanier()
+    public function indexPanier(Panier $panier)
     {
-        // get the cart from  the session
-        $session = $this->getRequest()->getSession();
-        // $cart = $session->set('cart', '');
-        $panier = $session->get('panier', array());
+
+        $article = $this->getDoctrine()->getRepository(Article::class)
+            ->find(1);
+
+        $panier->addProduct($article);
+//        dump($panier->getProducts());
+
+        die();
 
         // fetch the information using query and ids in the cart
         if($panier != '') {
@@ -86,17 +90,21 @@ class PanierController extends AbstractController
 
     /**
      * @Route("/add/{id}", name="cart_add")
+     * @param $id
+     * @param Panier $panier
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function addArticle($id)
+    public function addArticle($id, Panier $panier)
     {
+
+        $panier->totalPanier();
+
         //**************************************************************************************
         // fetch the cart
-        $em = $this->getDoctrine()->getEntityManager();
-        $product = $em->getRepository('WebmuchProductBundle:Product')->find($id);
-        //print_r($product->getId()); die;
-        $session = $this->getRequest()->getSession();
-        $cart = $session->get('cart', array());
+        $products = $panier->getProducts();
 
+        dump($products);
+        die();
 
         // check if the $id already exists in it.
         if ( $product == NULL ) {

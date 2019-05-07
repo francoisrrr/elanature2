@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Entity;
+namespace App\Panier;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
-
-
+use App\Entity\Article;
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 /*
  * --------------------------------------------------------
  * REFERENCES
@@ -37,9 +35,39 @@ use Doctrine\ORM\Mapping as ORM;
  *       ];
  */
 
-
 class Panier
 {
+
+    private $session, $manager, $products = [];
+
+    /**
+     * Panier constructor.
+     * @param $session
+     * @param $manager
+     */
+    public function __construct(SessionInterface $session, ObjectManager $manager)
+    {
+        $this->session = $session;
+        $this->manager = $manager;
+    }
+
+    public function getProducts()
+    {
+        return $this->session->get('panier');
+    }
+
+    public function vider()
+    {
+        $this->session->remove('panier');
+    }
+
+    public function addProduct(Article $article)
+    {
+        // vérifier si le produit est deja presence in_array
+        // ajouter le produit au panier
+        $this->products[] = $article;
+        $this->session->set('panier', $this->products);
+    }
 
     //  Calcul du nombre d'Article dans le $panier
      /* 
@@ -52,6 +80,8 @@ class Panier
         $session = $this->getRequest()->getSession();
         $panier = $session->get('panier', array());
 
+        $count = null;
+
         foreach ($panier as $quantite) {
             $count+=$quantite;
         }
@@ -63,19 +93,29 @@ class Panier
     
     public function totalPanier()
     {
-        $session = $this->getRequest()->getSession();
-        $panier = $session->get('panier', array());
+        $panier = $this->session->get('panier', array());
+        $total = 0;
 
         foreach ($panier as $id => $quantite) {
+
             // -- Récupération en BDD de l'Article correspondand à $id
-            
+            $article = $this->manager
+                ->getRepository(Article::class)
+                ->findOneBy(array('id'=>$id));
+
+
             // -- Récupération de $prix
+//            $article->get
 
             // -- Incrémentation du total
-            $total+= $quantite*$prix;
+//            $total += $quantite*$prix;
 
-            return $total;
+
+
         }
+
+        return $total;
     }
+
 
 }

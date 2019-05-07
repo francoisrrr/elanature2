@@ -1,5 +1,11 @@
 <!-- ====================================================
 	header section -->
+
+{% set cart = app.session.get('panier') %}
+{% for quantite in panier %}
+    {{ count }} += {{ quantite }};
+{% endfor %}
+
 <header class="top-header">
     <div class="container">
         <div class="row">
@@ -42,6 +48,11 @@
                                 <li><a class="menu" href="#team">contact</a></li>
                                 <li><a href="" class="btn btn-success" role="button">Connexion</a></li>
                                 <li><a href="" class="btn btn-success" role="button">S'inscrire</a></li>
+
+                                {# !!! Debug $panier !!! #}
+                                <li>{{ count }} Articles !</li>
+                                {# !!! Debug $panier !!! #}
+
                             </ul>
                         </div><!-- /navbar-collapse -->
                     </div><!-- / .container-fluid -->
