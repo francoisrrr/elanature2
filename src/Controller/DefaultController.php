@@ -70,7 +70,6 @@ class DefaultController extends AbstractController
          * J'envoi a ma vue les donnees a afficher.
          */
 
-
         return $this->render("default/categorie.html.twig", [
             'articles' => $articles,
             'categorie' => $categorie

@@ -106,6 +106,8 @@ class Article
      */
     private $ingredients;
 
+    private $quantity;
+
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
@@ -321,6 +323,31 @@ class Article
     {
         return $this->nom;
     }
+
+
+
+
+
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * @param mixed $quantity
+     */
+    public function setQuantity($quantity): void
+    {
+        $this->quantity = $quantity;
+    }
+
+
 
 
 }

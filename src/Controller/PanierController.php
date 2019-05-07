@@ -11,19 +11,18 @@
  *
  */
 
-
 /*
  * --------------------------------------------------------
  * DESCRIPTION
  * --------------------------------------------------------
  *
  * Ensemble des fonctions executables sur la classe Panier
- * Ces fonctions sont accessibles dans les templates Twig.
+ * Ces fonctions sont accessibles via leurs @Route respectives.
  * Par exemple :
- * href="{{ path('Route_name',{
+ *      href="{{ path('@Route_name',{
                             'parameter1' : value1,
                             'parameter2' : value2
-                        }) }}"
+               }) }}"
  *
  */
 
@@ -31,10 +30,10 @@
 namespace App\Controller;
 
 use App\Entity\Article;
-use App\Form\CommandeFormType;
 use App\Panier\Panier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -46,140 +45,88 @@ class PanierController extends AbstractController
     use HelperTrait;
 
     /**
-     * @Route("/", name="cart")
+     * @Route("/", name="panier")
      * @param Panier $panier
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexPanier(Panier $panier)
+    public function indexPanier(Panier $panier, SessionInterface $session)
     {
-
-        $article = $this->getDoctrine()->getRepository(Article::class)
-            ->find(1);
-
-        $panier->addProduct($article);
-//        dump($panier->getProducts());
-
+        dump($panier->getPanier());
         die();
-
         // fetch the information using query and ids in the cart
-        if($panier != '') {
+//        if($panier != '') {
+//
+//            foreach($panier as $id => $quantite) {
+//                $articleIds[] = $id;
+//            }
+//
+//            if(isset($articleIds)){
+//                $em = $this->getDoctrine()->getEntityManager();
+//                $products = $em->getRepository('WebmuchProductBundle:Product')->findById( $productIds );
+//            } else {
+//                return $this->render('WebmuchCartBundle:Cart:index.html.twig', array(
+//                    'empty' => true,
+//                ));
+//            }
+//
+//            return $this->render('WebmuchCartBundle:Cart:index.html.twig', array(
+//                'products' => $products,
+//            ));
+//
+//        } else {
+//            return $this->render('WebmuchCartBundle:Cart:index.html.twig', array(
+//                'empty' => true,
+//            ));
+//        }
 
-            foreach($panier as $id => $quantite) {
-                $articleIds[] = $id;
-            }
-
-            if(isset($articleIds)){
-                $em = $this->getDoctrine()->getEntityManager();
-                $products = $em->getRepository('WebmuchProductBundle:Product')->findById( $productIds );
-            } else {
-                return $this->render('WebmuchCartBundle:Cart:index.html.twig', array(
-                    'empty' => true,
-                ));
-            }
-
-            return $this->render('WebmuchCartBundle:Cart:index.html.twig', array(
-                'products' => $products,
-            ));
-
-        } else {
-            return $this->render('WebmuchCartBundle:Cart:index.html.twig', array(
-                'empty' => true,
-            ));
-        }
+        //return $this->render('base.html.twig');
     }
 
     /**
-     * @Route("/add/{id}", name="cart_add")
-     * @param $id
+     * Modifie $quantite d'Article dans le $panier en $_SESSION
+     * @Route("/add/{id}", name="panier_add_article")
+     * @param Panier $panier
+     * @param Article $article
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function addArticle(Panier $panier,Article $article, $id)
+    {
+        // -- Récupération de $article en BDD
+        $repository = $this->getDoctrine()
+            ->getRepository(Article::class);
+        $article = $repository->find($id);
+
+        // -- Ajout de $quantity de $article au $panier en $_SESSION
+        $panier->addArticle($article,1);
+
+        // -- Redirection vers $panier
+        return $this->redirectToRoute('panier');
+    }
+
+    /**
+     * Mise à zéro de la $quantite pour un Article dans le $panier en $_SESSION
+     * @Route("/remove/{id}", name="panier_remove_article")
+     * @param Article $article
      * @param Panier $panier
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function addArticle($id, Panier $panier)
+    public function removeArticle(Panier $panier,$id)
     {
 
-        $panier->totalPanier();
-
-        //**************************************************************************************
-        // fetch the cart
-        $products = $panier->getProducts();
-
-        dump($products);
-        die();
-
-        // check if the $id already exists in it.
-        if ( $product == NULL ) {
-            $this->get('session')->setFlash('notice', 'This product is not     available in Stores');
-            return $this->redirect($this->generateUrl('cart'));
-        } else {
-            if( isset($cart[$id]) ) {
-
-                $qtyAvailable = $product->getQuantity();
-
-                if( $qtyAvailable >= $cart[$id]['quantity'] + 1 ) {
-                    $cart[$id]['quantity'] = $cart[$id]['quantity'] + 1;
-                } else {
-                    $this->get('session')->setFlash('notice', 'Quantity     exceeds the available stock');
-                    return $this->redirect($this->generateUrl('cart'));
-                }
-            } else {
-                // if it doesnt make it 1
-                $cart = $session->get('cart', array());
-                $cart[$id] = $id;
-                $cart[$id]['quantity'] = 1;
-            }
-
-            $session->set('cart', $cart);
-            return $this->redirect($this->generateUrl('cart'));
-
-        }
     }
 
     /**
-     * @Route("/remove/{id}", name="cart_remove")
+     * Suppression du $panier en $_SESSION
+     * @Route("/delete", name="panier_delete")
+     * @param Panier $panier
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function removeArticle($id)
+    public function deletePanier(Panier $panier)
     {
-        //**************************************************************************************
-        // check the cart
-        $session = $this->getRequest()->getSession();
-        $cart = $session->get('cart', array());
+        $panier->deletePanier();
 
-        // if it doesn't exist redirect to cart index page. end
-        if(!$cart) { $this->redirect( $this->generateUrl('cart') ); }
-
-        // check if the $id already exists in it.
-        if( isset($cart[$id]) ) {
-            // if it does ++ the quantity
-            $cart[$id]['quantity'] = '0';
-            unset($cart[$id]);
-            //echo $cart[$id]['quantity']; die();
-        } else {
-            $this->get('session')->setFlash('notice', 'Go to hell');
-            return $this->redirect( $this->generateUrl('cart') );
-        }
-
-        $session->set('cart', $cart);
-
-        // redirect(index page)
-        $this->get('session')->setFlash('notice', 'This product is Remove');
-        return $this->redirect( $this->generateUrl('cart') );
-        //**************************************************************************************
-    }
-
-    public function modifyQuantite($id, $quantite)
-    {
-        for ($i=0; $i < 10; $i++) { 
-            addArticle();
-        }
-    }
-
-    /*
-     * Suppression du panier de la $_SESSION
-     */
-    public function deletePanier()
-    {
-        $session = $this->getRequest()->getSession();
-        $session->unset('panier');
+        // -- Redirection vers $panier
+        return $this->redirectToRoute('panier');
     }
 
 }

@@ -5,6 +5,7 @@ namespace App\Panier;
 use App\Entity\Article;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 /*
  * --------------------------------------------------------
  * REFERENCES
@@ -37,13 +38,16 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class Panier
 {
-
-    private $session, $manager, $products = [];
+    private $session, $manager, $articles = [];
 
     /**
+     * -- Constructeur
      * Panier constructor.
      * @param $session
      * @param $manager
+     *
+     * La classe Panier n'hérite pas de Controller
+     * Ce constructeur permet d'accéder à la $session et aux Entity
      */
     public function __construct(SessionInterface $session, ObjectManager $manager)
     {
@@ -51,46 +55,43 @@ class Panier
         $this->manager = $manager;
     }
 
-    public function getProducts()
+    //  -- Récupère le $panier en $_SESSION
+    public function getPanier()
     {
         return $this->session->get('panier');
     }
 
-    public function vider()
+    //  -- Suppression du panier en $_SESSION
+    public function deletePanier()
     {
         $this->session->remove('panier');
     }
 
-    public function addProduct(Article $article)
+    //  Ajoute un Article dans $panier en $_SESSION
+    public function addArticle(Article $article, $quantity)
     {
-        // vérifier si le produit est deja presence in_array
-        // ajouter le produit au panier
-        $this->products[] = $article;
-        $this->session->set('panier', $this->products);
-    }
+        $panier = $this->session->get('panier');
 
-    //  Calcul du nombre d'Article dans le $panier
-     /* 
-        NB) Cette fonction fait seulement appel aux données en $_SESSION
-        Elle peut être intégrée directement dans le template Twig.
-     */
-
-    public function countArticle()
-    {
-        $session = $this->getRequest()->getSession();
-        $panier = $session->get('panier', array());
-
-        $count = null;
-
-        foreach ($panier as $quantite) {
-            $count+=$quantite;
+        // -- Si $panier n'est pas vide
+        if (!empty($panier)) {
+            foreach ($panier as $item) {
+                // -- Si $article existe dans le $panier
+                if ($item->getId() == $article->getId()) {
+                    $item->setQuantity($item->getQuantity() + $quantity);
+                    break;
+                }
+            }
+        } else {
+            // -- Si $panier est vide
+            $article->setQuantity(1);
+            $panier[]=$article;
         }
 
-        return $count;
+        // -- Ecriture du $panier en $_SESSION
+        $this->session->set('panier', $panier);
     }
 
     //  Calcul du total du $panier
-    
     public function totalPanier()
     {
         $panier = $this->session->get('panier', array());
@@ -99,23 +100,92 @@ class Panier
         foreach ($panier as $id => $quantite) {
 
             // -- Récupération en BDD de l'Article correspondand à $id
-            $article = $this->manager
-                ->getRepository(Article::class)
-                ->findOneBy(array('id'=>$id));
 
 
             // -- Récupération de $prix
-//            $article->get
+
 
             // -- Incrémentation du total
-//            $total += $quantite*$prix;
-
-
 
         }
 
         return $total;
     }
 
+
+
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+    //  XX Incrémente la $quantite de l'$id dans $panier en $_SESSION
+    public function xx_addArticle($id)
+    {
+        // -- Si $panier est vide
+        if (empty($this->session->get('panier'))) {
+            $panier[$id]=1;
+        } else {
+            // -- Si $id existe déjà on ajoute 1
+            $panier = $this->session->get('panier');
+            if(array_key_exists($id,$panier)) {
+                $panier[$id]++;
+            } else {
+                // -- Sinon on crée la clé dans $panier
+                $panier[$id]=1;
+            }
+        }
+
+        // -- Ecriture du $panier en $_SESSION
+        $this->session->set('panier', $panier);
+    }
+
+    //  XX Décrémente la $quantite de l'$id dans $panier en $_SESSION
+    public function xx_removeArticle($id)
+    {
+        if (!empty($this->session->get('panier'))) {
+            $panier = $this->session->get('panier');
+            if(array_key_exists($id,$panier)) {
+                $panier[$id]--;
+            }
+
+            // -- Ecriture du $panier en $_SESSION
+            $this->session->set('panier', $panier);
+        }
+    }
+
+    //  XX Supprime l'$id dans $panier en $_SESSION
+    public function xx_deleteArticle($id)
+    {
+        if (!empty($this->session->get('panier'))) {
+            $panier = $this->session->get('panier');
+            if(array_key_exists($id,$panier)) {
+                unset($panier,$id);
+            }
+
+            // -- Ecriture du $panier en $_SESSION
+            $this->session->set('panier', $panier);
+        }
+    }
+
+    //  XX Calcul du nombre d'Article dans le $panier
+    public function xx_countArticle()
+    {
+        $count=0;
+
+        if (!empty($this->session->get('panier'))) {
+            foreach ($panier as $quantite) {
+                $count+=$quantite;
+            }
+        }
+
+        // -- Ecriture en $_SESSION
+        $this->session->set('panier-count', $count);
+    }
 
 }
