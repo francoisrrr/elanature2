@@ -40,7 +40,7 @@
                         <div class="item">
                             <img src="{{ asset('img/slide-four.jpg') }}" alt="">
                             <div class="carousel-caption">
-                                <h1>Produits bio</h1>
+                                <h1>Nos promotions</h1>
                                 <p>crème hydrantant</p>
                                 <button>learn more</button>
                             </div>
@@ -124,7 +124,7 @@
         <div class="container">
             <div class="row">
                 <h2>catégories</h2>
-                <h4>Nous vous proposons plusieurs produits que nous adorons et vous aussi.</h4>
+                <h4>Nous vous proposons plusieurs produits que vous allez adorer.</h4>
 
                 {% for categorie in categories %}
                 <div class="col-md-4 col-sm-6">
@@ -162,7 +162,7 @@
                 <div class="mx-auto collapse-4 col-lg-2">
                     <div class="blog-img">
                         <a href="{{ path('default_article',{'categorie' :article.categorie.slug,'slug': article.slug, 'id' : article.id}) }}">
-                        <img class="img-responsive" src="{{ asset('img/' ~ article.photo) }}" alt="{{ article.nom }}">
+                        <img class="img-responsive" src="{{ asset('img/' ~ article.photo) }}" alt="{{ article.nom }}" title="{{ article.nom }}">
                         </a>
                     </div>
                     <div class="blog-detail">
@@ -185,7 +185,7 @@
             <div class="row">
                 <div class="contact-caption clearfix">
                     <div class="contact-heading text-center">
-                        <h2>contactez nous</h2>
+                        <h2>Contactez nous</h2>
                     </div>
 
                     <div class="col-md-5 contact-info text-left">
