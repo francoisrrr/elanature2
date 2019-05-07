@@ -11,6 +11,7 @@
  *
  */
 
+
 /*
  * --------------------------------------------------------
  * DESCRIPTION
@@ -37,7 +38,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-
 /**
  * @Route("/panier")
  * Toutes les routes sont préfixées par "/panier"
@@ -48,52 +48,45 @@ class PanierController extends AbstractController
 
     /**
      * @Route("/", name="cart")
+     * 
      */
     public function indexPanier()
     {
-        //**************************************************************************************
         // get the cart from  the session
         $session = $this->getRequest()->getSession();
         // $cart = $session->set('cart', '');
-        $cart = $session->get('cart', array());
-
-        // $cart = array_keys($cart);
-        // print_r($cart); die;
+        $panier = $session->get('panier', array());
 
         // fetch the information using query and ids in the cart
-        if( $cart != '' ) {
+        if($panier != '') {
 
-            foreach( $cart as $id => $quantity ) {
-                $productIds[] = $id;
-
+            foreach($panier as $id => $quantite) {
+                $articleIds[] = $id;
             }
 
-            if( isset( $productIds ) )
-            {
+            if(isset($articleIds)){
                 $em = $this->getDoctrine()->getEntityManager();
-                $product = $em->getRepository('WebmuchProductBundle:Product')->findById( $productIds );
+                $products = $em->getRepository('WebmuchProductBundle:Product')->findById( $productIds );
             } else {
                 return $this->render('WebmuchCartBundle:Cart:index.html.twig', array(
                     'empty' => true,
                 ));
             }
 
-            return $this->render('WebmuchCartBundle:Cart:index.html.twig',     array(
-                'product' => $product,
+            return $this->render('WebmuchCartBundle:Cart:index.html.twig', array(
+                'products' => $products,
             ));
+
         } else {
-            return $this->render('WebmuchCartBundle:Cart:index.html.twig',     array(
+            return $this->render('WebmuchCartBundle:Cart:index.html.twig', array(
                 'empty' => true,
             ));
         }
-        //**************************************************************************************
-
     }
 
     /**
      * @Route("/add/{id}", name="cart_add")
      */
-    // IN PROGRESS
     public function addArticle($id)
     {
         //**************************************************************************************
@@ -131,15 +124,11 @@ class PanierController extends AbstractController
             return $this->redirect($this->generateUrl('cart'));
 
         }
-
-
-
     }
 
     /**
      * @Route("/remove/{id}", name="cart_remove")
      */
-    // IN PROGRESS
     public function removeArticle($id)
     {
         //**************************************************************************************
@@ -169,9 +158,11 @@ class PanierController extends AbstractController
         //**************************************************************************************
     }
 
-    public function modifyArticle($id, $quantite)
+    public function modifyQuantite($id, $quantite)
     {
-
+        for ($i=0; $i < 10; $i++) { 
+            addArticle();
+        }
     }
 
     /*
