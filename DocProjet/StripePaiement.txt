@@ -1,0 +1,49 @@
+https://stripe.com/docs/development#php
+
+https://stripe.com/docs
+
+https://dashboard.stripe.com/test/logs?method[]=post&method[]=delete&direction[]=connect_in&direction[]=self
+(identifiant = zinarya@yahoo.fr ; password= francoistout)
+
+https://packagist.org/packages/stripe/stripe-php (packages pour stripe, utile ou pas?)
+
+Tutoriels pour stripe (aide à la compréhension):
+https://www.youtube.com/watch?v=TwxpWy4KChQ (date de 2017, je ne sais pas si c'est toujours d'actualité ou pas)
+Résumé de la video (https://roadtodev.com/fr/blog/gerer-ses-paiements-stripe-sur-symfony)
+<p>Installez Stripe avec composer</p>
+
+<p>composer require stripe/stripe-php</p>
+
+<p>&nbsp;</p>
+
+<p>Ajoutez Stripe elements en copie collant le code sur&nbsp;https://stripe.com/docs/elements</p>
+
+<p>&nbsp;</p>
+
+<p>Dans votre contr&ocirc;leur vous devrez passer en param&egrave;tre de la fonction le montant en centimes ainsi que le StripeToken qui correspont &agrave; la carte de cr&eacute;dit utilis&eacute; par votre client&nbsp;:</p>
+
+\Stripe\Stripe::setApiKey('sk_test_BQokikJOvBiI2HlWgH4olfQ2');
+
+$charge = \Stripe\Charge::create(
+
+    array(
+
+        'amount' => $charge->getAmount(),
+
+        'currency' => 'eur',
+
+        'source' => '$request->request->get('StripeToken')'
+
+));
+
+https://www.grafikart.fr/tutoriels/stripe-802 (date de 2016)
+
+
+
+Pour paypal, je trouve un peu plus compliqué que par CB:
+https://packagist.org/packages/paypal/rest-api-sdk-php
+
+Il y'a le lien ci-dessous également directement du site de paypal
+https://developer.paypal.com/docs/api/overview/#get-an-access-token
+
+
