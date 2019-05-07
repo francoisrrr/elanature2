@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
@@ -44,9 +45,17 @@ class Article
     private $stock;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="string")
+     *
      */
-    private $photos = [];
+    //@Assert\Image(
+    //     *     mimeTypesMessage="Vérifier le format de votre fichier.",
+    //     *     maxSize="1M", maxSizeMessage="Attention, votre fichier est trop lourd.")
+    //ERREUR
+    //The form's view data is expected to be an instance of class Symfony\Component\HttpFoundation\File\File,
+    // but is a(n) string. You can avoid this error by setting the "data_class" option to null or by adding a view
+    // transformer that transforms a(n) string to an instance of Symfony\Component\HttpFoundation\File\File.
+    private $photo;
 
     /**
      * @ORM\Column(type="boolean")
@@ -81,6 +90,21 @@ class Article
      * @ORM\OneToMany(targetEntity="App\Entity\CommandeArticle", mappedBy="articles")
      */
     private $commande;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $poids;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date_peremption;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $ingredients;
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -155,14 +179,14 @@ class Article
         return $this;
     }
 
-    public function getPhotos(): ?array
+    public function getPhoto(): ?string
     {
-        return $this->photos;
+        return $this->photo;
     }
 
-    public function setPhotos(array $photos): self
+    public function setPhoto(string $photo): self
     {
-        $this->photos = $photos;
+        $this->photo = $photo;
 
         return $this;
     }
@@ -252,4 +276,51 @@ class Article
 
         return $this;
     }
+
+    public function getPoids(): ?float
+    {
+        return $this->poids;
+    }
+
+    public function setPoids(float $poids): self
+    {
+        $this->poids = $poids;
+
+        return $this;
+    }
+
+    public function getDatePeremption(): ?\DateTimeInterface
+    {
+        return $this->date_peremption;
+    }
+
+    public function setDatePeremption(\DateTimeInterface $date_peremption): self
+    {
+        $this->date_peremption = $date_peremption;
+
+        return $this;
+    }
+
+    public function getIngredients(): ?string
+    {
+        return $this->ingredients;
+    }
+
+    public function setIngredients(string $ingredients): self
+    {
+        $this->ingredients = $ingredients;
+
+        return $this;
+    }
+
+    /**
+     * Ajouté par Saadatou, sinon
+     * error: Object of class could not be converted to string
+     */
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
+
 }

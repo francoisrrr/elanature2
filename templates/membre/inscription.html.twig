@@ -1,0 +1,26 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Inscription
+{% endblock %}
+
+{% block content %}
+
+    <section class="clearfix">
+        <div class="container">
+            <div class="row">
+
+                    <h2>Inscription</h2>
+                    {{ form( form, { attr: {novalidate: 'novalidate' } } ) }}
+
+
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

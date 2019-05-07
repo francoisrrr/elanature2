@@ -1,0 +1,9 @@
+easy_admin:
+  site_name: 'Elan<em style="font-size: 80%;">ature</em>'
+  #site_name: '<img src="https://symfony.com/logos/symfony_white_01.png" />'
+  user:
+    display_name: false
+    display_avatar: true
+      # this will look for getFullName(), isFullName(), ..., and 'fullName' property
+      #name_property_path: 'fullName'
+      #avatar_property_path: 'gravatar'
