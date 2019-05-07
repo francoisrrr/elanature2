@@ -18,12 +18,15 @@ easy_admin:
       list:
         title: 'Derniers articles ajoutés'
         help: null
+        #Champs affichés en listant les articles
         fields: ['nom', { property: 'prix', format: '%0.1f €'}, 'stock', { property: 'photo', label: 'Image', type: 'image'}, 'promotion', 'coup_de_coeur', 'nouveaute']
 
+        #Personnalisation des boutons
         actions:
           - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
           - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
 
+      #Champs affichés dans le formulaire d'ajout
       form:
         fields:
           - {property: 'nom'}

@@ -312,4 +312,14 @@ class Membre implements UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
+
+    /*
+     * Ajouté par Saadatou, sinon
+     * error: Object of class could not be converted to string
+     */
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
 }

@@ -4,3 +4,10 @@ easy_admin:
       class: App\Entity\Commande
       #Desactiver la creation de commandes
       #disabled_actions: ['new']
+      form:
+        fields:
+          - {property: 'date_commande'}
+          - {property: 'code_reduction'}
+          - {property: 'livraison'}
+          - {property: 'paiement'}
+          - {property: 'membre'}
