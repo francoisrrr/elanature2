@@ -8,21 +8,21 @@
     <section class="slider" id="home">
         <div class="container-fluid">
             <div class="row">
-
+                <!--Rajout de alt et title pour le referencement-->
                 <div id="carouselHacked" class="carousel slide carousel-fade" data-ride="carousel">
                     <div class="header-backup"></div>
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <img src="{{ asset('img/slide-one.jpg') }}" alt="">
+                            <img src="{{ asset('img/slide-one.jpg') }}" alt="coffrets-thematique" title="coffrets-thematique">
                             <div class="carousel-caption">
-                                <h1>Nos coffres</h1>
+                                <h1>Nos offres</h1>
                                 <p>vos produits préférés</p>
                                 <button>learn more</button>
                             </div>
                         </div>
                         <div class="item">
-                            <img src="{{ asset('img/slide-two.jpg') }}" alt="">
+                            <img src="{{ asset('img/slide-two.jpg') }}" alt="coups-de-coeur" title="coups-de-coeur">
                             <div class="carousel-caption">
                                 <h1>Coups du coeur</h1>
                                 <p>bougie artisanale</p>
@@ -30,17 +30,17 @@
                             </div>
                         </div>
                         <div class="item">
-                            <img src="{{ asset('img/slide-three.jpg') }}" alt="">
+                            <img src="{{ asset('img/slide-three.jpg') }}" alt="fabrication artisanale" title="fabrication artisanale">
                             <div class="carousel-caption">
-                                <h1>Produits Artisanale</h1>
-                                <p>bon pour la santé et l'environnement</p>
+                                <h1>Fabrication Artisanale</h1>
+                                <p>respecte votre santé et l'environnement</p>
                                 <button>learn more</button>
                             </div>
                         </div>
                         <div class="item">
-                            <img src="{{ asset('img/slide-four.jpg') }}" alt="">
+                            <img src="{{ asset('img/slide-four.jpg') }}" alt="nouveautés" title="nouveautés">
                             <div class="carousel-caption">
-                                <h1>Produits du mois</h1>
+                                <h1>Produits bio</h1>
                                 <p>crème hydrantant</p>
                                 <button>learn more</button>
                             </div>
@@ -67,24 +67,19 @@
     <section class="about text-center" id="about">
         <div class="container">
             <div class="row">
-                <h2>about us</h2>
-                <h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                    galley of type and scrambled</h4>
+                <h2>à propos</h2>
+                <h4>Elanature vous propose des produits cosmétiques et d'entretien 100% naturels et bio comme alternative aux produits chimiques. Ceci afin d'arrêter l'absorption de produits chimiques par le corps; nocifs pour la santé et l'environnement.</h4>
 
                 <div class="col-md-4 col-sm-6">
                     <div class="single-about-detail clearfix">
                         <div class="about-img">
-                            <img src="{{ asset('img/about1.jpg') }}" alt="">
+                            <img src="{{ asset('img/about1.jpg') }}" alt="nos-produits-cosmetiques" title="nos-produits-cosmetiques">
                         </div>
 
                         <div class="about-details">
-                            <div class="pentagon-text">
-                                <h1>T</h1>
-                            </div>
 
-                            <h3>Tax Helping</h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                                industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
+                            <h3>Cosmétiques</h3>
+                            <p>Nous mélangeons des ingrédients naturels pour créer des produits à la fois sûrs et performants pour vos corps, vos cheveux, vos visages, vos bébé.</p>
                         </div>
                     </div>
                 </div>
@@ -92,17 +87,13 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="single-about-detail">
                         <div class="about-img">
-                            <img class="img-responsive" src="{{ asset('img/about2.jpg') }}" alt="">
+                            <img class="img-responsive" src="{{ asset('img/about2.jpg') }}" alt="nos-produits-d'entretien-ménager" title="nos-produits-d'entretien-ménager">
                         </div>
 
                         <div class="about-details">
-                            <div class="pentagon-text">
-                                <h1>B</h1>
-                            </div>
-
-                            <h3>Business Consulting</h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                                industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
+                            
+                            <h3>Entretien Maison</h3>
+                            <p>Vous rêvez d'une maison saine au naturel? Découvrez vite nos produits d'entretien naturels écologiques pour vos maisons.</p>
                         </div>
                     </div>
                 </div>
@@ -111,17 +102,13 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="single-about-detail">
                         <div class="about-img">
-                            <img class="img-responsive" src="{{ asset('img/about3.jpg') }}" alt="">
+                            <img class="img-responsive" src="{{ asset('img/about3.jpg') }}" alt="nos-bougies" title="nos-bougies">
                         </div>
 
                         <div class="about-details">
-                            <div class="pentagon-text">
-                                <h1>F</h1>
-                            </div>
 
-                            <h3>Financial Consulting</h3>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                                industry's standard dummy text ever since the 1500s, when an unknown printer.</p>
+                            <h3>Bougies</h3>
+                            <p>La fabrication de bougie est un art subtil et délicat. C'est la raison pour laquelle toutes nos fabrications sont artisanales afin d'associer tradition et qualité.</p>
                         </div>
                     </div>
                 </div>
@@ -133,53 +120,75 @@
 
     <!-- service section starts here -->
 
-    <section class="service text-center" id="service">
+    <section class="service text-center" id="categorie">
         <div class="container">
             <div class="row">
-                <h2>our services</h2>
-                <h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</h4>
+                <h2>catégories</h2>
+                <h4>Nous vous proposons plusieurs produits que nous adorons et vous aussi.</h4>
 
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="single-service">
                         <div class="single-service-img">
                             <div class="service-img">
-                                <img class="img-responsive" src="{{ asset('img/service1.png') }}" alt="">
+                                <img class="img-responsive" src="{{ asset('img/service1.jpg') }}" alt="">
                             </div>
                         </div>
-                        <h3>Consulting</h3>
+                        <h3>Corps</h3>
                     </div>
                 </div>
 
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="single-service">
                         <div class="single-service-img">
                             <div class="service-img">
-                                <img class="img-responsive" src="{{ asset('img/service2.png') }}" alt="">
+                                <img class="img-responsive" src="{{ asset('img/service2.jpg') }}" alt="">
                             </div>
                         </div>
-                        <h3>Financial</h3>
+                        <h3>Cheuveux</h3>
                     </div>
                 </div>
 
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="single-service">
                         <div class="single-service-img">
                             <div class="service-img">
-                                <img class="img-responsive" src="{{ asset('img/service3.png') }}" alt="">
+                                <img class="img-responsive" src="{{ asset('img/service3.jpg') }}" alt="">
                             </div>
                         </div>
-                        <h3>Tax Help</h3>
+                        <h3>Maquillage</h3>
                     </div>
                 </div>
 
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="single-service">
                         <div class="single-service-img">
                             <div class="service-img">
-                                <img class="img-responsive" src="{{ asset('img/service4.png') }}" alt="">
+                                <img class="img-responsive" src="{{ asset('img/service4.webp') }}" alt="">
                             </div>
                         </div>
-                        <h3>Money</h3>
+                        <h3>Bébé</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-service">
+                        <div class="single-service-img">
+                            <div class="service-img">
+                                <img class="img-responsive" src="{{ asset('img/service5.jpeg') }}" alt="">
+                            </div>
+                        </div>
+                        <h3>Bougies</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-service">
+                        <div class="single-service-img">
+                            <div class="service-img">
+                                <img class="img-responsive" src="{{ asset('img/service6.jpeg') }}" alt="">
+                            </div>
+                        </div>
+                        <h3>Maison</h3>
                     </div>
                 </div>
             </div>
@@ -187,148 +196,117 @@
     </section><!-- end of service section -->
 
 
-    <!-- team section -->
+    <!-- blog section -->
 
-    <section class="team" id="team">
+    <section class="blog" id="blog">
         <div class="container">
             <div class="row">
-                <div class="team-heading text-center">
-                    <h2>our team</h2>
+                <div class="blog-heading text-center">
+                    <h2>Blog</h2>
+                    <h4>Les informations utiles atour des produits naturels que vous adorez.</h4>
+                </div><!-- blog header -->
 
-                    <h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took
-                        a galley of type and scrambled</h4>
-                </div>
+                <div class="col-md-2 single-blog col-sm-4">
+                    <div class="blog-img">
+                        <img class="img-responsive" src="{{ asset('img/item1.jpeg') }}" alt="item-1">
+                    </div>
+                    <div class="blog-detail">
+                        <h3>Huiles végétales</h3>
+                        <p>Voici un topo pour les huiles végétales, pour qui et pour quoi? En fonction du type de peau et des cheveux, nous pouvons facilement cibler le besoin et nous orienter vers le bon choix.</p>
+                    </div>
+                </div><!-- blog 1 -->
 
-                <div class="col-md-2 single-member col-sm-4">
-                    <div class="person">
-                        <img class="img-responsive" src="{{ asset('img/item1.jpg') }}" alt="member-1">
+                <div class="col-md-2 single-blog col-sm-4">
+                    <div class="blog-detail">
+                        <h3>Bougies Bijoux</h3>
+                        <p>Les bougies sont fabriquées à partir de cire végétale de colza et de cire végétale de soja non OGM, une excellente alternative aux substances pétrochimiques dangereuses pour la santé et la nature. </p>
                     </div>
+                    <div class="blog-img">
+                        <img class="img-responsive" src="{{ asset('img/item2.gif') }}" alt="item-2">
+                    </div>
+                </div><!-- blog 2 -->
 
-                    <div class="person-detail">
-                        <div class="arrow-bottom"></div>
-                        <h3>Mr. Graham</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s, </p>
+                <div class="col-md-2 single-blog col-sm-4">
+                    <div class="blog-img">
+                        <img class="img-responsive" src="{{ asset('img/item3.png') }}" alt="item-3">
                     </div>
+                    <div class="blog-detail">
+                        <h3>Crème Anti-Rides</h3>
+                        <p>La plupart des publicités le disent, les crèmes anti-âge agissent en profondeur pour effacer les rides. Elles hydratent en profondeur et revitalisent la peau. Hmm…Oui mais non.</p>
+                    </div>
+                </div><!-- blog 3 -->
 
-                </div>
+                <div class="col-md-2 single-blog col-sm-4">
+                    <div class="blog-detail">
+                        <h3>Henné gloss</h3>
+                        <p>Le henné gloss est un soin miracle pour apporter du volume et de l’hydratation aux cheveux fins, aux cheveux raplapla qui en plus sont ternes et font littéralement “ la gueule”. Super simple et rapide.</p>
+                    </div>
+                    <div class="blog-img">
+                        <img class="img-responsive" src="{{ asset('img/item4.jpeg') }}" alt="item-4">
+                    </div>
+                </div><!-- blog 4 -->
 
-                <div class="col-md-2 single-member col-sm-4">
+                <div class="col-md-2 single-blog col-sm-4">
+                    <div class="blog-img">
+                        <img class="img-responsive" src="{{ asset('img/item5.png') }}" alt="item-5">
+                    </div>
+                    <div class="blog-detail">
+                        <h3>Eau de rinçage</h3>
+                        <p>Cette eau de rinçage est l’une des plus connues. Elle permet d’enlever les résidus de calcaire encore présents sur les cheveux. Vous pouvez facilement soigner votre cuir chevelu,stimuler la pousse des cheveux ou les rendre tout doux.</p>
+                    </div>
+                </div><!-- blog 5 -->
 
-                    <div class="person-detail">
-                        <div class="arrow-top"></div>
-                        <h3>Mr. David</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s, </p>
+                <div class="col-md-2 single-blog col-sm-4">
+                    <div class="blog-detail">
+                        <h3>Lait Nettoyant</h3>
+                        <p>Naturel et efficace, ce savon convient à tous les épidermes. C'est l'alternative idéale aux produits du commerce. Vous ne pourrez bientôt plus vous en passer, et votre peau vous dira merci ! Pensez à laver et désinfecter le pot.</p>
                     </div>
-                    <div class="person">
-                        <img class="img-responsive" src="{{ asset('img/item2.jpg') }}" alt="member-2">
+                    <div class="blog-img">
+                        <img class="img-responsive" src="{{ asset('img/item6.jpeg') }}" alt="item-6">
                     </div>
-                </div>
-                <div class="col-md-2 single-member col-sm-4">
-                    <div class="person">
-                        <img class="img-responsive" src="{{ asset('img/item3.jpg') }}" alt="member-3">
-                    </div>
-                    <div class="person-detail">
-                        <div class="arrow-bottom"></div>
-                        <h3>Mr. Hovid</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s, </p>
-                    </div>
-                </div>
-
-                <div class="col-md-2 single-member col-sm-4">
-                    <div class="person-detail">
-                        <div class="arrow-top"></div>
-                        <h3>Mr Jasak</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s, </p>
-                    </div>
-                    <div class="person">
-                        <img class="img-responsive" src="{{ asset('img/item4.jpg') }}" alt="member-4">
-                    </div>
-                </div>
-
-                <div class="col-md-2 single-member col-sm-4">
-                    <div class="person">
-                        <img class="img-responsive" src="{{ asset('img/item5.jpg') }}" alt="member-5">
-                    </div>
-
-                    <div class="person-detail">
-                        <div class="arrow-bottom"></div>
-                        <h3>Mr. Joy Ka</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s, </p>
-                    </div>
-                </div>
-
-                <div class="col-md-2 single-member col-sm-4">
-
-                    <div class="person-detail">
-                        <div class="arrow-top"></div>
-                        <h3>Mr. Mikari</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                            industry's standard dummy text ever since the 1500s, </p>
-                    </div>
-                    <div class="person">
-                        <img class="img-responsive" src="{{ asset('img/item6.jpg') }}" alt="member-5">
-                    </div>
-
-                </div>
+                </div><!-- blog 6 -->
             </div>
         </div>
-    </section><!-- end of team section -->
-
-    <!-- map section -->
-    <section class="api-map" id="contact">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12 map" id="map"></div>
-            </div>
-        </div>
-    </section><!-- end of map section -->
+    </section><!-- end of blog section -->
 
     <!-- contact section starts here -->
-    <section class="contact">
+    <section class="contact" id="contact">
         <div class="container">
             <div class="row">
                 <div class="contact-caption clearfix">
                     <div class="contact-heading text-center">
-                        <h2>contact us</h2>
+                        <h2>contactez nous</h2>
                     </div>
 
                     <div class="col-md-5 contact-info text-left">
                         <h3>contact information</h3>
                         <div class="info-detail">
                             <ul>
-                                <li><i class="fa fa-calendar"></i><span>Monday - Friday:</span> 9:30 AM to 6:30 PM</li>
+                                <li><i class="fa fa-calendar"></i><span>lundi - vendredi:</span> 9:30 AM à 6:30 PM</li>
                             </ul>
                             <ul>
-                                <li><i class="fa fa-map-marker"></i><span>Address:</span> 123 Some Street , California, US, CP 123</li>
+                                <li><i class="fa fa-map-marker"></i><span>Adresse:</span>Place du Général de Gaulle, 78990 Elancourt</li>
                             </ul>
                             <ul>
-                                <li><i class="fa fa-phone"></i><span>Phone:</span> (01) 999-1235</li>
+                                <li><i class="fa fa-phone"></i><span>Téléphone:</span> 06-01-02-03-04</li>
                             </ul>
                             <ul>
-                                <li><i class="fa fa-fax"></i><span>Fax:</span> (01) 999-1234</li>
-                            </ul>
-                            <ul>
-                                <li><i class="fa fa-envelope"></i><span>Email:</span> info@domain.com</li>
+                                <li><i class="fa fa-envelope"></i><span>Email:</span> elanature@gmail.com</li>
                             </ul>
                         </div>
                     </div>
 
 
                     <div class="col-md-6 col-md-offset-1 contact-form">
-                        <h3>leave us a message</h3>
+                        <h3>Laissez nous un message</h3>
 
                         <form class="form">
-                            <input class="name" type="text" placeholder="Name">
-                            <input class="email" type="email" placeholder="Email">
-                            <input class="phone" type="text" placeholder="Phone No:">
+                            <input class="name" type="text" placeholder="Votre nom">
+                            <input class="email" type="email" placeholder="Votre email">
+                            <input class="phone" type="text" placeholder="Votre téléphone">
                             <textarea class="message" name="message" id="message" cols="30" rows="10"
-                                      placeholder="Message"></textarea>
-                            <input class="submit-btn" type="submit" value="SUBMIT">
+                                      placeholder="Votre message"></textarea>
+                            <input class="submit-btn" type="submit" value="Envoyez">
                         </form>
                     </div>
 

@@ -5,11 +5,14 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MembreRepository")
+ * @UniqueEntity(fields={"email"}, errorPath="email", message="Ce compte existe déjà !")
  */
-class Membre
+class Membre implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -51,7 +54,7 @@ class Membre
     /**
      * @ORM\Column(type="array")
      */
-    private $role = [];
+    private $roles = [];
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Commande", mappedBy="membre")
@@ -68,9 +71,64 @@ class Membre
      */
     private $adresse_facturation = [];
 
+    private $adresse;
+
+    /**
+     * @return mixed
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * @param mixed $adresse
+     */
+    public function setAdresse($adresse): void
+    {
+        $this->adresse = $adresse;
+    }
+
+    private $cp;
+
+    /**
+     * @return mixed
+     */
+    public function getCp()
+    {
+        return $this->cp;
+    }
+
+    /**
+     * @param mixed $cp
+     */
+    public function setCp($cp): void
+    {
+        $this->cp = $cp;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * @param mixed $ville
+     */
+    public function setVille($ville): void
+    {
+        $this->ville = $ville;
+    }
+
+    private $ville;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
+        $this->date_inscription = new \DateTime();
     }
 
     public function getId(): ?int
@@ -150,14 +208,43 @@ class Membre
         return $this;
     }
 
-    public function getRole(): ?array
+    // UserAuthenticationProvider
+    public function getRoles(): ?array
     {
-        return $this->role;
+          return $this->roles;
+
     }
 
-    public function setRole(array $role): self
+    // UsernamePasswordToken
+    public function setRoles(array $roles): self
     {
-        $this->role = $role;
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getAdresselivraison(): ?array
+    {
+        return $this->adresse_livraison;
+
+    }
+
+    public function setAdresselivraison(array $adresse_livraison): self
+    {
+        $this->adresse_livraison = $adresse_livraison;
+
+        return $this;
+    }
+
+    public function getAdresseFacturation(): ?array
+    {
+        return $this->adresse_facturation;
+    }
+
+
+    public function setAdresseFacturation(array $adresse_facturation): self
+    {
+        $this->adresse_facturation = $adresse_facturation;
 
         return $this;
     }
@@ -192,28 +279,37 @@ class Membre
 
         return $this;
     }
-
-    public function getAdresselivraison(): ?array
+    
+    /**
+     * Returns the salt that was originally used to encode the password.
+     *
+     * This can return null if the password was not encoded using a salt.
+     *
+     * @return string|null The salt
+     */
+    public function getSalt()
     {
-        return $this->adresse_livraison;
+        return null;
     }
 
-    public function setAdresselivraison(array $adresse_livraison): self
+    /**
+     * Returns the username used to authenticate the user.
+     *
+     * @return string The username
+     */
+    public function getUsername()
     {
-        $this->adresse_livraison = $adresse_livraison;
-
-        return $this;
+        return $this->email;
     }
 
-    public function getAdresseFacturation(): ?array
+    /**
+     * Removes sensitive data from the user.
+     *
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
+     */
+    public function eraseCredentials()
     {
-        return $this->adresse_facturation;
-    }
-
-    public function setAdresseFacturation(array $adresse_facturation): self
-    {
-        $this->adresse_facturation = $adresse_facturation;
-
-        return $this;
+        // TODO: Implement eraseCredentials() method.
     }
 }
