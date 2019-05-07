@@ -95,10 +95,33 @@ ul.nav{
 	font-size: 35px;
 	color: #000;
 	margin-top: -7px;
+	position: relative;
 }
 
+.navbar-default .navbar-nav>li.badge{
+	background: transparent;
+}
+
+.navbar-default .navbar-nav>li.badge:after{
+	content:"0";
+	position: absolute;
+	background: #4C9A2A;
+	height:2rem;
+	top:0rem;
+	right:0rem;
+	width:2rem;
+	text-align: center;
+	line-height: 2rem;;
+	font-size: 1rem;
+	border-radius: 50%;
+	color:white;
+	border:1px solid #4C9A2A;
+}
+
+
 .navbar-default .navbar-nav>li>a>i.fa:hover{
-	color: #4C9A2A;
+	color: #ACDF87;
+
 }
 
 /*slider area*/
