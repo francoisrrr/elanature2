@@ -99,7 +99,7 @@ class MembreController extends AbstractController
     {
         # récupérer Membre
         $membre = $this->getUser();
-        $membre->setRoles(['ROLES_MEMBRE']);
+//        $membre->setRoles(['ROLES_MEMBRE']);
 
         # création du Formulaire "MembreFormType"
         $form = $this->createForm(MembreFormType::class, $membre);
