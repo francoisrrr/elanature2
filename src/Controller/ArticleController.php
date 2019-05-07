@@ -71,26 +71,7 @@ class ArticleController extends AbstractController
 
     }
 
-    /**
-     * @Route("/create-an-article", name="article_add")
-     */
-    public function addArticle()
-    {
-        $article = new Article();
-
-        $article = $this->getDoctrine()
-            ->getRepository(Article::class)
-            ->findAll();
-
-
-        $form = $this->createForm(ArticleFormType::class, $article);
-        $photo= $form['photo']->getData();
-        # Affichage du formulaire dans la vue
-        return $this->render("default/index.html.twig",[
-            'form' => $form->createView()
-        ]);
-
-    }
+    
 
 
 }

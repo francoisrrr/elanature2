@@ -5,19 +5,22 @@
 {% endblock %}
 {% block content %}
     <div class="container">
-    <article class="post-detail">
+    <article class="blog-heading text-center">
         <h1>{{ article.nom }}</h1>
 
 
         <img alt="{{ article.nom }}"
              src="{{ asset('img/' ~ article.photo) }}">
-        <p><h1>
-        {{ article.description | raw }}
-        </h1>{{ article.poids }} g</p>
-        <p><h1>{{ article.prix }} </h1> Euros</p>
+        <p class="about">
+            <h4> {{ article.description | raw }}</h4></p>
+        <p>{{ article.poids }} g</p>
+        <p><h1>{{ article.prix }} €</h1></p>
+        <p>{{ article.ingredients }}</p>
         <a class="btn btn-primary btn-lg" href="#" role="button">Commande</a>
 
     </article>
+
+
 
 
     </div>

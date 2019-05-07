@@ -131,7 +131,7 @@
                     <div class="single-service">
                         <div class="single-service-img">
                             <div class="service-img">
-                                <a class="menu dropdown-item" href="{{ path('default_categorie',{ 'slug':categorie.slug}) }}">{{ categorie.nom }}
+                                <a class="menu dropdown-item" href="{{ path('default_categorie',{ 'slug':categorie.slug}) }}">
                                 <img class="img-responsive" src="{{ asset('img/' ~ categorie.image) }}" alt="{{ categorie.nom }}" title="{{ categorie.nom }}">
                                 </a>
                             </div>
@@ -166,7 +166,9 @@
                         </a>
                     </div>
                     <div class="blog-detail">
+                        <a href="{{ path('default_article',{'categorie' :article.categorie.slug,'slug': article.slug, 'id' : article.id}) }}">
                         <h3>{{ article.nom }}</h3>
+                        </a>
                         <p>{{ article.description | summarize }}</p>
                     </div>
                 </div><!-- blog 1 -->

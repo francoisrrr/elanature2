@@ -13,34 +13,45 @@
 
 
                 <div class="box-caption">
-                    {#<span>{{ articles[0].categorie.nom }}</span>#}
+
                     <span>{{ categorie.nom }}</span>
-                    {#<span>{{ app.request.get('slug') }}</span>#}
+
                 </div>
                 <!--list-news-cate-->
-                <div class="list-news-cate">
-                    {% for article in articles %}
+                <section class="blog" id="blog">
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="blog-heading text-center">
+                                <h2>{{ categorie.nom }}</h2>
+                                <h4>Les informations utiles atour des produits naturels que vous adorez.</h4>
+                            </div><!-- blog header -->
+
+                            {% for article in articles %}
+                                <div class="mx-auto collapse-4 col-lg-2">
+                                    <div class="blog-img">
+                                        <a href="{{ path('default_article',{'categorie' :article.categorie.slug,'slug': article.slug, 'id' : article.id}) }}">
+                                            <img class="img-responsive" src="{{ asset('img/' ~ article.photo) }}" alt="{{ article.nom }}">
+                                        </a>
+                                    </div>
+                                    <div class="blog-detail">
+                                        <a href="{{ path('default_article',{'categorie' :article.categorie.slug,'slug': article.slug, 'id' : article.id}) }}">
+                                            <h3>{{ article.nom }}</h3>
+                                        </a>
+                                        <p>{{ article.description | summarize }}</p>
+                                        <p>{{ article.poids }} g</p>
+                                        <p><h1>{{ article.prix }} €  </h1> </p>
+                                        <p>{{ article.ingredients }}</p>
+                                        <a class="btn btn-primary btn-lg" href="#" role="button">Commande</a>
+                                    </div>
+                                </div><!-- blog 1 -->
+                            {% endfor %}
 
 
-                        <article class="news-cate-item">
-                            <div class="row">
-                                <div class="col-md-5 col-sm-5 col-xs-12">
-                                    <a href="{{ path('default_article',{'categorie' :article.categorie.slug,'slug': categorie.slug, 'id' : categorie.id}) }}">
-                                        <img alt="{{ article.nom }}"
-                                             src="{{ asset('img/' ~ article.photo) }}">
-                                    </a>
-                                </div>
-                                <div class="col-md-7 col-sm-7 col-xs-12">
-                                    <h3>
-                                        <a href="{{ path('default_article',{'categorie' :article.categorie.slug,'slug': categorie.slug, 'id' : categorie.id}) }}">{{ article.nom }}</a>
-                                    </h3>
+                        </div>
+                    </div>
+                </section><!-- end of blog section -->
 
-                                    {{ article.description | summarize }}
-                                </div>
-                            </div>
-                        </article>
-                    {% endfor %}
-                </div>
             {% else %}
                 <div class="alert alert-danger">
                     <strong>Aucune publication pour le moment</strong>
