@@ -1,5 +1,6 @@
 <?php
 
+
 /*
  * --------------------------------------------------------
  * REFERENCES
@@ -181,5 +182,15 @@ class PanierController extends AbstractController
         $session = $this->getRequest()->getSession();
         $session->unset('panier');
     }
+    /**
+     * @Route("/paiement", name="paiement")
+     */
+    public function paiement()
+    {
+        \Stripe\Stripe::setApiKey('sk_test_DAZeQIOuZ05UjUl92MreRg4200cQtkFLQX');
+        $charge = \Stripe\Charge::create(['amount' => 100000, 'currency' => 'eur', 'source' => 'tok_visa']);
+        echo $charge;
 
+        return $this->redirectToRoute("/panier" );
+    }
 }
