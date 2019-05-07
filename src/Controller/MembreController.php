@@ -7,7 +7,9 @@ namespace App\Controller;
 use App\Entity\Membre;
 use App\Form\ConnexionFormType;
 use App\Form\MembreFormType;
+use App\Form\ModificationFormType;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -101,8 +103,7 @@ class MembreController extends AbstractController
 //        $membre->setRoles(['ROLES_MEMBRE']);
 
         # création du Formulaire "MembreFormType"
-        $form = $this->createForm(MembreFormType::class, $membre);
-
+        $form = $this->createForm(ModificationFormType::class, $membre);
         $form->handleRequest($request);
 
         # vérification de la soumission du formulaire
@@ -131,7 +132,20 @@ class MembreController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-    
+
+    /**
+     * @Route("/suppression.html", name="membre_suppression")
+     */
+    public function suppression()
+    {
+        $membre = $this->getUser();
+        $this->em->remove($membre);
+        $this->em->flush();
+        $this->addFlash('success', 'Vous avez bien supprimé votre compte.');
+
+        return $this->redirectToRoute('membre_inscription');
+
+    }
     /**
      * @Route("/deconnexion.html", name="membre_deconnexion")
      */

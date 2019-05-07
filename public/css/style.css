@@ -337,18 +337,18 @@ ul.nav{
 }
 
 /*inscription & modification section*/
-.inscription .row, .modification .row{
+.inscription .row, .profil .row, .modification .row {
 	margin-top: 150px;
 }
 
-.inscription .row h2, .modification h2{
+.inscription .row h2, .profil h2, .modification h2 {
 	color: #4C9A2A;
 	font-size: 90px;
 	text-align: center;
 
 }
 
-.inscription form input{
+.inscription form input, .modification form input{
 	/*width: 100%;*/
 	height: 70px;
 	font-size: 15px;
@@ -372,7 +372,7 @@ ul.nav{
 	font-size: 30px;
 }
 
-.inscription form button{
+.inscription form button, .modification form button{
 	width: 180px;
 	height: 50px;
 	margin: auto;
@@ -385,11 +385,12 @@ ul.nav{
 	display: block;
 }
 
-.modification .profil-details {
+/* profil section */
+.profil .profil-details {
 	margin: 50px 0;
 }
 
-.modification .profil-details p{
+.profil .profil-details p{
 	/*height: 70px;*/
 	font-size: 15px;
 	font-family: 'Open Sans', sans-serif;
@@ -398,14 +399,14 @@ ul.nav{
 	/*margin-bottom: 12px;*/
 }
 
-.modification .profil-details img {
+.profil .profil-details img {
 	height: 100px;
 	width: 100px;
 	border-radius: 50%;
 	margin-bottom: 20px;
 }
 
-.modification button {
+.profil a {
 	width: 200px;
 	height: 50px;
 	font-size: 24px;
@@ -413,15 +414,17 @@ ul.nav{
 	font-weight: bold;
 }
 
-.modification .btn-modifier {
+.profil .btn-modifier {
 	background: #68BB59;
 	color: #2a2a2a;
 }
 
-.modification .btn-supprimer{
+.profil .btn-suppression{
 	background: #D21F3C;
 	color: white;
 }
+
+/* modification section */
 
 /*connexion section*/
 .connexion .row {

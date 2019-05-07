@@ -1,12 +1,12 @@
 {% extends "layout.html.twig" %}
 
 {% block title %}
-    Inscription
+    Mon Profil
 {% endblock %}
 
 {% block content %}
 
-    <div class="container modification">
+    <div class="container profil">
         <div class="row">
 
             <h2>Mon Profil</h2>
@@ -19,13 +19,12 @@
             </div>
 
             <div class="text-center">
-                <button class="btn btn-modifier">Modifier mon profil</button>
-                <button class="btn btn-supprimer">Supprimer mon compte</button>
+                <a class="btn btn-modifier" href="{{ path('membre_modification') }}">Modifier mon profil</a>
+                <a class="btn btn-suppression" href="{{ path('membre_suppression') }}">Supprimer mon compte</a>
             </div>
 
         </div>
     </div>
-
 
 {% endblock %}
 
