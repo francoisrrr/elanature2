@@ -63,11 +63,12 @@
     <script>
         $(document).ready(function(){
             //console.log('Hello');
+
             $('#membre_form_ville').on(function() {
-                let $zipCode = $('#membre_form_cp').val(),
-                    $link = 'https://geo.api.gouv.fr/communes?codePostal=' + $zipCode;
-                console.log($zipCode);
-                $.getJSON($link, function (data) {
+                let zipCode = $('#membre_form_cp').val(),
+                    link = 'https://geo.api.gouv.fr/communes?codePostal=' + zipCode;
+                console.log(zipCode);
+                $.getJSON(link, function (data) {
                     console.log(data);
                     // $('#membre_form_ville').val(`${data.responseJSON[0].nom}`);
 
