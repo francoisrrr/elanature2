@@ -34,7 +34,7 @@ class Panier
     private $session, $manager;
 
     /**
-     * -- Constructeur
+     * -OK- Constructeur
      * Panier constructor.
      * @param $session
      * @param $manager
@@ -48,137 +48,74 @@ class Panier
         $this->manager = $manager;
     }
 
-    //  -- Récupère le $panier en $_SESSION
+    //  -OK- Récupère le $panier en $_SESSION
     public function getPanier()
     {
         return $this->session->get('panier');
     }
 
-    //  -- Suppression du panier en $_SESSION
+    //  -OK- Suppression du panier en $_SESSION
     public function deletePanier()
     {
         $this->session->remove('panier');
     }
 
-    //  Ajoute un Article dans $panier en $_SESSION
+    //  -- Ajoute ($quantity x Article) dans $panier en $_SESSION
     public function addArticle(Article $article, $quantity)
     {
         $panier = $this->session->get('panier');
 
         // -- Si $panier n'est pas vide
         if (!empty($panier)) {
-            foreach ($panier as $item) {
+            foreach ($panier as $key => $item) {
                 // -- Si $article existe dans le $panier
                 if ($item->getId() == $article->getId()) {
-                    $item->setQuantity($item->getQuantity() + $quantity);
+                    if ($quantity!=0 && ($item->getQuantity() + $quantity) >0) {
+            			// Incrémentation de $quantity dans le $panier
+                    	$item->setQuantity($item->getQuantity() + $quantity);	
+                    } elseif ($quantity=0 || ($item->getQuantity() + $quantity)<=0) {
+                    	// Suppression de $item du $panier
+                    	unset($panier[$key]);
+                    }                   
                     break;
                 }
             }
         } else {
             // -- Si $panier est vide
-            $article->setQuantity(1);
-            $panier[]=$article;
+            if ($quantity>0) {
+            	// Incrémentation de $quantity dans le $panier
+            	$article->setQuantity($quantity);
+            	$panier[]=$article;	
+            }
         }
 
         // -- Ecriture du $panier en $_SESSION
         $this->session->set('panier', $panier);
     }
 
-    //  Calcul du total du $panier
+    //  -- Calcul du total du $panier
     public function totalPanier()
     {
         $panier = $this->session->get('panier', array());
         $total = 0;
 
-        foreach ($panier as $id => $quantite) {
-
-            // -- Récupération en BDD de l'Article correspondand à $id
-
-
-            // -- Récupération de $prix
-
-
-            // -- Incrémentation du total
-
+        foreach ($panier as $item) {
+			$total+= $item->getPrix() * $item->getQuantity();
         }
 
         return $total;
     }
 
-
-
-    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-    //  XX Incrémente la $quantite de l'$id dans $panier en $_SESSION
-    public function xx_addArticle($id)
+	//  -- Comptage du nombre d'Article dans le $panier
+    public function countPanier()
     {
-        // -- Si $panier est vide
-        if (empty($this->session->get('panier'))) {
-            $panier[$id]=1;
-        } else {
-            // -- Si $id existe déjà on ajoute 1
-            $panier = $this->session->get('panier');
-            if(array_key_exists($id,$panier)) {
-                $panier[$id]++;
-            } else {
-                // -- Sinon on crée la clé dans $panier
-                $panier[$id]=1;
-            }
+        $panier = $this->session->get('panier', array());
+        $count = 0;
+
+        foreach ($panier as $item) {
+			$count+=$item->getQuantity();
         }
 
-        // -- Ecriture du $panier en $_SESSION
-        $this->session->set('panier', $panier);
+        return $count;
     }
-
-    //  XX Décrémente la $quantite de l'$id dans $panier en $_SESSION
-    public function xx_removeArticle($id)
-    {
-        if (!empty($this->session->get('panier'))) {
-            $panier = $this->session->get('panier');
-            if(array_key_exists($id,$panier)) {
-                $panier[$id]--;
-            }
-
-            // -- Ecriture du $panier en $_SESSION
-            $this->session->set('panier', $panier);
-        }
-    }
-
-    //  XX Supprime l'$id dans $panier en $_SESSION
-    public function xx_deleteArticle($id)
-    {
-        if (!empty($this->session->get('panier'))) {
-            $panier = $this->session->get('panier');
-            if(array_key_exists($id,$panier)) {
-                unset($panier,$id);
-            }
-
-            // -- Ecriture du $panier en $_SESSION
-            $this->session->set('panier', $panier);
-        }
-    }
-
-    //  XX Calcul du nombre d'Article dans le $panier
-    public function xx_countArticle()
-    {
-        $count=0;
-
-        if (!empty($this->session->get('panier'))) {
-            foreach ($panier as $quantite) {
-                $count+=$quantite;
-            }
-        }
-
-        // -- Ecriture en $_SESSION
-        $this->session->set('panier-count', $count);
-    }
-
-}
+    
