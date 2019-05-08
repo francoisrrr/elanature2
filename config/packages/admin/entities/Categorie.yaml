@@ -18,6 +18,7 @@ easy_admin:
         actions:
           - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
           - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
+          - {name: 'new', icon: 'plus', label: false, title: 'Ajouter' }
       form:
         fields:
           - {property: 'nom'}

@@ -6,21 +6,20 @@ easy_admin:
     brand_color: '#AFBD8E'
     assets:
       css:
-        # ...
-        - 'bundles/easyadmin/bootstrap-all.css'
+        - 'bundles/app/css/custom_admin.css'
       js:
-        - 'bundles/easyadmin/bootstrap-all.js'
+        - 'bundles/app/js/custom_admin.js'
 
     menu:
       - label: 'Dashboard'
         icon: 'tachometer-alt'
         children:
-          - { label: 'Public Homepage', url: 'http://example.com' }
-          - { label: 'Search', url: 'https://google.com' }
           - {entity: 'Category', icon: 'tags', label: 'Categories', css_class: 'menu--user', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Categorie' }}
-          - {entity: 'Article', icon: 'shopping-bag', label: 'Articles', css_class: 'menu--product text-bold text-center', default: true }
+          - {entity: 'Article', icon: 'shopping-bag', label: 'Articles', css_class: 'menu--product', default: true }
           - {entity: 'Commande', icon: 'shopping-cart', label: 'Commandes', css_class: 'default'}
           - {entity: 'Membre', icon: 'users', label: 'Membres', children: ['admin', 'clients']}
+          - {label: 'Messages', icon: 'envelope', url: 'https://mailtrap.io/inboxes' }
+          - {label: 'Paiement', icon: 'cc-stripe', target: '_blank', url: 'https://dashboard.stripe.com/test/payments' }
 
 
 

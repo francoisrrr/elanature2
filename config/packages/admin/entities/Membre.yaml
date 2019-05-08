@@ -3,4 +3,12 @@ easy_admin:
     Membre:
       class: App\Entity\Membre
       #Desactiver la creation de membres
-      #disabled_actions: ['new']
+      #actions: ['-show']
+      disabled_actions: ['new']
+      list:
+        title: 'Membres'
+        #fields: ['nom', { property: 'image', type: 'image'}, 'article']
+        actions:
+          - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
+          - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
+          - {name: 'new', icon: 'plus', label: false, title: 'Ajouter' }

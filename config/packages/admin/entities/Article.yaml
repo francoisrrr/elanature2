@@ -12,6 +12,8 @@ easy_admin:
       edit:
         title:  'Modifier un article'
         form_options: { validation_groups: ['Default'] }
+      actions:
+        - {name: 'search', icon: 'search', label: false}
 
         #templates:
         #edit: 'admin/article/edit.html.twig'
