@@ -17,7 +17,7 @@
  * DESCRIPTION
  * --------------------------------------------------------
  *
- * Ensemble des fonctions executables sur la classe Panier
+ * Ensemble des fonctions executables sur le $panier.
  * Ces fonctions sont accessibles via leurs @Route respectives.
  * Par exemple :
  *      href="{{ path('@Route_name',{

@@ -23,22 +23,15 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  * Cette classe ne correspond pas à une table en BDD. Elle n'est
  * pas prise en compte par l'ORM.
  *
- * La classe Panier n'a pas de propriétés.
+ * La classe Panier n'a pas de propriétés mais elle contient les 
+ * fonctions appellées par la classe PanierController
  * $panier est stocké directement en $_SESSION
  *
- * Cette classe sert seulement à appeler des fonctions auxilliaires
- * 
- * 
- * Exemple de $panier
- *       $panier=[
- *         'id_article1'=>'3',
- *         'id_article2'=>'1'
- *       ];
  */
 
 class Panier
 {
-    private $session, $manager, $articles = [];
+    private $session, $manager;
 
     /**
      * -- Constructeur
