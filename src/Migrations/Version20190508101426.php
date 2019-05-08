@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190507081051 extends AbstractMigration
+final class Version20190508101426 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,7 @@ final class Version20190507081051 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE article (id INT AUTO_INCREMENT NOT NULL, categorie_id INT NOT NULL, nom VARCHAR(255) NOT NULL, description LONGTEXT NOT NULL, prix DOUBLE PRECISION NOT NULL, reference VARCHAR(255) DEFAULT NULL, stock INT NOT NULL, photos LONGTEXT NOT NULL COMMENT \'(DC2Type:array)\', promotion TINYINT(1) NOT NULL, coup_de_coeur TINYINT(1) NOT NULL, nouveaute TINYINT(1) NOT NULL, slug VARCHAR(255) NOT NULL, INDEX IDX_23A0E66BCF5E72D (categorie_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE article (id INT AUTO_INCREMENT NOT NULL, categorie_id INT NOT NULL, nom VARCHAR(255) NOT NULL, description LONGTEXT NOT NULL, prix DOUBLE PRECISION NOT NULL, reference VARCHAR(255) DEFAULT NULL, stock INT NOT NULL, photo VARCHAR(255) NOT NULL, promotion TINYINT(1) NOT NULL, coup_de_coeur TINYINT(1) NOT NULL, nouveaute TINYINT(1) NOT NULL, slug VARCHAR(255) NOT NULL, poids DOUBLE PRECISION NOT NULL, date_peremption DATETIME NOT NULL, ingredients LONGTEXT NOT NULL, INDEX IDX_23A0E66BCF5E72D (categorie_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE categorie (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(255) NOT NULL, slug VARCHAR(255) NOT NULL, image VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE commande (id INT AUTO_INCREMENT NOT NULL, membre_id INT NOT NULL, date_commande DATETIME NOT NULL, code_reduction VARCHAR(100) DEFAULT NULL, livraison VARCHAR(100) NOT NULL, paiement VARCHAR(100) NOT NULL, INDEX IDX_6EEAA67D6A99F74A (membre_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE commande_article (id INT AUTO_INCREMENT NOT NULL, articles_id INT NOT NULL, commande_id INT NOT NULL, quantite VARCHAR(255) NOT NULL, INDEX IDX_F4817CC61EBAF6CC (articles_id), INDEX IDX_F4817CC682EA2E54 (commande_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');

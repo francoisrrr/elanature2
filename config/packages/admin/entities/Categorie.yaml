@@ -5,8 +5,15 @@ easy_admin:
       label: 'Categories'
       help: 'Vous etes dans la section Categories'
       image_base_path: 'images/product'
+        #Changer le titre des actions
+      new:
+        title:  'Ajouter une catégorie'
+        form_options: { validation_groups: ['Default', 'Categorie'] }
+      edit:
+        title:  'Modifier une catégorie'
+        form_options: { validation_groups: ['Default'] }
       list:
-        title: 'Categories'
+        title: 'Catégories'
         fields: ['nom', { property: 'image', type: 'image'}, 'article']
         actions:
           - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
