@@ -11,7 +11,46 @@
 
             <h2>Modifier Mon Profil</h2>
 
-            {{ form( form, { attr: {novalidate: 'novalidate' } } ) }}
+            {{ form_start( form, { attr: {novalidate: 'novalidate' }} ) }}
+
+            <div class="col-md-12">
+                {{ form_row(form.prenom) }}
+            </div>
+
+            <div class="col-md-12">
+                {{ form_row(form.nom) }}
+            </div>
+
+            <div class="col-md-6">
+                {{ form_row(form.email) }}
+            </div>
+
+            <div class="col-md-6">
+                {{ form_row(form.password) }}
+            </div>
+
+            <div class="col-md-4">
+                {{ form_row(form.adresse) }}
+            </div>
+
+            <div class="col-md-4">
+                {{ form_row(form.cp) }}
+            </div>
+
+            <div class="col-md-4">
+                {{ form_row(form.ville) }}
+            </div>
+
+            <div class="col-md-12">
+                {{ form_row(form.termsAccepted) }}
+            </div>
+
+            <div>
+                {{ form_row(form.submit) }}
+            </div>
+
+
+            {{ form_end(form) }}
 
         </div>
     </div>

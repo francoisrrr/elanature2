@@ -41,7 +41,7 @@
                     {{ form_row(form.ville) }}
                 </div>
 
-                <div>
+                <div class="col-md-12">
                     {{ form_row(form.termsAccepted) }}
                 </div>
 
@@ -64,13 +64,16 @@
         $(document).ready(function(){
             //console.log('Hello');
 
-            $('#membre_form_ville').on(function() {
+            $('#membre_form_cp').blur(function() {
+                //console.log('Hello');
+
                 let zipCode = $('#membre_form_cp').val(),
                     link = 'https://geo.api.gouv.fr/communes?codePostal=' + zipCode;
-                console.log(zipCode);
+
                 $.getJSON(link, function (data) {
-                    console.log(data);
-                    // $('#membre_form_ville').val(`${data.responseJSON[0].nom}`);
+
+                    //console.log(data);
+                    $('#membre_form_ville').val(`${data[0].nom}`);
 
                 }); // end $.getJSON
             });
