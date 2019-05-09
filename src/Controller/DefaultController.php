@@ -26,10 +26,12 @@ class DefaultController extends AbstractController
         $promotion = $repository->findByPromotion();
 
 
+
         # Transmission a la vue pour affichage
         return $this->render("default/index.html.twig", [
             'articles' => $articles,
-            'promotion' => $promotion
+            'promotion' => $promotion,
+
         ]);
 
     }

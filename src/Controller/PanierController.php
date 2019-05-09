@@ -122,7 +122,7 @@ class PanierController extends AbstractController
         $panier->deletePanier();
 
         // -- Redirection vers $panier
-        return $this->redirectToRoute('panier');
+        return $this->redirectToRoute('index');
     }
     
     
