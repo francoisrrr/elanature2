@@ -74,6 +74,7 @@ class Categorie
 
         return $this;
     }
+
     public function getImage(): ?string
     {
         return $this->image;
@@ -85,6 +86,7 @@ class Categorie
 
         return $this;
     }
+
     /**
      * @return Collection|Article[]
      */
@@ -124,5 +126,7 @@ class Categorie
     {
         return $this->nom;
     }
+
+
 
 }
