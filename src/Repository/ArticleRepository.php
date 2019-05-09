@@ -22,10 +22,11 @@ class ArticleRepository extends ServiceEntityRepository
     /**
      * @return Articles ou quantite est < 5
      */
-    public function findByStockCritique()
+    public function findByStockCritique($id)
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.stock <= 5')
+            ->setParameter('id', $id)
             ->getQuery()
             ->getResult()
             ;
