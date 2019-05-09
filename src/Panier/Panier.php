@@ -76,7 +76,14 @@ class Panier
     public function addArticle(Article $article, $quantity)
     {
         $panier = $this->session->get('panier');
-        $flag = false;
+        $flag = false; // Indique si $article existe dans $panier
+
+//        if ($article->getStock()<$quantity){
+//
+//        }
+//        else {
+//
+//        }
 
         // -- Si $panier n'est pas vide
         if (!empty($panier)) {

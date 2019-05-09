@@ -55,11 +55,22 @@ class PanierController extends AbstractController
      */
     public function indexPanier(Panier $panier, SessionInterface $session)
     {
+    // -- DEBUG
         dump($panier->getPanier());
         dump($panier->countPanier());
         die();
 
-        //return $this->render('base.html.twig');
+        // -- Notification si $panier vide
+        if (empty($panier->getPanier())) {
+            $this->addFlash('notice',
+                'Votre panier ne contient aucun article');
+        }
+
+
+        // -- Affichage du formulaire dans la vue
+        return $this->render("panier/addform.html.twig", [
+            'form' => $form->createView()
+        ]);
     }
 
     /** OK

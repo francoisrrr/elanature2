@@ -1,9 +1,74 @@
-{# 
-    https://stackoverflow.com/questions/12243230/shopping-cart-bundle-with-symfony2 
+{#
+      - Tableau Bootstrap
+          + $article->nom
+          + $article->prix
+          + Bouton ajouter +1 $article
+          + Bouton retirer -1 $article
+          + Bouton supprimer $article
+      - Total $panier
+      - Bouton delete $panier
 #}
 
+{% extends 'layout.html.twig' %}
+
+{% block title%}
+    Elan Nature Panier
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-8 col-sm-12">
+            {# -- Affichage des messages d'erreur #}
+            {% for message in app.flashes('notice') %}
+
+                <div class="alert alert-info">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+            {% if error %}
+
+                <div class="alert alert-danger">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    {{ error.messageKey|trans(error.messageData, 'security')| replace({"Invalid credentials." : "Identifiant et/ou mot de passe incorrect."}) }}
+                </div>
+
+            {% endif %}
+
+            <h3>Connexion</h3>
+
+            {{ form( form, { attr: {novalidate: 'novalidate' } } ) }}
+
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//---------------------------------------------------------------
 {% block body %}
-<h1>"FLAIRBAG" SHOPPING-CART</h1>
+<h1>Votre Panier</h1>
 
 <ul class="thumbnails">
 
