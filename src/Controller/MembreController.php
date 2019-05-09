@@ -108,6 +108,7 @@ class MembreController extends AbstractController
         # création du Formulaire "MembreFormType"
         $form = $this->createForm(ModificationFormType::class, $membre);
         $form->handleRequest($request);
+        #$membre->get['adresse_livraison'][0]->setData($form['adresse']);
 
         if($request->getMethod() == 'POST') {
 
