@@ -24,7 +24,7 @@
                             <div class="row">
                                 <div class="blog-heading text-center">
                                     <h2>{{ categorie.nom }}</h2>
-                                    <h4>Les informations utiles atour des produits naturels que vous adorez.</h4>
+                                    <h4>Des produits naturels sains pour votre santé.</h4>
                                 </div><!-- blog header -->
 
                                 {% for article in articles %}
@@ -32,7 +32,7 @@
                                         <div class="blog-img">
                                             <a href="{{ path('default_article',{'categorie' :article.categorie.slug,'slug': article.slug, 'id' : article.id}) }}">
                                                 <img class="img-responsive" src="{{ asset('img/' ~ article.photo) }}"
-                                                     alt="{{ article.nom }}">
+                                                     alt="{{ article.nom }}" title="{{ article.nom }}">
                                             </a>
                                         </div>
                                         <div class="blog-detail">
@@ -72,7 +72,7 @@
                 </section><!-- end of blog section -->
 
                     <div class="alert alert-danger">
-                        <strong>Aucun article pour le moment</strong>
+                        <strong>Aucun article pour le moment, dans cette categorie</strong>
                     </div>
 
                 {% endif %}

@@ -4,7 +4,7 @@ easy_admin:
       class: App\Entity\Categorie
       label: 'Categories'
       help: 'Vous etes dans la section Categories'
-      image_base_path: 'images/product'
+      image_base_path: '/img'
         #Changer le titre des actions
       new:
         title:  'Ajouter une catégorie'
