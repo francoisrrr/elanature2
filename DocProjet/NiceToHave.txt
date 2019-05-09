@@ -1,0 +1,11 @@
+XXX Commande
+- API livraison
+- API paiement
+- Envoi mail de confirmation/suivi de commande
+
+XXX Article
+- Relation OneToOne dans la BDD pour permettre la création de coffrets
+- $photos=[] ald $photo pour permettre d'avoir plusieures photos par Article
+
+XXX Membre
+- Création d'une classe Adresse pour permettre de rentrer plus de 2 adresses par Membre

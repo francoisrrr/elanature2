@@ -92,7 +92,7 @@ class ArticleFormType extends AbstractType
             ])
 
 
-        ;
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -101,7 +101,7 @@ class ArticleFormType extends AbstractType
          * Ici, mon formulaire ArticleFormType travaillera OBLIGATOIRMENT
          * avec des instances de App/Entity/Article
          */
-        $resolver->setDefault('data_class', null);
+        $resolver->setDefault('data_class',Article::class);
     }
 
     public function getBlockPrefix()

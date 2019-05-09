@@ -74,7 +74,17 @@ class Categorie
 
         return $this;
     }
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
 
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
     /**
      * @return Collection|Article[]
      */
@@ -114,15 +124,5 @@ class Categorie
     {
         return $this->nom;
     }
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
 
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
 }

@@ -3,7 +3,7 @@
 
 namespace App\Form;
 
-use App\Entity\Commande;
+use App\Entity\Panier;
 
 //use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 //use Symfony\Component\Form\AbstractType;
@@ -17,33 +17,16 @@ use App\Entity\Commande;
 
 /*
  * --------------------------------------------------------
- * GENERALITES
+ * DESCRIPTION
  * --------------------------------------------------------
- *
- * Formulaire de validation de commande
- *      - Redirection login si offline
- *      - Sélection adresse livraison
- *      - Sélection mode de livraison
- *      - Récapitulatif de commande (article, quantité, total)
- *      - Calcul total avec livraison sélectionnée
- *      - Sélection mode de paiement
- *      - Sauvegarde en BDD
+ * Formulaire d'edition de la classe Panier
+ *      - Tableau Bootstrap avec Article->$nom et Commande_Article->$quantite
+ *      - Bouton submit "checkout"
  *
 */
 
-/*
- * --------------------------------------------------------
- * NOTES
- * --------------------------------------------------------
- *
- * Intégration API :
- *      - livraison
- *      - paiement
- *
- */
 
-
-class CommandeFormStep2 extends AbstractType
+class PanierFormType extends AbstractType
 {
 //    public function buildForm(FormBuilderInterface $builder, array $options)
 //    {
