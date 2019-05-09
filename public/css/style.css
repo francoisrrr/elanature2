@@ -95,10 +95,32 @@ ul.nav{
 	font-size: 35px;
 	color: #000;
 	margin-top: -7px;
+	position: relative;
+}
+
+.navbar-default .navbar-nav>li.badge{
+	background: transparent;
+}
+
+.navbar-default .navbar-nav>li.badge:after{
+	content: attr(data-count);
+	position: absolute;
+	background: #4C9A2A;
+	height:2rem;
+	top:0rem;
+	right:0rem;
+	width:2rem;
+	text-align: center;
+	line-height: 2rem;;
+	font-size: 1rem;
+	border-radius: 50%;
+	color:white;
+	border:1px solid #4C9A2A;
 }
 
 .navbar-default .navbar-nav>li>a>i.fa:hover{
-	color: #4C9A2A;
+	color: #ACDF87;
+
 }
 
 /*slider area*/
@@ -315,11 +337,11 @@ ul.nav{
 }
 
 /*inscription & modification section*/
-.inscription .row, .modification .row {
+.inscription .row, .profil .row, .modification .row {
 	margin-top: 150px;
 }
 
-.inscription .row h2, .modification .row h2 {
+.inscription .row h2, .profil h2, .modification h2 {
 	color: #4C9A2A;
 	font-size: 90px;
 	text-align: center;
@@ -340,7 +362,7 @@ ul.nav{
 	font-size: 15px;
 	font-family: 'Open Sans', sans-serif;
 	opacity: 0.7;
-	margin-left: 17px;
+	margin-left: 10px;
 }
 
 .checkbox label input[type=checkbox] {
@@ -350,7 +372,7 @@ ul.nav{
 	font-size: 30px;
 }
 
-.inscription form button, .modification form button {
+.inscription form button, .modification form button{
 	width: 180px;
 	height: 50px;
 	margin: auto;
@@ -361,8 +383,48 @@ ul.nav{
 	font-family: 'BenchNine', sans-serif;
 	font-weight: bold;
 	display: block;
-	margin: auto;
 }
+
+/* profil section */
+.profil .profil-details {
+	margin: 50px 0;
+}
+
+.profil .profil-details p{
+	/*height: 70px;*/
+	font-size: 15px;
+	font-family: 'Open Sans', sans-serif;
+	padding: 0px;
+	/*border-bottom:1px solid #ACDF87;*/
+	/*margin-bottom: 12px;*/
+}
+
+.profil .profil-details img {
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	margin-bottom: 20px;
+}
+
+.profil a {
+	width: 200px;
+	height: 50px;
+	font-size: 24px;
+	font-family: 'BenchNine', sans-serif;
+	font-weight: bold;
+}
+
+.profil .btn-modifier {
+	background: #68BB59;
+	color: #2a2a2a;
+}
+
+.profil .btn-suppression{
+	background: #D21F3C;
+	color: white;
+}
+
+/* modification section */
 
 /*connexion section*/
 .connexion .row {
