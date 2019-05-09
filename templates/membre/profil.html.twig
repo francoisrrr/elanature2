@@ -11,16 +11,22 @@
 
             <h2>Mon Profil</h2>
 
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
             <div class="col-md-12 text-center profil-details">
                 <img src="{{ asset('img/default-profile.png') }}" alt="profile">
                 <p>{{ app.user.prenom }} {{ app.user.nom }}</p>
                 <p>{{ app.user.email }}</p>
-                <p>{{ app.user.adresse }}</p>
+                <p>{{ app.user.adresse}}</p>
             </div>
 
             <div class="text-center">
                 <a class="btn btn-modifier" href="{{ path('membre_modification') }}">Modifier mon profil</a>
-                <a class="btn btn-suppression" href="{{ path('membre_suppression', {'id': app.user.id}) }}">Supprimer mon compte</a>
+                <a class="btn btn-suppression" href="{{ path('membre_suppression', {'id':app.user.id}) }}">Supprimer mon compte</a>
             </div>
 
         </div>

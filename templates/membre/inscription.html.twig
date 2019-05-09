@@ -13,6 +13,12 @@
 
                 {{ form_start( form, { attr: {novalidate: 'novalidate' }} ) }}
 
+                {% for message in app.flashes('notice') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
                 <div class="col-md-12">
                     {{ form_row(form.prenom) }}
                 </div>

@@ -1,0 +1,14 @@
+1. Présentation de l'équipe (Saadatou) 
+-> 1 slide 
+
+2.Présentation du projet (Saadatou)
+-> 1 slide
+
+3.Méthode de travail et moyens(github, diaUml, freeMind, phpstorm, discord)
+-> (1 ~ 2) slide (François)
+-> 4 x (1 ~ 2) slide / personne
+
+4.Démo du site (Stevenson)
+
+5. axes d'amélioration (Zita)
+-> 1 slide

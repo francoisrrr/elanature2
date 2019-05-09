@@ -211,7 +211,11 @@ class Membre implements UserInterface
     // UserAuthenticationProvider
     public function getRoles(): ?array
     {
-          return $this->roles;
+          $roles = $this->roles;
+
+          $roles[] = 'ROLE_MEMBRE';
+
+          return array_unique($roles);
 
     }
 

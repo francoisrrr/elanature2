@@ -109,6 +109,15 @@ class MembreController extends AbstractController
         $form = $this->createForm(ModificationFormType::class, $membre);
         $form->handleRequest($request);
 
+        if($request->getMethod() == 'POST') {
+
+            $adresse = $form['adresse']->getData();
+            $cp = $form['cp']->getData();
+            $ville = $form['ville']->getData();
+            $membre->setAdresselivraison([$adresse, $cp, $ville]);
+            $membre->setAdresseFacturation([$adresse, $cp, $ville]);
+        }
+
         # vérification de la soumission du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -139,16 +148,26 @@ class MembreController extends AbstractController
     /**
      * @Route("/suppression/{id}.html", name="membre_suppression")
      */
-    public function suppression(Membre $membre)
+    public function suppression($id)
     {
-        /*$em = $this->getDoctrine()->getManager();
+        $currentMembreId = $this->getUser()->getId();
+
+        $em = $this->getDoctrine()->getManager();
+        $membre = $em->getRepository(Membre::class)->find($id);
+
+        if ($currentMembreId == $id)
+        {
+            $session = $this->get('session');
+            $session = new Session();
+            $session->invalidate();
+        }
+
         $em->remove($membre);
         $em->flush();
 
+        $this->addFlash('notice', 'Vous avez bien supprimé votre compte!');
 
-        $this->addFlash('success', 'Vous avez bien supprimé votre compte.');
-
-        return $this->redirectToRoute('index');*/
+        return $this->redirectToRoute('membre_inscription');
 
     }
     /**
