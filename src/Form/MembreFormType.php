@@ -7,6 +7,7 @@ namespace App\Form;
 use App\Entity\Membre;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -84,6 +85,14 @@ class MembreFormType extends AbstractType
                 'attr'  => [
                     'placeholder' => 'Votre mot de passe'
                 ]
+            ])
+            ->add('role', ChoiceType::class, [
+                'choices' => [
+                    'ROLE_MEMBRE' => 'ROLE_MEMBRE',
+                    'ROLE_ADMIN' => 'ROLE_ADMIN'
+                ],
+                'required' => true,
+                'multiple' => false
             ])
             ->add('adresse', TextType::class, [
                 'label' => false,
