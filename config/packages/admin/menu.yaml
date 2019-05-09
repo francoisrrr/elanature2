@@ -9,6 +9,7 @@ easy_admin:
         - 'bundles/app/css/custom_admin.css'
       js:
         - 'bundles/app/js/custom_admin.js'
+      favicon: '/img/logo.png'
 
     menu:
       - label: 'Dashboard'

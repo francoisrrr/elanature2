@@ -44,5 +44,5 @@ easy_admin:
           - {property: 'coup_de_coeur'}
           - {property: 'categorie'}
           - {property: 'poids'}
-          - {property: 'date_peremption'}
+          - {property: 'date_peremption', type: 'datetime'}
           - {property: 'ingredients'}
