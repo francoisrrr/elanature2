@@ -56,6 +56,7 @@ class PanierController extends AbstractController
     public function indexPanier(Panier $panier, SessionInterface $session)
     {
         dump($panier->getPanier());
+        dump($panier->countPanier());
         die();
 
         //return $this->render('base.html.twig');

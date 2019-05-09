@@ -60,32 +60,52 @@ class Panier
         $this->session->remove('panier');
     }
 
-    //  -- Ajoute ($quantity x Article) dans $panier en $_SESSION
+    //  -OK- Ajoute ($quantity x $article) dans l'array $panier passé en argument
+    public function pushPanier(Article $article, $quantity, $panier)
+    {
+        // Initialisation de $quantity
+        $article->setQuantity($quantity);
+
+        // Ajout de $article dans $panier
+        $panier[] = $article;
+
+        return $panier;
+    }
+
+    //  -OK- Ajoute ($quantity x Article) dans $panier en $_SESSION
     public function addArticle(Article $article, $quantity)
     {
         $panier = $this->session->get('panier');
+        $flag = false;
 
         // -- Si $panier n'est pas vide
         if (!empty($panier)) {
+            // -- Si $article existe dans le $panier
             foreach ($panier as $key => $item) {
-                // -- Si $article existe dans le $panier
                 if ($item->getId() == $article->getId()) {
-                    if ($quantity!=0 && ($item->getQuantity() + $quantity) >0) {
-            			// Incrémentation de $quantity dans le $panier
-                    	$item->setQuantity($item->getQuantity() + $quantity);	
-                    } elseif ($quantity=0 || ($item->getQuantity() + $quantity)<=0) {
-                    	// Suppression de $item du $panier
-                    	unset($panier[$key]);
-                    }                   
-                    break;
+                    if ($quantity != 0 && ($item->getQuantity() + $quantity) > 0) {
+                        // Incrémentation de $quantity dans le $panier
+                        $item->setQuantity($item->getQuantity() + $quantity);
+                        $flag=true;
+                        break;
+                    } elseif ($quantity = 0 || ($item->getQuantity() + $quantity) <= 0) {
+                        // Suppression de $item du $panier
+                        unset($panier[$key]);
+                        $flag=true;
+                        break;
+                    }
                 }
             }
+
+            // -- Si $article n'existe pas dans le $panier
+            if ($quantity > 0 && $flag==false) {
+                $panier = $this->pushPanier($article,$quantity,$panier);
+            }
+
         } else {
             // -- Si $panier est vide
-            if ($quantity>0) {
-            	// Incrémentation de $quantity dans le $panier
-            	$article->setQuantity($quantity);
-            	$panier[]=$article;	
+            if ($quantity > 0) {
+                $panier = $this->pushPanier($article,$quantity,$panier);
             }
         }
 
@@ -100,22 +120,24 @@ class Panier
         $total = 0;
 
         foreach ($panier as $item) {
-			$total+= $item->getPrix() * $item->getQuantity();
+            $total += $item->getPrix() * $item->getQuantity();
         }
 
         return $total;
     }
 
-	//  -- Comptage du nombre d'Article dans le $panier
+    //  -OK- Comptage du nombre d'Article dans le $panier
     public function countPanier()
     {
         $panier = $this->session->get('panier', array());
         $count = 0;
 
         foreach ($panier as $item) {
-			$count+=$item->getQuantity();
+            $count += $item->getQuantity();
         }
 
         return $count;
     }
+
+}
     
