@@ -33,11 +33,15 @@ class MembreController extends AbstractController
 
         $form->handleRequest($request);
 
-//        if(!empty($_POST)) {
-//
-//            $membre->setAdresselivraison([$_POST['membre_form']['adresse'], $_POST['membre_form']['cp'], $_POST['membre_form']['ville']]);
-//            $membre->setAdresseFacturation([$_POST['membre_form']['adresse'], $_POST['membre_form']['cp'], $_POST['membre_form']['ville']]);
-//        }
+
+        if($request->getMethod() == 'POST') {
+
+            $adresse = $form['adresse']->getData();
+            $cp = $form['cp']->getData();
+            $ville = $form['ville']->getData();
+            $membre->setAdresselivraison([$adresse, $cp, $ville]);
+            $membre->setAdresseFacturation([$adresse, $cp, $ville]);
+        }
 
         # vérification de la soumission du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
@@ -100,7 +104,6 @@ class MembreController extends AbstractController
     {
         # récupérer Membre
         $membre = $this->getUser();
-//        $membre->setRoles(['ROLES_MEMBRE']);
 
         # création du Formulaire "MembreFormType"
         $form = $this->createForm(ModificationFormType::class, $membre);
@@ -134,16 +137,18 @@ class MembreController extends AbstractController
     }
 
     /**
-     * @Route("/suppression.html", name="membre_suppression")
+     * @Route("/suppression/{id}.html", name="membre_suppression")
      */
-    public function suppression()
+    public function suppression(Membre $membre)
     {
-        $membre = $this->getUser();
-        $this->em->remove($membre);
-        $this->em->flush();
+        /*$em = $this->getDoctrine()->getManager();
+        $em->remove($membre);
+        $em->flush();
+
+
         $this->addFlash('success', 'Vous avez bien supprimé votre compte.');
 
-        return $this->redirectToRoute('membre_inscription');
+        return $this->redirectToRoute('index');*/
 
     }
     /**

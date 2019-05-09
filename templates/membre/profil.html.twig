@@ -20,7 +20,7 @@
 
             <div class="text-center">
                 <a class="btn btn-modifier" href="{{ path('membre_modification') }}">Modifier mon profil</a>
-                <a class="btn btn-suppression" href="{{ path('membre_suppression') }}">Supprimer mon compte</a>
+                <a class="btn btn-suppression" href="{{ path('membre_suppression', {'id': app.user.id}) }}">Supprimer mon compte</a>
             </div>
 
         </div>

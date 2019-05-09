@@ -30,7 +30,7 @@ class ModificationFormType extends AbstractType
                         'message' => 'Veuillez entrer votre nom',
                     ]),
                     new Length([
-                        'min' => 3,
+                        'min' => 2,
                         'minMessage' => 'Un nom doit être minimum {{ limit }} characters',
                         'max' => 50,
                     ]),
@@ -46,7 +46,7 @@ class ModificationFormType extends AbstractType
                         'message' => 'Veuillez entrer votre prenom',
                     ]),
                     new Length([
-                        'min' => 3,
+                        'min' => 2,
                         'minMessage' => 'Un nom doit être minimum {{ limit }} characters',
                         'max' => 50,
                     ]),
@@ -71,7 +71,6 @@ class ModificationFormType extends AbstractType
             ])
             ->add('password', PasswordType::class, [
                 'label' => false,
-                'mapped' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer un mot de passe',
@@ -88,7 +87,6 @@ class ModificationFormType extends AbstractType
             ])
             ->add('adresse', TextType::class, [
                 'label' => false,
-                'mapped' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre adresse',
@@ -122,10 +120,11 @@ class ModificationFormType extends AbstractType
             ])
             ->add('termsAccepted', CheckboxType::class, [
                 'mapped' => false,
+                'label' => 'Conditions générales acceptés',
                 'constraints' => new IsTrue(),
             ])
             ->add('submit', SubmitType::class, [
-                'label' => "Je m'inscris!"
+                'label' => "Je modifie!"
             ]);
     }
 
