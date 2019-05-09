@@ -1,11 +1,6 @@
 <!-- ====================================================
 	header section -->
 
-{% set cart = app.session.get('panier') %}
-{% for quantite in panier %}
-    {{ count }} += {{ quantite }};
-{% endfor %}
-
 <header class="top-header">
     <div class="container">
         <div class="row">
@@ -47,7 +42,7 @@
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                                     
                                     <li><a href="{{ path('membre_deconnexion') }}" class="btn btn-success" role="button"></a></li>
-                                    <li><a href=""><i class="fas fa-shopping-basket"></i></a></li>
+                                    <li><a href="{{ path('panier') }}"><i class="fas fa-shopping-basket"></i></a></li>
                                     
                                 {% else %}
                                     

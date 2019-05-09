@@ -44,7 +44,11 @@
                                             <p>
                                             <h1>{{ article.prix }} € </h1> </p>
                                             <p>{{ article.ingredients }}</p>
-                                            <a class="btn btn-primary btn-lg" href="#" role="button">Commandez</a>
+                                            <a class="btn btn-primary btn-lg"
+                                               href="{{ path('panier_add_article',{
+                                                   'id' : article.id
+                                               }) }}"
+                                               role="button">Commandez</a>
                                         </div>
                                     </div><!-- blog 1 -->
                                 {% endfor %}
@@ -55,8 +59,6 @@
                     </section><!-- end of blog section -->
 
                 {% else %}
-
-
 
                 <section class="blog" id="blog">
                     <div class="container">

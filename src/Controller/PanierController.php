@@ -20,10 +20,10 @@
  * Ensemble des fonctions executables sur le $panier.
  * Ces fonctions sont accessibles via leurs @Route respectives.
  * Par exemple :
- *      href="{{ path('@Route_name',{
+       href="{{ path('@Route_name',{
                             'parameter1' : value1,
                             'parameter2' : value2
-               }) }}"
+              }) }}"
  *
  */
 
