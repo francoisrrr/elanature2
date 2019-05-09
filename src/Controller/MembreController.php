@@ -26,7 +26,7 @@ class MembreController extends AbstractController
     {
         # création d'un Membre
         $membre = new Membre();
-        $membre->setRoles(['role' => $role]);
+        $membre->setRoles(['ROLE_MEMBRE']);
 
         # création du Formulaire "MembreFormType"
         $form = $this->createForm(MembreFormType::class, $membre);
@@ -139,16 +139,26 @@ class MembreController extends AbstractController
     /**
      * @Route("/suppression/{id}.html", name="membre_suppression")
      */
-    public function suppression(Membre $membre)
+    public function suppression($id)
     {
-        /*$em = $this->getDoctrine()->getManager();
+        $currentMembreId = $this->getUser()->getId();
+
+        $em = $this->getDoctrine()->getManager();
+        $membre = $em->getRepository(Membre::class)->find($id);
+
+        if ($currentMembreId == $id)
+        {
+            $session = $this->get('session');
+            $session = new Session();
+            $session->invalidate();
+        }
+
         $em->remove($membre);
         $em->flush();
 
-
         $this->addFlash('success', 'Vous avez bien supprimé votre compte.');
 
-        return $this->redirectToRoute('index');*/
+        return $this->redirectToRoute('membre_inscription');
 
     }
     /**

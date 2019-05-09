@@ -86,14 +86,6 @@ class MembreFormType extends AbstractType
                     'placeholder' => 'Votre mot de passe'
                 ]
             ])
-            ->add('role', ChoiceType::class, [
-                'choices' => [
-                    'ROLE_MEMBRE' => 'ROLE_MEMBRE',
-                    'ROLE_ADMIN' => 'ROLE_ADMIN'
-                ],
-                'required' => true,
-                'multiple' => false
-            ])
             ->add('adresse', TextType::class, [
                 'label' => false,
                 'constraints' => [
