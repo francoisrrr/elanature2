@@ -1,0 +1,90 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Inscription
+{% endblock %}
+
+{% block content %}
+
+        <div class="container inscription">
+            <div class="row">
+
+                <h2>Inscription</h2>
+
+                {{ form_start( form, { attr: {novalidate: 'novalidate' }} ) }}
+
+                {% for message in app.flashes('notice') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                <div class="col-md-12">
+                    {{ form_row(form.prenom) }}
+                </div>
+
+                <div class="col-md-12">
+                    {{ form_row(form.nom) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form_row(form.email) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form_row(form.password) }}
+                </div>
+
+                <div class="col-md-4">
+                    {{ form_row(form.adresse) }}
+                </div>
+
+                <div class="col-md-4">
+                    {{ form_row(form.cp) }}
+                </div>
+
+                <div class="col-md-4">
+                    {{ form_row(form.ville) }}
+                </div>
+
+                <div class="col-md-12">
+                    {{ form_row(form.termsAccepted) }}
+                </div>
+
+                <div>
+                    {{ form_row(form.submit) }}
+                </div>
+
+
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(document).ready(function(){
+            //console.log('Hello');
+
+            $('#membre_form_cp').blur(function() {
+                //console.log('Hello');
+
+                let zipCode = $('#membre_form_cp').val(),
+                    link = 'https://geo.api.gouv.fr/communes?codePostal=' + zipCode;
+
+                $.getJSON(link, function (data) {
+
+                    //console.log(data);
+                    $('#membre_form_ville').val(`${data[0].nom}`);
+
+                }); // end $.getJSON
+            });
+        });
+
+    </script>
+
+{% endblock %}
