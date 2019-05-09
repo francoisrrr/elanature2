@@ -109,6 +109,15 @@ class MembreController extends AbstractController
         $form = $this->createForm(ModificationFormType::class, $membre);
         $form->handleRequest($request);
 
+        if($request->getMethod() == 'POST') {
+
+            $adresse = $form['adresse']->getData();
+            $cp = $form['cp']->getData();
+            $ville = $form['ville']->getData();
+            $membre->setAdresselivraison([$adresse, $cp, $ville]);
+            $membre->setAdresseFacturation([$adresse, $cp, $ville]);
+        }
+
         # vérification de la soumission du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -156,7 +165,7 @@ class MembreController extends AbstractController
         $em->remove($membre);
         $em->flush();
 
-        $this->addFlash('success', 'Vous avez bien supprimé votre compte.');
+        $this->addFlash('notice', 'Vous avez bien supprimé votre compte!');
 
         return $this->redirectToRoute('membre_inscription');
 
