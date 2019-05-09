@@ -1,11 +1,12 @@
 <!-- ====================================================
 	header section -->
+
 <header class="top-header">
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-2 col-xs-4 header-logo">
                 <br>
-                <a href="{{ path('index') }}"><img src="{{ asset('img/logo.png') }}" alt="" class="img-responsive logo"></a>
+                <a href="{{ path('index') }}"><img src="{{ asset('img/logo.png') }}" alt="logo-elanature"  title="logo-elanature" class="img-responsive logo"></a>
             </div>
 
             <div class="col-md-9 col-sm-10 col-xs-8">
@@ -27,9 +28,16 @@
 
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a class="menu" href="{{ path('index') }}">Home</a></li>
-                                <li><a class="menu" href="#about">à propos</a></li>
-                                <li><a class="menu dropdown-toggle" href="#categorie">Catégories</a></li>
-                                <li><a class="menu" href="#blog">blog</a></li>
+                                <li><a class="menu" href="#about">a propos</a></li>
+                                <li><a class="menu dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" href="#service">Categories</a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        {% for categorie in categories %}
+                                            <li><a class="menu dropdown-item" href="{{ path('default_categorie',{ 'slug':categorie.slug}) }}">{{ categorie.nom }}</a></li>
+                                        {% endfor %}
+
+
+                                    </ul></li>
+                                <li><a class="menu" href="#blog">info</a></li>
                                 <li><a class="menu" href="#contact">contact</a></li>
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 

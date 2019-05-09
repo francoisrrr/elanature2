@@ -1,0 +1,86 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    {{ categorie.nom }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <!--colleft-->
+            <div class="col-md-8 col-sm-12">
+                {% if articles is not empty %}
+
+
+                    <div class="box-caption">
+
+                        <span>{{ categorie.nom }}</span>
+
+                    </div>
+
+                    <section class="blog" id="blog">
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="blog-heading text-center">
+                                    <h2>{{ categorie.nom }}</h2>
+                                    <h4>Des produits naturels sains pour votre santé.</h4>
+                                </div><!-- blog header -->
+
+                                {% for article in articles %}
+                                    <div class="mx-auto collapse-4 col-lg-2">
+                                        <div class="blog-img">
+                                            <a href="{{ path('default_article',{'categorie' :article.categorie.slug,'slug': article.slug, 'id' : article.id}) }}">
+                                                <img class="img-responsive" src="{{ asset('img/' ~ article.photo) }}"
+                                                     alt="{{ article.nom }}" title="{{ article.nom }}">
+                                            </a>
+                                        </div>
+                                        <div class="blog-detail">
+                                            <a href="{{ path('default_article',{'categorie' :article.categorie.slug,'slug': article.slug, 'id' : article.id}) }}">
+                                                <h3>{{ article.nom }}</h3>
+                                            </a>
+                                            <p>{{ article.description | summarize }}</p>
+                                            <p>{{ article.poids }} g</p>
+                                            <p>
+                                            <h1>{{ article.prix }} € </h1> </p>
+                                            <p>{{ article.ingredients }}</p>
+                                            <a class="btn btn-primary btn-lg" href="#" role="button">Commandez</a>
+                                        </div>
+                                    </div><!-- blog 1 -->
+                                {% endfor %}
+
+
+                            </div>
+                        </div>
+                    </section><!-- end of blog section -->
+
+                {% else %}
+
+
+
+                <section class="blog" id="blog">
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="blog-heading text-center">
+                                <h2>{{ categorie.nom }}</h2>
+
+                            </div><!-- blog header -->
+
+                        </div>
+                    </div>
+                </section><!-- end of blog section -->
+
+                    <div class="alert alert-danger">
+                        <strong>Aucun article pour le moment, dans cette categorie</strong>
+                    </div>
+
+                {% endif %}
+
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+

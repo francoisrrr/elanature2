@@ -1,0 +1,26 @@
+easy_admin:
+  entities:
+    Category:
+      class: App\Entity\Categorie
+      label: 'Categories'
+      help: 'Vous etes dans la section Categories'
+      image_base_path: '/img'
+        #Changer le titre des actions
+      new:
+        title:  'Ajouter une catégorie'
+        form_options: { validation_groups: ['Default', 'Categorie'] }
+      edit:
+        title:  'Modifier une catégorie'
+        form_options: { validation_groups: ['Default'] }
+      list:
+        title: 'Catégories'
+        fields: ['nom', { property: 'image', type: 'image'}, 'article']
+        actions:
+          - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
+          - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
+          - {name: 'new', icon: 'plus', label: false, title: 'Ajouter' }
+      form:
+        fields:
+          - {property: 'nom'}
+          - {property: 'slug'}
+          - {property: 'image'}

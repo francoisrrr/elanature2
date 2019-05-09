@@ -1,0 +1,20 @@
+easy_admin:
+  entities:
+    Commande:
+      class: App\Entity\Commande
+      #Desactiver la creation de commandes
+      disabled_actions: ['new']
+      list:
+        title: 'Commandes'
+        #fields: ['nom', { property: 'image', type: 'image'}, 'article']
+        actions:
+          - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
+          - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
+          - {name: 'new', icon: 'plus', label: false, title: 'Ajouter' }
+      form:
+        fields:
+          - {property: 'date_commande'}
+          - {property: 'code_reduction'}
+          - {property: 'livraison'}
+          - {property: 'paiement'}
+          - {property: 'membre'}

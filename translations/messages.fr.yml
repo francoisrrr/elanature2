@@ -1,0 +1,12 @@
+folder: répertoire
+action.delete: 'Supprimer'
+action.edit: 'Mettre a jour'
+action.list: 'Retour a la liste'
+action.new: 'Ajouter'
+action.save: 'Enregistrer'
+action.search: 'Rechercher'
+Category: 'Categorie'
+ID: 'ID'
+Name: 'Nom'
+Parent: 'Parent'
+Products: 'Articles'

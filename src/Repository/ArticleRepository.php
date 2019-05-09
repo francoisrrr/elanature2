@@ -19,6 +19,82 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    /**
+     * @return Articles ou quantite est < 5
+     */
+    public function findByStockCritique($id)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.stock <= 5')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     * Recuperer les articles du spotlight
+     * Uniquement les 5 derniers
+     * Trier par ordre decroissant
+     */
+
+    public function findByPromotion()
+    {
+        # SELECT * FROM article as a
+        #   WHERE a.promotion = 1
+        return $this->createQueryBuilder('a')
+            ->where('a.promotion = 1')
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults(6)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
+    /**
+     * Recuperer les articles a la special
+     * Uniquement les 5 derniers
+     * Trier par ordre decroissant
+     */
+
+
+    public function findByCoupDeCoeur()
+    {
+        # SELECT * FROM article as a
+        #   WHERE a.coupdecoeur = 1
+        return $this->createQueryBuilder('a')
+            ->where('a.coupdecoeur = 1')
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     * Recuperer les 5 derniers articles de la BDD
+     */
+
+    public function findByNouveaute()
+    {
+        # SELECT * FROM article as a
+        return $this->createQueryBuilder('a')
+
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
+
+
+
+
+
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */

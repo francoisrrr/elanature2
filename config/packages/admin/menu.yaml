@@ -1,0 +1,25 @@
+easy_admin:
+  entities:
+    Membre:
+      class: App\Entity\Membre
+  design:
+    brand_color: '#AFBD8E'
+    assets:
+      css:
+        - 'bundles/app/css/custom_admin.css'
+      js:
+        - 'bundles/app/js/custom_admin.js'
+
+    menu:
+      - label: 'Dashboard'
+        icon: 'tachometer-alt'
+        children:
+          - {entity: 'Category', icon: 'tags', label: 'Categories', css_class: 'menu--user', type: 'easyadmin_autocomplete', type_options: { class: 'AppBundle\Entity\Categorie' }}
+          - {entity: 'Article', icon: 'shopping-bag', label: 'Articles', css_class: 'menu--product', default: true }
+          - {entity: 'Commande', icon: 'shopping-cart', label: 'Commandes', css_class: 'default'}
+          - {entity: 'Membre', icon: 'users', label: 'Membres', children: ['admin', 'clients']}
+          - {label: 'Messages', icon: 'envelope', url: 'https://mailtrap.io/inboxes' }
+          - {label: 'Paiement', icon: 'cc-stripe', target: '_blank', url: 'https://dashboard.stripe.com/test/payments' }
+
+
+

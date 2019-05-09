@@ -1,4 +1,6 @@
 {% extends "base.html.twig" %}
+{% set categories = categorie_repository.findAll() %}
+
 
 {% block stylesheets %}
     <!-- Fontawesome CSS -->

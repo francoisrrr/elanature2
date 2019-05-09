@@ -1,0 +1,37 @@
+{% extends 'layout.html.twig' %}
+{% block title %}
+    {{ article.nom }}
+
+{% endblock %}
+{% block content %}
+    <div class="container">
+
+
+        <div class="row">
+            <div class="blog-heading text-center">
+                <h2>{{ article.nom }}</h2>
+
+            </div><!-- blog header -->
+
+        </div>
+
+    <article class="blog-heading text-center">
+        <h1>{{ article.nom }}</h1>
+
+
+        <img alt="{{ article.nom }}"
+             src="{{ asset('img/' ~ article.photo) }}" alt="article" title="article">
+        <p class="about">
+            <h4> {{ article.description | raw }}</h4></p>
+        <p>{{ article.poids }} g</p>
+        <p><h1>{{ article.prix }} €</h1></p>
+        <p>{{ article.ingredients }}</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Commandez</a>
+
+    </article>
+
+
+
+
+    </div>
+{% endblock %}
