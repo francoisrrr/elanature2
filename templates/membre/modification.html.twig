@@ -59,4 +59,25 @@
 
 {% block javascripts %}
     {{ parent() }}
+
+    <script>
+        $(document).ready(function(){
+            //console.log('Hello');
+
+            $('#modification_form_cp').blur(function() {
+                //console.log('Hello');
+
+                let zipCode = $('#modification_form_cp').val(),
+                    link = 'https://geo.api.gouv.fr/communes?codePostal=' + zipCode;
+
+                $.getJSON(link, function (data) {
+
+                    //console.log(data);
+                    $('#modification_form_ville').val(`${data[0].nom}`);
+
+                }); // end $.getJSON
+            });
+        });
+
+    </script>
 {% endblock %}

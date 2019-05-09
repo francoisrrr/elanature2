@@ -8,7 +8,6 @@ use App\Entity\Membre;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -31,7 +30,7 @@ class MembreFormType extends AbstractType
                         'message' => 'Veuillez entrer votre nom',
                     ]),
                     new Length([
-                        'min' => 3,
+                        'min' => 2,
                         'minMessage' => 'Un nom doit être minimum {{ limit }} characters',
                         'max' => 50,
                     ]),
@@ -47,7 +46,7 @@ class MembreFormType extends AbstractType
                         'message' => 'Veuillez entrer votre prenom',
                     ]),
                     new Length([
-                        'min' => 3,
+                        'min' => 2,
                         'minMessage' => 'Un nom doit être minimum {{ limit }} characters',
                         'max' => 50,
                     ]),
@@ -88,7 +87,6 @@ class MembreFormType extends AbstractType
             ])
             ->add('adresse', TextType::class, [
                 'label' => false,
-                'mapped' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre adresse',

@@ -33,6 +33,8 @@ class MembreController extends AbstractController
 
         $form->handleRequest($request);
 
+        //$request->query->get('membre_form')['adresse']->setAdresslivraison();
+
 //        if(!empty($_POST)) {
 //
 //            $membre->setAdresselivraison([$_POST['membre_form']['adresse'], $_POST['membre_form']['cp'], $_POST['membre_form']['ville']]);
