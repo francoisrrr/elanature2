@@ -52,7 +52,7 @@ class Membre implements UserInterface
     /**
      * @ORM\Column(type="array")
      */
-    private $role = [];
+    private $roles = [];
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Commande", mappedBy="membre")
@@ -152,14 +152,14 @@ class Membre implements UserInterface
         return $this;
     }
 
-    public function getRole(): ?array
+    public function getRoles(): ?array
     {
-        return $this->role;
+        return $this->roles;
     }
 
-    public function setRole(array $role): self
+    public function setRoles(array $roles): self
     {
-        $this->role = $role;
+        $this->roles = $roles;
 
         return $this;
     }
