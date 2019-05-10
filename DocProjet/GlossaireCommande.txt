@@ -1,0 +1,41 @@
+* Vérifier version de composer : composer --version
+
+* Installer seulement un composant de symfony ( ici vardumper ) :composer require symfony/var-dumper
+
+* Créer projet symfony : composer create-project symfony/skeleton nomDuProjet
+
+* Permet de creer un mini serveur et de travailler en developpement uniquement : composer require server --dev
+
+* //Lancer le serveur : php bin/console server:run
+
+* Met en place l'environnement de debugage de symfony : composer require debug
+
+* Permet de savoir quel sont les routes detecter par symfony: php bin/consoledebug:router --env=prod
+
+* Permet de mettre les routes en annotations pluôt que dans le fichier yaml : composer require annotations
+
+* Installé Twig : composer require twig
+
+* Autre composant de symf. Permet de crée des liens absolu pour ses fichiers js et css : composer require symfony/asset
+
+* Savoir comment symfony reddirige une route et vers ou il renvoie : php bin/console router:match /.../zeaeza-azeae_145
+
+* Installer Doctrine : composer require doctrine maker ( allé dans le fichier .env pour configurer la database URL etc)
+
+* Créé la database : php bin/console doctrine:database:create
+
+* Vérifier si notre configuration de database est correct : php bin/console doctrine:schema:validate
+
+* Crée une classe dans la bdd : php bin/console make:entity NomdelaClasse
+
+* Mettre a jour une classe : php bin/console make:entity
+
+* Vérifier les relations : bin/console doctrine:mapping:info
+
+* Convertion pour un bdd sql ( préparation ) : php bin/console doctrine:migrations:diff
+
+* Migration vers la bdd : php bin/console doctrine:migrations:migrate
+
+* Pour faire une requete sql : php bin/console doctrine:query:sql "SELECT * FROM categorie"
+
+composer install
