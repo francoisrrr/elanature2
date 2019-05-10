@@ -44,7 +44,7 @@
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
                                     <li><a href="{{ path('membre_profil') }}"><i class="fa fa-user"></i></a></li>
-                                    <li class="badge" data-count="0">
+                                    <li class="badge" data-count="{{ nbProducts }}">
                                         <a href="">
                                             <i class="fa fa-shopping-cart fa-flip-horizontal"></i>
                                         </a>
@@ -56,7 +56,7 @@
                                     <li><a href="{{ path('membre_connexion') }}" class="btn btn-success" role="button">Connexion</a></li>
                                     <li><a href="{{ path('membre_inscription') }}" class="btn btn-success" role="button">S'inscrire</a></li>
                                     <li class="badge" data-count="{{ nbProducts }}">
-                                        <a href="{{ path('panier') }}">
+                                        <a href="">
                                             <i class="fa fa-shopping-cart fa-flip-horizontal"></i>
                                         </a>
                                     </li>

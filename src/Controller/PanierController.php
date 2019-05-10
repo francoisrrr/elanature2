@@ -94,7 +94,7 @@ class PanierController extends AbstractController
         $panier->addArticle($article,1);
 
         // -- Redirection vers $panier
-        return $this->redirectToRoute('panier');
+        return $this->redirectToRoute('index');
     }
 
     /** OK
@@ -117,7 +117,7 @@ class PanierController extends AbstractController
         $panier->addArticle($article,-1);
 
         // -- Redirection vers $panier
-        return $this->redirectToRoute('panier');
+        return $this->redirectToRoute('index');
     }
 
     /** OK
@@ -146,6 +146,6 @@ class PanierController extends AbstractController
         $charge = \Stripe\Charge::create(['amount' => 100000, 'currency' => 'eur', 'source' => 'tok_visa']);
         echo $charge;
 
-        return $this->redirectToRoute("/panier" );
+        return $this->redirectToRoute("index" );
     }
 }
