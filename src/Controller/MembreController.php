@@ -7,8 +7,10 @@ namespace App\Controller;
 use App\Entity\Membre;
 use App\Form\ConnexionFormType;
 use App\Form\MembreFormType;
+use App\Form\ModificationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -30,6 +32,14 @@ class MembreController extends AbstractController
 
         $form->handleRequest($request);
 
+        if($request->getMethod() == 'POST'){
+            $adresse = $form['adresse']->getData();
+            $cp = $form['cp']->getData();
+            $ville = $form['ville']->getData();
+            $membre->setAdresselivraison([$adresse, $cp, $ville]);
+            $membre->setAdresseFacturation([$adresse, $cp, $ville]);
+        }
+
         # vérification de la soumission du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -47,7 +57,7 @@ class MembreController extends AbstractController
             $this->addFlash('notice', 'Félicitation, vous pouvez vous connecter!');
 
             # redirection
-            return $this->redirectToRoute('/connexion.html');
+            return $this->redirectToRoute('membre_connexion');
         }
 
         # affichage du Formulaire dans la vue
@@ -58,8 +68,6 @@ class MembreController extends AbstractController
 
     /**
      * @Route("/connexion.html", name="membre_connexion")
-     * @param AuthenticationUtils $authenticationUtils
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function connexion(AuthenticationUtils $authenticationUtils)
     {
@@ -69,7 +77,7 @@ class MembreController extends AbstractController
         ]);
 
         # affichage du formulaire dans la vue
-        return $this->render('membre/connexion', [
+        return $this->render('membre/connexion.html.twig', [
             'form' => $form->createView(),
             'error' => $authenticationUtils->getLastAuthenticationError()
         ]);

@@ -69,6 +69,60 @@ class Membre implements UserInterface
      */
     private $adresse_facturation = [];
 
+    private $adresse;
+
+    /**
+     * @return mixed
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * @param mixed $adresse
+     */
+    public function setAdresse($adresse): void
+    {
+        $this->adresse = $adresse;
+    }
+
+    private $cp;
+
+    /**
+     * @return mixed
+     */
+    public function getCp()
+    {
+        return $this->cp;
+    }
+
+    /**
+     * @param mixed $cp
+     */
+    public function setCp($cp): void
+    {
+        $this->cp = $cp;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * @param mixed $ville
+     */
+    public function setVille($ville): void
+    {
+        $this->ville = $ville;
+    }
+
+    private $ville;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -154,7 +208,9 @@ class Membre implements UserInterface
 
     public function getRoles(): ?array
     {
-        return $this->roles;
+        $roles = $this->roles;
+        $roles[] = 'ROLE_MEMBRE';
+        return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
@@ -163,6 +219,30 @@ class Membre implements UserInterface
 
         return $this;
     }
+
+
+    public function getAdresselivraison(): ?array
+    {
+        return $this->adresse_livraison;
+    }
+
+    public function setAdresselivraison(array $adresse_livraison):self
+    {
+        $this->adresse_livraison = $adresse_livraison;
+        return $this;
+    }
+
+    public function getAdresseFacturation(): ?array
+    {
+        return $this->adresse_facturation;
+    }
+
+    public function setAdresseFacturation(array $adresse_facturation): self
+    {
+        $this->adresse_facturation = $adresse_facturation;
+        return $this;
+    }
+
 
     /**
      * @return Collection|Commande[]
@@ -223,7 +303,7 @@ class Membre implements UserInterface
      */
     public function getSalt()
     {
-        // TODO: Implement getSalt() method.
+        return null;
     }
 
     /**
@@ -233,7 +313,7 @@ class Membre implements UserInterface
      */
     public function getUsername()
     {
-        // TODO: Implement getUsername() method.
+        return $this->email;
     }
 
     /**
@@ -244,22 +324,8 @@ class Membre implements UserInterface
      */
     public function eraseCredentials()
     {
-        // TODO: Implement eraseCredentials() method.
     }
 
 
-    public function getAdresselivraison(): ?array
-    {
-        return $this->adresse_livraison;
-    }
-
-    /*
-     * Ajouté par Saadatou, sinon
-     * error: Object of class could not be converted to string
-     */
-    public function __toString()
-    {
-        return $this->nom;
-    }
     
 }

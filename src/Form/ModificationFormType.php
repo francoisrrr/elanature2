@@ -3,7 +3,6 @@
 
 namespace App\Form;
 
-
 use App\Entity\Membre;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -18,8 +17,11 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
 
-class MembreFormType extends AbstractType
+
+class ModificationFormType extends AbstractType
 {
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -100,7 +102,7 @@ class MembreFormType extends AbstractType
                 'label' => false,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer votre code postal',
+                        'message' => 'Veuillez entrer votre code postale',
                     ])
                 ],
                 'attr'  => [
@@ -124,7 +126,7 @@ class MembreFormType extends AbstractType
                 'constraints' => new IsTrue(),
             ])
             ->add('submit', SubmitType::class, [
-                'label' => "Je m'inscris!"
+                'label' => "Je modifie!"
             ]);
     }
 

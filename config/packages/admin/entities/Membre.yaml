@@ -7,7 +7,7 @@ easy_admin:
       disabled_actions: ['new']
       list:
         title: 'Membres'
-        fields: ['nom', 'prenom', 'email', 'date_inscription', 'commandes']
+        fields: ['nom', 'prenom', 'email', 'date_inscription', 'roles']
         actions:
           - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary'}
           - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
