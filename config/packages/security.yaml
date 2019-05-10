@@ -1,17 +1,14 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
-    # used to reload user from session & other features (e.g. switch_user)
-
-    # https://symfony.com/doc/current/security.html#c-encoding-passwords
-    encoders:
-        App\Entity\Membre: bcrypt
-
     providers:
         in_memory: { memory: ~ }
         membre_provider:
             entity:
                 class: App\Entity\Membre
                 property: email
+
+    encoders:
+        App\Entity\Membre: bcrypt
 
     firewalls:
         dev:
@@ -25,15 +22,6 @@ security:
             # http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
-            form_login:
-                login_path: membre_connexion
-                check_path: membre_connexion
-                username_parameter: app_login[email]
-                password_parameter: app_login[password]
-            provider: membre_provider
-            logout:
-                path: /deconnexion.html
-                target: /
 
             # https://symfony.com/doc/current/security/form_login_setup.html
 

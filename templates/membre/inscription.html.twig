@@ -6,10 +6,12 @@
 
 {% block content %}
 
-        <div class="container inscription">
+    <section class="clearfix">
+        <div class="container">
             <div class="row">
 
-                <h2>Inscription</h2>
+                    <h2>Inscription</h2>
+                    {{ form( form, { attr: {novalidate: 'novalidate' } } ) }}
 
                 {{ form_start( form, { attr: {novalidate: 'novalidate' }} ) }}
 
@@ -60,31 +62,11 @@
 
             </div>
         </div>
+    </section>
+
 
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-
-    <script>
-        $(document).ready(function(){
-            //console.log('Hello');
-
-            $('#membre_form_cp').blur(function() {
-                //console.log('Hello');
-
-                let zipCode = $('#membre_form_cp').val(),
-                    link = 'https://geo.api.gouv.fr/communes?codePostal=' + zipCode;
-
-                $.getJSON(link, function (data) {
-
-                    //console.log(data);
-                    $('#membre_form_ville').val(`${data[0].nom}`);
-
-                }); // end $.getJSON
-            });
-        });
-
-    </script>
-
 {% endblock %}

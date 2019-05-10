@@ -6,9 +6,8 @@
 
 {% block content %}
 
-<div class="container connexion">
     <div class="row">
-
+        <div class="col-md-8 col-sm-12">
             {% for message in app.flashes('notice') %}
                 <div class="alert alert-success">
                     {{ message }}
@@ -23,14 +22,9 @@
             {% endif %}
 
 
-            <h2>Connexion</h2>
+            <h3>Connexion</h3>
 
-            {{ form ( form, { attr: {novalidate: 'novalidate' } } ) }}
+            {{ form( form, { attr: {novalidate: 'novalidate' } } ) }}
+        </div>
     </div>
-</div>
-
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
 {% endblock %}

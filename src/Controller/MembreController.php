@@ -7,12 +7,9 @@ namespace App\Controller;
 use App\Entity\Membre;
 use App\Form\ConnexionFormType;
 use App\Form\MembreFormType;
-use App\Form\ModificationFormType;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -33,16 +30,6 @@ class MembreController extends AbstractController
 
         $form->handleRequest($request);
 
-
-        if($request->getMethod() == 'POST') {
-
-            $adresse = $form['adresse']->getData();
-            $cp = $form['cp']->getData();
-            $ville = $form['ville']->getData();
-            $membre->setAdresselivraison([$adresse, $cp, $ville]);
-            $membre->setAdresseFacturation([$adresse, $cp, $ville]);
-        }
-
         # vérification de la soumission du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -57,11 +44,10 @@ class MembreController extends AbstractController
             $em->flush();
 
             # notification
-            $this->addFlash('notice',
-                'Félicitation, vous pouvez vous connecter!');
+            $this->addFlash('notice', 'Félicitation, vous pouvez vous connecter!');
 
             # redirection
-            return $this->redirectToRoute('membre_connexion');
+            return $this->redirectToRoute('/connexion.html');
         }
 
         # affichage du Formulaire dans la vue
@@ -72,6 +58,8 @@ class MembreController extends AbstractController
 
     /**
      * @Route("/connexion.html", name="membre_connexion")
+     * @param AuthenticationUtils $authenticationUtils
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function connexion(AuthenticationUtils $authenticationUtils)
     {
@@ -80,9 +68,8 @@ class MembreController extends AbstractController
             'email' => $authenticationUtils->getLastUsername()
         ]);
 
-
         # affichage du formulaire dans la vue
-        return $this->render('membre/connexion.html.twig', [
+        return $this->render('membre/connexion', [
             'form' => $form->createView(),
             'error' => $authenticationUtils->getLastAuthenticationError()
         ]);
@@ -171,6 +158,7 @@ class MembreController extends AbstractController
         return $this->redirectToRoute('membre_inscription');
 
     }
+    
     /**
      * @Route("/deconnexion.html", name="membre_deconnexion")
      */

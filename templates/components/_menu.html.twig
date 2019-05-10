@@ -1,3 +1,5 @@
+{% set nbProducts = nbProducts() %}
+
 <!-- ====================================================
 	header section -->
 
@@ -48,19 +50,19 @@
                                         </a>
                                     </li>
                                     <li><a href="{{ path('membre_deconnexion') }}" class="btn btn-success" role="button">Déconnexion</a></li>
-                                    
+
                                 {% else %}
-                                    
+
                                     <li><a href="{{ path('membre_connexion') }}" class="btn btn-success" role="button">Connexion</a></li>
                                     <li><a href="{{ path('membre_inscription') }}" class="btn btn-success" role="button">S'inscrire</a></li>
-                                    <li class="badge" data-count="0">
-                                        <a href="">
+                                    <li class="badge" data-count="{{ nbProducts }}">
+                                        <a href="{{ path('panier') }}">
                                             <i class="fa fa-shopping-cart fa-flip-horizontal"></i>
                                         </a>
                                     </li>
 
                                 {% endif %}
-                                
+
                             </ul>
                         </div><!-- /navbar-collapse -->
                     </div><!-- / .container-fluid -->
